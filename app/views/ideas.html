@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-4" ng-repeat="trade in trades | filter:q">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span class="badge pull-right">{{trade.ideas.length}}</span>
+        {{trade.name}}
+      </div>
+      <div class="panel-body">{{trade.description}}</div>
+      <ul class="list-group">
+    	<li class="list-group-item" ng-repeat="idea in trade.ideas">
+    		{{idea.body}} <span class="glyphicon glyphicon-remove pull-right" ng-click="destroy(trade.id)"></span>
+    	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">New idea</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">New idea</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <select class="form-control" required="required" ng-model="idea.trade_id">
+          	  <option ng-repeat="trade in trades" vlaue="{{trade.id}}">{{trade.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Body" required="required" ng-model="idea.body"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" ng-click="create(idea)">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
