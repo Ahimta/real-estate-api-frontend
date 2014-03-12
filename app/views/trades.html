@@ -25,7 +25,7 @@
         <h4 class="modal-title" id="myModalLabel">New trade</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
+        <form role="form" ng-submit="create()">
           <div class="form-group">
             <input class="form-control" type="text" required="required" placeholder="Name" ng-model="trade.name" />
           </div>
@@ -34,7 +34,7 @@
             <textarea class="form-control" placeholder="Description" required="required" ng-model="trade.description"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" ng-click="create(trade)">Add</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
         </form>
       </div>
     </div>
