@@ -1,30 +1,33 @@
 <div class="row">
-  <div class="col-sm-4" ng-repeat="trade in trades | filter:q">
+  <article class="col-sm-6" ng-repeat="trade in trades | filter:q | orderBy:'name'">
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        <span class="badge pull-right">{{trade.ideas.length}}</span>
+      <header class="panel-heading" title="{{trade.description}}">
+        <span class="badge pull-left">{{trade.ideas.length}}</span>
         {{trade.name}}
-      </div>
-      <div class="panel-body">{{trade.description}}</div>
+      </header>
+      <div class="panel-body">{{trade.description || 'لا يوجد وصف'}}</div>
       <ul class="list-group">
-    	<li class="list-group-item" ng-repeat="idea in trade.ideas">
-    		{{idea.body}}
-        <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="destroy(idea.id)">Delete</button>
+    	<li class="list-group-item" ng-repeat="idea in trade.ideas" title="{{idea.body}}">
+    		<span>{{idea.body}}</span>
+        <div class="btn-group pull-left">
+          <button type="button" class="btn btn-danger btn-xs" ng-click="destroy(idea.id)">حذف</button>
+          <button type="button" class="btn btn-primary btn-xs" disabled="disabled">تعديل</button>
+        </div>
     	</li>
       </ul>
     </div>
   </div>
-</div>
+</article>
 
-<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">New idea</button>
+<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">فكرة جديدة</button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">New idea</h4>
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">فكرة جديدة</h4>
       </div>
       <div class="modal-body">
         <form role="form" ng-submit="create()">
@@ -34,12 +37,12 @@
           </div>
 
           <div class="form-group">
-            <textarea class="form-control" placeholder="Body" required="required" ng-model="idea.body"></textarea>
+            <textarea class="form-control" placeholder="محتوى الفكرة" required="required" ng-model="idea.body"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">أضف الفكرة</button>
         </form>
       </div>
     </div>
   </div>
-</div>
+</section>
