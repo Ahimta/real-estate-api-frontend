@@ -8,9 +8,6 @@ angular.module('realEstateFrontEndApp', [
 ])
   .config ($routeProvider) ->
     $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
       .when '/ideas',
         templateUrl: 'views/ideas.html'
         controller: 'IdeasCtrl'
@@ -18,4 +15,4 @@ angular.module('realEstateFrontEndApp', [
         templateUrl: 'views/trades.html'
         controller: 'TradesCtrl'
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/trades'
