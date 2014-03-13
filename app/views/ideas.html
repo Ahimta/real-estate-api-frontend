@@ -3,16 +3,13 @@
     <div class="panel panel-primary">
       <header class="panel-heading" title="{{trade.description}}">
         <span class="badge pull-left">{{trade.ideas.length}}</span>
-        {{trade.name}}
+        <span>{{trade.name}}</span>
       </header>
       <div class="panel-body">{{trade.description || 'لا يوجد وصف'}}</div>
       <ul class="list-group">
     	<li class="list-group-item" ng-repeat="idea in trade.ideas" title="{{idea.body}}">
     		<span>{{idea.body}}</span>
-        <div class="btn-group pull-left">
-          <button type="button" class="btn btn-danger btn-xs" ng-click="destroy(idea.id)">حذف</button>
-          <button type="button" class="btn btn-primary btn-xs" disabled="disabled">تعديل</button>
-        </div>
+        <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="destroy(idea.id)">حذف</button>
     	</li>
       </ul>
     </div>

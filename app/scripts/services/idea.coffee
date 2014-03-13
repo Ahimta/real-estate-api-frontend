@@ -10,7 +10,6 @@ angular.module('realEstateFrontEndApp')
       all: () ->
         service.query (-> null), (-> null)
 
-
       create: (idea, callbacks) ->
         service.save idea, callbacks
 

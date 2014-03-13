@@ -2,19 +2,18 @@
   <div class="col-sm-4" ng-repeat="trade in trades | filter:q | orderBy:'name'">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        {{trade.name}}
+        <span>{{trade.name}}</span>
         <span class="badge pull-left">{{trade.ideas_count}}</span>
       </div>
       <div class="panel-body">{{trade.description || 'لا يوجد وصف'}}</div>
       <div class="panel-footer">
-      	<button type="button" class="btn btn-primary btn-xs" disabled="disabled">تعديل</button>
       	<button type="button" class="btn btn-danger btn-xs" ng-click="destroy(trade.id)">حذف</button>
       </div>
     </div>
   </div>
 </div>
 
-<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضفة فئة</button>
+<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فئة</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

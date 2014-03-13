@@ -2,6 +2,7 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'IdeasCtrl', ($scope, Idea, Trade) ->
+  
     $scope.trades = Trade.all()
 
     $scope.create = ->
@@ -9,8 +10,6 @@ angular.module('realEstateFrontEndApp')
 
     $scope.destroy = (id) ->
       Idea.destroy id, invalidate
-
-    $scope.trades_ids = -> _.map $scope.trades, (trade) -> trade.id
 
     afterCreate = (data, headers) ->
       invalidate()
