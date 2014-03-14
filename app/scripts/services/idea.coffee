@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .factory 'Idea', ($resource, Trade) ->
+  .factory 'Idea', ($resource) ->
     service = $resource 'https://realestate-api.herokuapp.com/ideas/:id',
       {id: '@id'}, {'update': {method: 'PUT'}}
 

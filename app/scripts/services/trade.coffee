@@ -13,9 +13,9 @@ angular.module('realEstateFrontEndApp')
       create: (trade, callbacks) ->
         service.save trade: trade, callbacks
 
-      update: (trade, onSuccess) ->
-        service.update trade.id, trade, onSuccess, (-> null)
+      update: (trade, callbacks) ->
+        service.update trade.id, trade, callbacks, (-> null)
 
-      destroy: (id, onSuccess) ->
-        service.delete {id: id}, onSuccess, (-> null)
+      destroy: (id, callbacks) ->
+        service.delete {id: id}, callbacks, (-> null)
     }
