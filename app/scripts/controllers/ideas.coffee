@@ -5,8 +5,8 @@ angular.module('realEstateFrontEndApp')
   
     $scope.trades = Trade.all()
 
-    $scope.create = (idea) ->
-      Idea.create idea, afterCreate
+    $scope.create = () ->
+      Idea.create $scope.idea, afterCreate
 
     $scope.destroy = (id) ->
       Idea.destroy id, invalidate

@@ -13,8 +13,17 @@
   </article>
 </section>
 
-<my-modal modal-button="إضافة فئة">
-  <form role="form" ng-submit="create(trade)">
+<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فئة</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">إضافة فئة</h4>
+      </div>
+      <div class="modal-body">
+  <form role="form" ng-submit="create()">
     <div class="form-group">
       <input class="form-control" type="text" required="required" placeholder="اسم الفئة" ng-model="trade.name" />
     </div>
@@ -25,4 +34,7 @@
 
     <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
   </form>
-</my-modal>
+      </div>
+    </div>
+  </div>
+</div>

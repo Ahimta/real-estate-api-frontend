@@ -16,7 +16,16 @@
   </article>
 </section>
 
-<my-modal modal-button="إضافة فكرة">
+<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فكرة</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">إضافة فكرة</h4>
+      </div>
+      <div class="modal-body">
 <form role="form" ng-submit="create(idea)">
           <div class="form-group">
             <select class="form-control" required="required" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades">
@@ -27,6 +36,9 @@
             <textarea class="form-control" placeholder="محتوى الفكرة" required="required" ng-model="idea.body"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-lg btn-block">أضف الفكرة</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فكرة</button>
         </form>
-</my-modal>
+      </div>
+    </div>
+  </div>
+</div>
