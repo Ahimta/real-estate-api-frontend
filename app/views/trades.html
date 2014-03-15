@@ -1,53 +1,28 @@
-<div class="row">
-  <div class="col-sm-4" ng-repeat="trade in trades | filter:q | orderBy:'name'">
+<section class="row">
+  <article class="col-sm-4" ng-repeat="trade in trades | filter:q | orderBy:'name'">
     <div class="panel panel-primary">
-      <div class="panel-heading">
+      <header class="panel-heading">
         <span>{{trade.name}}</span>
         <span class="badge pull-left">{{trade.ideas_count}}</span>
-      </div>
+      </header>
       <div class="panel-body">{{trade.description || 'لا يوجد وصف'}}</div>
       <div class="panel-footer">
       	<button type="button" class="btn btn-danger btn-xs" ng-click="destroy(trade.id)">حذف</button>
       </div>
     </div>
-  </div>
-</div>
-<my-form modal-button="'إضافة فئة'">
-<form role="form" ng-submit="create()">
-  <div class="form-group">
-            <input class="form-control" type="text" required="required" placeholder="اسم الفئة" ng-model="trade.name" />
-          </div>
+  </article>
+</section>
 
-          <div class="form-group">
-            <textarea class="form-control" placeholder="الوصف" required="required" ng-model="trade.description"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
-          </form>
-</my-form>
-
-<!-- <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فئة</button>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">إضافة فئة</h4>
-      </div>
-      <div class="modal-body">
-        <form role="form" ng-submit="create()">
-          <div class="form-group">
-            <input class="form-control" type="text" required="required" placeholder="اسم الفئة" ng-model="trade.name" />
-          </div>
-
-          <div class="form-group">
-            <textarea class="form-control" placeholder="الوصف" required="required" ng-model="trade.description"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
-        </form>
-      </div>
+<my-modal modal-button="'إضافة فئة'">
+  <form role="form" ng-submit="create(trade)">
+    <div class="form-group">
+      <input class="form-control" type="text" required="required" placeholder="اسم الفئة" ng-model="trade.name" />
     </div>
-  </div>
-</div> -->
+
+    <div class="form-group">
+      <textarea class="form-control" placeholder="الوصف" ng-model="trade.description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
+  </form>
+</my-modal>

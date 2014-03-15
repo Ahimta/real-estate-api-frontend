@@ -1,4 +1,4 @@
-<div class="row">
+<section class="row">
   <article class="col-sm-6" ng-repeat="trade in trades | filter:q | orderBy:'name'">
     <div class="panel panel-primary">
       <header class="panel-heading" title="{{trade.description}}">
@@ -13,21 +13,11 @@
     	</li>
       </ul>
     </div>
-  </div>
-</article>
+  </article>
+</section>
 
-<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">فكرة جديدة</button>
-
-<!-- Modal -->
-<section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">فكرة جديدة</h4>
-      </div>
-      <div class="modal-body">
-        <form role="form" ng-submit="create()">
+<my-modal modal-button="'إضافة فكرة'">
+<form role="form" ng-submit="create(idea)">
           <div class="form-group">
             <select class="form-control" required="required" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades">
             </select>
@@ -39,7 +29,4 @@
 
           <button type="submit" class="btn btn-primary btn-lg btn-block">أضف الفكرة</button>
         </form>
-      </div>
-    </div>
-  </div>
-</section>
+</my-modal>

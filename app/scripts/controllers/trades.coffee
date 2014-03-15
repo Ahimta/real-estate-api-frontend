@@ -1,11 +1,12 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'TradesCtrl', ($scope, Trade) ->
+  .controller 'TradesCtrl', ($scope, $log, Trade) ->
     $scope.trades = Trade.all()
 
-    $scope.create = ->
-      Trade.create $scope.trade, afterCreate
+    $scope.create = (trade) ->
+      $log.debug $scope.trade
+      Trade.create trade, afterCreate
 
     $scope.destroy = (id) ->
       Trade.destroy id, invalidate

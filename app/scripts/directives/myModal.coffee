@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .directive('myForm', () ->
-    templateUrl: '/scripts/templates/myForm.html'
+  .directive('myModal', () ->
+    templateUrl: '/scripts/templates/myModal.html'
     restrict: 'E'
     transclude: true
     scope:
