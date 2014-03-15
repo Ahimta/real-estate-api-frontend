@@ -11,7 +11,7 @@ angular.module('realEstateFrontEndApp')
         service.query (-> null), (-> null)
 
       create: (trade, callbacks) ->
-        service.save trade: trade, callbacks
+        service.save trade, callbacks
 
       update: (trade, callbacks) ->
         service.update trade.id, trade, callbacks, (-> null)

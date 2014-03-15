@@ -12,10 +12,22 @@
     </div>
   </div>
 </div>
+<my-form modal-button="'إضافة فئة'">
+<form role="form" ng-submit="create()">
+  <div class="form-group">
+            <input class="form-control" type="text" required="required" placeholder="اسم الفئة" ng-model="trade.name" />
+          </div>
 
-<button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فئة</button>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="الوصف" required="required" ng-model="trade.description"></textarea>
+          </div>
 
-<!-- Modal -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
+          </form>
+</my-form>
+
+<!-- <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal">إضافة فئة</button>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -38,4 +50,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
