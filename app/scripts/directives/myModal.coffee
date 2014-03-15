@@ -6,5 +6,5 @@ angular.module('realEstateFrontEndApp')
     restrict: 'E'
     transclude: true
     scope:
-      modalButton: '='
+      modalButton: '@'
   )
