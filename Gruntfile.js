@@ -14,6 +14,7 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-contrib-jade');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -55,6 +56,23 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      jade: {
+        files: ['<%= yeoman.app %>/jade/**/*.jade'],
+        tasks: ['jade']
+      }
+    },
+
+    jade : {
+      options: {
+        client: false
+      },
+      files: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/jade/',
+        src: '**/*.jade',
+        dest: '<%= yeoman.app %>',
+        ext: '.html'
       }
     },
 
@@ -394,6 +412,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'jade',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -408,6 +427,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'jade',
     'autoprefixer',
     'connect:test',
     'karma'
@@ -415,6 +435,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'jade',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

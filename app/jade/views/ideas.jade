@@ -1,0 +1,29 @@
+section.row
+  article.col-sm-6(ng-repeat="trade in trades | filter:q | orderBy:'name'")
+    div.panel.panel-primary
+      header.panel-heading(title="{{trade.description}}")
+        span.badge.pull-left {{trade.ideas.length}}
+        span {{trade.name}}
+      div.panel-body {{trade.description || 'لا يوجد وصف'}}
+      ul.list-group
+        li.list-group-item(ng-repeat="idea in trade.ideas", title="{{idea.body}}")
+          span {{idea.body}}
+          button.btn.btn-danger.btn-xs.pull-left(type="button",  ng-click="destroy(idea.id)") حذف
+
+button.btn.btn-success.btn-lg.btn-block(type="button", data-toggle="modal", data-target="#myModal") إضافة فكرة
+
+div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close.pull-left(type="button", data-dismiss="modal", aria-hidden="true") &times;
+        h4#myModalLabel.modal-title إضافة فكرة
+      div.modal-body
+        form(role="form", ng-submit="create(idea)")
+          div.form-group
+            select.form-control(required="required", ng-model="idea.trade_id", ng-options="t.id as t.name for t in trades")
+
+          div.form-group
+            textarea.form-control(placeholder="محتوى الفكرة", required="required", ng-model="idea.body")
+
+          button.btn.btn-primary.btn-lg.btn-block(type="submit") إضافة فكرة

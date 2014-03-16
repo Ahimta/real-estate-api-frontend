@@ -1,0 +1,27 @@
+section.row
+  article.col-sm-4(ng-repeat="trade in trades | filter:q | orderBy:'name'")
+    div.panel.panel-primary
+      header.panel-heading
+        span {{trade.name}}
+        span.badge.pull-left {{trade.ideas_count}}
+      div.panel-body {{trade.description || 'لا يوجد وصف'}}
+      footer.panel-footer
+        button.btn.btn-danger.btn-xs(type="button", ng-click="destroy(trade.id)") حذف
+
+button.btn.btn-success.btn-lg.btn-block(type="button", data-toggle="modal", data-target="#myModal") إضافة فئة
+
+div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  div.modal-dialog
+    div.modal-content
+      header.modal-header
+        button.close.pull-left(type="button", data-dismiss="modal", aria-hidden="true") &times;
+        h4#myModalLabel.modal-title إضافة فئة
+      div.modal-body
+        form(role="form", ng-submit="create()")
+          div.form-group
+            input.form-control(type="text", required="required", placeholder="اسم الفئة" ng-model="trade.name")
+
+          div.form-group
+            textarea.form-control(placeholder="الوصف", ng-model="trade.description")
+
+          button.btn.btn-primary.btn-lg.btn-block(type="submit") إضافة فئة
