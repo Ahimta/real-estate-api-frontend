@@ -1,79 +1,49 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="ar"> <!--<![endif]-->
+<!DOCTYPE html><!-- [if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!-- [if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!-- [if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!-- [if gt IE 8]<!-->
+<html lang="ar" class="no-js"><!-- <![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>موقع إدارة العقارات</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
+    <meta name="viewport" content="width=device-width"><!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css">
-    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css"><!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+    <link rel="stylesheet" href="styles/main.css"><!-- endbuild -->
   </head>
   <body ng-app="realEstateFrontEndApp" dir="rtl">
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
     <header>
-      <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+      <nav role="navigation" class="navbar navbar-default navbar-static-top navbar-inverse">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header pull-right">
-          <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav pull-right">
-        <li><a href="#/trades">الفئات</a></li>
-        <li><a href="#/ideas">الأفكار</a></li>
-      </ul>
-      <form class="navbar-form navbar-right pull-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="بحث" ng-model="q">
+          <div class="navbar-header pull-right"></div>
+          <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle pull-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav pull-right">
+              <li><a href="#/trades">الفئات</a></li>
+              <li><a href="#/ideas">الأفكار</a></li>
+            </ul>
+            <form role="search" class="navbar-form navbar-right pull-left">
+              <div class="form-group">
+                <input placeholder="بحث" ng-model="q" class="form-control">
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-</header>
-    <div class="container" ng-view=""></div>
-
-    <footer></footer>
-
-    <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
+      </nav>
+    </header>
+    <div ng-view="" class="container"></div>
+    <footer></footer><!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js")></script>
     <![endif]-->
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-49010546-1', 'realestate-frontend.herokuapp.com');
-      ga('send', 'pageview');
-    </script>
-
-    <!-- build:js scripts/vendor.js -->
+    <script src="scripts/ga.js"></script><!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
@@ -82,17 +52,14 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- endbower -->
+    <script src="bower_components/angular-route/angular-route.js"></script><!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/ideas.js"></script>
     <script src="scripts/controllers/trades.js"></script>
     <script src="scripts/services/trade.js"></script>
     <script src="scripts/services/idea.js"></script>
-    <!-- endbuild -->
+    <script src="scripts/services/idea.js"></script><!-- endbuild -->
   </body>
 </html>
