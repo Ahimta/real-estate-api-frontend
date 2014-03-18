@@ -1,4 +1,9 @@
-section.row
+div.progress.progress-striped.active(ng-show="trades.length == 0")
+  div.progress-bar(role="progressbar", aria-valuenow="99", aria-valuemin="0", aria-valuemax="100", style="width: 100%")
+    span.sr-only Pending
+
+
+section.row(ng-show="trades.length > 0")
   article.col-sm-6(ng-repeat="trade in trades | filter:q | orderBy:'name'")
     div.panel.panel-primary
       header.panel-heading(title="{{trade.description}}")
