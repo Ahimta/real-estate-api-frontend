@@ -26,7 +26,7 @@ div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLab
       div.modal-body
         form(role="form", ng-submit="create(idea)")
           div.form-group
-            select.form-control(required="required", ng-model="idea.trade_id", ng-options="t.id as t.name for t in trades")
+            select.form-control(required, autofocus, ng-model="idea.trade_id", ng-options="t.id as t.name for t in trades")
 
           div.form-group
             textarea.form-control(placeholder="محتوى الفكرة", required="required", ng-model="idea.body")

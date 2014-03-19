@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: idea', () ->
+describe 'Service: Idea', () ->
 
   # load the service's module
   beforeEach module 'realEstateFrontEndApp'
 
   # instantiate service
-  idea = {}
-  beforeEach inject (_idea_) ->
-    idea = _idea_
+  Idea = {}
+  beforeEach inject (_Idea_) ->
+    Idea = _Idea_
 
   it 'should do something', () ->
-    expect(!!idea).toBe true
+    expect(!!Idea).toBe true

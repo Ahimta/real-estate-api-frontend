@@ -26,7 +26,7 @@
       <div class="modal-body">
         <form role="form" ng-submit="create(idea)">
           <div class="form-group">
-            <select required="required" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
           </div>
           <div class="form-group">
             <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
