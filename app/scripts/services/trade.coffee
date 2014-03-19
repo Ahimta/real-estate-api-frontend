@@ -7,15 +7,15 @@ angular.module('realEstateFrontEndApp')
 
     # Public API here
     {
-      all: () ->
-        service.query (-> null), (-> null)
+      all: (callbacks) ->
+        service.query callbacks
 
       create: (trade, callbacks) ->
         service.save trade, callbacks
 
       update: (trade, callbacks) ->
-        service.update trade.id, trade, callbacks, (-> null)
+        service.update trade.id, trade, callbacks
 
       destroy: (id, callbacks) ->
-        service.delete {id: id}, callbacks, (-> null)
+        service.delete {id: id}, callbacks
     }

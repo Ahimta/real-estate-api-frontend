@@ -5,12 +5,25 @@ div.progress.progress-striped.active(ng-show="trades.length == 0")
 
 section.row(ng-show="trades.length > 0")
   article.col-sm-4(ng-repeat="trade in trades | filter:q | orderBy:'name'")
-    div.panel.panel-primary
+    //- Reading view
+    div.panel.panel-primary(ng-hide="isEditing(trade.id)")
       header.panel-heading
         span {{trade.name}}
         span.badge.pull-left {{trade.ideas_count}}
       div.panel-body {{trade.description || 'لا يوجد وصف'}}
       footer.panel-footer
+        button.btn.btn-primary.btn-xs(type="button", ng-click="edit(trade.id)") تعديل
+        button.btn.btn-danger.btn-xs(type="button", ng-click="destroy(trade.id)") حذف
+
+    //- Editing view
+    div.panel.panel-primary(ng-show="isEditing(trade.id)")
+      header.panel-heading
+        input(required, autofocus, type="text", ng-model="trade.name")
+        span.badge.pull-left {{trade.ideas_count}}
+      div.panel-body: input(type="text", ng-model="trade.description")
+      footer.panel-footer
+        button.btn.btn-primary.btn-xs(type="button", ng-click="update(trade)") تعديل
+        button.btn.btn-xs(type="button", ng-click="reset(trade.id)") إلغاء
         button.btn.btn-danger.btn-xs(type="button", ng-click="destroy(trade.id)") حذف
 
 button.btn.btn-success.btn-lg.btn-block(type="button", data-toggle="modal", data-target="#myModal") إضافة فئة
@@ -22,7 +35,7 @@ div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLab
         button.close.pull-left(type="button", data-dismiss="modal", aria-hidden="true") &times;
         h4#myModalLabel.modal-title إضافة فئة
       div.modal-body
-        form(role="form", ng-submit="create()")
+        form(role="form", ng-submit="create(trade)")
           div.form-group
             input.form-control(type="text", autofocus, required, placeholder="اسم الفئة" ng-model="trade.name")
 

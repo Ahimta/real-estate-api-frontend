@@ -3,18 +3,30 @@
 angular.module('realEstateFrontEndApp')
   .controller 'TradesCtrl', ($scope, $log, Trade) ->
     $scope.trades = Trade.all()
+    isEditing     = {}
 
-    $scope.create = () ->
-      $log.debug $scope.trade
-      Trade.create $scope.trade, afterCreate
+    $scope.create = (trade) ->
+      Trade.create trade, (data, headers) ->
+        $scope.trades = Trade.all()
+        $scope.trade  = {}
 
     $scope.destroy = (id) ->
-      Trade.destroy id, invalidate
+      Trade.destroy id, (data, headers) ->
+        $scope.trades = Trade.all()
 
+    $scope.update = (trade) ->
+      Trade.update trade, (data, headers) ->
+        $scope.trades = Trade.all()
+        isEditing[trade.id] = false
 
-    afterCreate = (data, headers) ->
-      $scope.trade = {}
-      invalidate()
+    $scope.isEditing = (id) ->
+      isEditing[id]
 
-    invalidate = ->
-      $scope.trades = Trade.all()
+    $scope.edit = (id) ->
+      setEditing(id, true)
+
+    $scope.reset = (id) ->
+      setEditing(id, false)
+
+    setEditing = (id, bool) ->
+      isEditing[id] = bool

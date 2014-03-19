@@ -4,10 +4,24 @@
 </div>
 <section ng-show="trades.length &gt; 0" class="row">
   <article ng-repeat="trade in trades | filter:q | orderBy:'name'" class="col-sm-4">
-    <div class="panel panel-primary">
+    <div ng-hide="isEditing(trade.id)" class="panel panel-primary">
       <header class="panel-heading"><span>{{trade.name}}</span><span class="badge pull-left">{{trade.ideas_count}}</span></header>
       <div class="panel-body">{{trade.description || 'لا يوجد وصف'}}</div>
       <footer class="panel-footer">
+        <button type="button" ng-click="edit(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
+        <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger btn-xs">حذف</button>
+      </footer>
+    </div>
+    <div ng-show="isEditing(trade.id)" class="panel panel-primary">
+      <header class="panel-heading">
+        <input required="required" autofocus="autofocus" type="text" ng-model="trade.name"/><span class="badge pull-left">{{trade.ideas_count}}</span>
+      </header>
+      <div class="panel-body">
+        <input type="text" ng-model="trade.description"/>
+      </div>
+      <footer class="panel-footer">
+        <button type="button" ng-click="update(trade)" class="btn btn-primary btn-xs">تعديل</button>
+        <button type="button" ng-click="reset(trade.id)" class="btn btn-xs">إلغاء</button>
         <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger btn-xs">حذف</button>
       </footer>
     </div>
@@ -22,7 +36,7 @@
         <h4 id="myModalLabel" class="modal-title">إضافة فئة</h4>
       </header>
       <div class="modal-body">
-        <form role="form" ng-submit="create()">
+        <form role="form" ng-submit="create(trade)">
           <div class="form-group">
             <input type="text" autofocus="autofocus" required="required" placeholder="اسم الفئة" ng-model="trade.name" class="form-control"/>
           </div>
