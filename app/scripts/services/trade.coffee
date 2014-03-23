@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .factory 'Trade', ($resource) ->
+  .factory 'Trade', ($resource, $log) ->
     service = $resource 'https://realestate-api.herokuapp.com/trades/:id',
       {id: '@id'}, {'update': {method: 'PUT'}}
 
@@ -11,6 +11,7 @@ angular.module('realEstateFrontEndApp')
         service.query callbacks
 
       create: (trade, callbacks) ->
+        $log.debug trade
         service.save trade, callbacks
 
       update: (trade, callbacks) ->

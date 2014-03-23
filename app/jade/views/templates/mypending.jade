@@ -1,0 +1,5 @@
+section.progress.progress-striped.active(ng-show='hideCondition')
+  div.progress-bar(role='progressbar', style='width: 100%')
+    span.sr-only Pending
+
+section(ng-hide='hideCondition' ng-transclude)

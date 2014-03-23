@@ -1,34 +1,18 @@
-div.progress.progress-striped.active(ng-show="trades.length == 0")
-  div.progress-bar(role="progressbar", aria-valuenow="99", aria-valuemin="0", aria-valuemax="100", style="width: 100%")
-    span.sr-only Pending
-
-
-section.row(ng-show="trades.length > 0")
+section.row(hide-condition='trades.length == 0' my-pending)
   article.col-sm-6(ng-repeat="trade in trades | filter:q | orderBy:'name'")
     div.panel.panel-primary
-      header.panel-heading(title="{{trade.description}}")
-        span.badge.pull-left {{trade.ideas.length}}
-        span {{trade.name}}
-      div.panel-body {{trade.description || 'لا يوجد وصف'}}
+      header.panel-heading(ng-bind='trade.name')
       ul.list-group
         li.list-group-item(ng-repeat="idea in trade.ideas", title="{{idea.body}}")
           span {{idea.body}}
           button.btn.btn-danger.btn-xs.pull-left(type="button",  ng-click="destroy(idea.id)") حذف
 
-button.btn.btn-success.btn-lg.btn-block(type="button", data-toggle="modal", data-target="#myModal") إضافة فكرة
+my-modal-form(modal-button='إضافة فكرة')
+  form(role='form',ng-submit='create(idea)')
+    div.form-group
+      select.form-control(required, autofocus, ng-model='idea.trade_id', ng-options="t.id as t.name for t in trades")
 
-div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-  div.modal-dialog
-    div.modal-content
-      div.modal-header
-        button.close.pull-left(type="button", data-dismiss="modal", aria-hidden="true") &times;
-        h4#myModalLabel.modal-title إضافة فكرة
-      div.modal-body
-        form(role="form", ng-submit="create(idea)")
-          div.form-group
-            select.form-control(required, autofocus, ng-model="idea.trade_id", ng-options="t.id as t.name for t in trades")
+    div.form-group
+      textarea.form-control(placeholder='محتوى الفكرة', required, ng-model='idea.body')
 
-          div.form-group
-            textarea.form-control(placeholder="محتوى الفكرة", required="required", ng-model="idea.body")
-
-          button.btn.btn-primary.btn-lg.btn-block(type="submit") إضافة فكرة
+    button.btn.btn-primary.btn-lg.btn-block(type='submit') إضافة فكرة

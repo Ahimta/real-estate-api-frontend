@@ -8,7 +8,8 @@ angular.module('realEstateFrontEndApp')
     $scope.create = (trade) ->
       Trade.create trade, (data, headers) ->
         $scope.trades = Trade.all()
-        $scope.trade  = {}
+        $scope.trade = {}
+        trade  = {}
 
     $scope.destroy = (id) ->
       Trade.destroy id, (data, headers) ->
@@ -17,7 +18,7 @@ angular.module('realEstateFrontEndApp')
     $scope.update = (trade) ->
       Trade.update trade, (data, headers) ->
         $scope.trades = Trade.all()
-        isEditing[trade.id] = false
+        setEditing(trade.id, false)
 
     $scope.isEditing = (id) ->
       isEditing[id]
