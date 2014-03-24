@@ -1,11 +1,16 @@
-section.row(hide-condition='trades.length == 0' my-pending)
-  article.col-sm-6(ng-repeat="trade in trades | filter:q | orderBy:'name'")
-    div.panel.panel-primary
-      header.panel-heading(ng-bind='trade.name')
-      ul.list-group
-        li.list-group-item(ng-repeat="idea in trade.ideas", title="{{idea.body}}")
-          span {{idea.body}}
-          button.btn.btn-danger.btn-xs.pull-left(type="button",  ng-click="destroy(idea.id)") حذف
+div.row
+  section.col-sm-3.list-group
+    a.list-group-item(ng-repeat='trade in trades',
+      ng-click='selectTrade(trade.id)',ng-bind='trade.name',
+      ng-class='{active: isTradeSelected(trade.id)}')
+
+  section.col-sm-9(hide-condition='ideas.length == 0' my-pending)
+    article.text-center.lead(ng-repeat="idea in ideas | orderBy:'body.length':true")
+      p {{idea.body}}
+      div.btn-group
+        button.btn.btn-primary.btn-xs(type='button',disabled,ng-click='edit(idea.id)') تعديل
+        button.btn.btn-danger.btn-xs(type='button',disabled,ng-click='edit(idea.id)') حذف
+      hr
 
 my-modal-form(modal-button='إضافة فكرة')
   form(role='form',ng-submit='create(idea)')

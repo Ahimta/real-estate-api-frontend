@@ -1,6 +1,6 @@
 
 <section hide-condition="trades.length == 0" my-pending="my-pending" class="row">
-  <article ng-repeat="trade in trades | filter:q | orderBy:'name'" class="col-sm-4">
+  <article ng-repeat="trade in trades | orderBy:'name'" class="col-sm-4">
     <div ng-hide="isEditing(trade.id)" class="panel panel-primary">
       <header class="panel-heading"><span>{{trade.name}}</span></header>
       <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}</div>

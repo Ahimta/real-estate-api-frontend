@@ -1,5 +1,5 @@
 section.row(hide-condition='trades.length == 0' my-pending)
-  article.col-sm-4(ng-repeat="trade in trades | filter:q | orderBy:'name'")
+  article.col-sm-4(ng-repeat="trade in trades | orderBy:'name'")
     //- Reading view
     div.panel.panel-primary(ng-hide="isEditing(trade.id)")
       header.panel-heading

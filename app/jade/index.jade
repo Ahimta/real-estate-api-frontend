@@ -31,8 +31,8 @@ html.no-js(lang="ar")
       nav.navbar.navbar-default.navbar-static-top.navbar-inverse(role="navigation")
         div.container
           //- Brand and toggle get grouped for better mobile display
-          div.navbar-header.pull-right
-          button.navbar-toggle.pull-left(type="button", data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+          div.navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
             span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
@@ -45,9 +45,6 @@ html.no-js(lang="ar")
                 a(href="#/trades") الفئات
               li
                 a(href="#/ideas") الأفكار
-            form.navbar-form.navbar-right.pull-left(role="search")
-              div.form-group
-                input.form-control(placeholder="بحث", ng-model="q")
 
     div.container(ng-view="")
 
@@ -78,12 +75,19 @@ html.no-js(lang="ar")
     // build:js({.tmp,app}) scripts/scripts.js
     script(src="scripts/app.js")
 
+    //- controllers
     script(src="scripts/controllers/ideas.js")
     script(src="scripts/controllers/trades.js")
 
+    //- services
+    script(src="scripts/services/utils.js")
     script(src="scripts/services/trade.js")
     script(src="scripts/services/idea.js")
 
+    //- constants
+    script(src="scripts/services/real_estate_api.js")
+
+    //- directives
     script(src="scripts/directives/mypending.js")
     script(src="scripts/directives/mymodalform.js")
     // endbuild

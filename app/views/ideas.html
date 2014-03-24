@@ -1,16 +1,17 @@
 
-<section hide-condition="trades.length == 0" my-pending="my-pending" class="row">
-  <article ng-repeat="trade in trades | filter:q | orderBy:'name'" class="col-sm-6">
-    <div class="panel panel-primary">
-      <header ng-bind="trade.name" class="panel-heading"></header>
-      <ul class="list-group">
-        <li ng-repeat="idea in trade.ideas" title="{{idea.body}}" class="list-group-item"><span>{{idea.body}}</span>
-          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger btn-xs pull-left">حذف</button>
-        </li>
-      </ul>
-    </div>
-  </article>
-</section>
+<div class="row">
+  <section class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></section>
+  <section hide-condition="ideas.length == 0" my-pending="my-pending" class="col-sm-9">
+    <article ng-repeat="idea in ideas | orderBy:'body.length':true" class="text-center lead">
+      <p>{{idea.body}}</p>
+      <div class="btn-group">
+        <button type="button" disabled="disabled" ng-click="edit(idea.id)" class="btn btn-primary btn-xs">تعديل</button>
+        <button type="button" disabled="disabled" ng-click="edit(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+      </div>
+      <hr/>
+    </article>
+  </section>
+</div>
 <my-modal-form modal-button="إضافة فكرة">
   <form role="form" ng-submit="create(idea)">
     <div class="form-group">
