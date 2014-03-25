@@ -1,15 +1,34 @@
 div.row
-  section.col-sm-3.list-group
+  section.col-sm-3.list-group(my-pending,
+    hide-condition='trades.length == 0')
     a.list-group-item(ng-repeat='trade in trades',
       ng-click='selectTrade(trade.id)',ng-bind='trade.name',
       ng-class='{active: isTradeSelected(trade.id)}')
 
   section.col-sm-9(hide-condition='ideas.length == 0' my-pending)
-    article.text-center.lead(ng-repeat="idea in ideas | orderBy:'body.length':true")
-      p {{idea.body}}
-      div.btn-group
-        button.btn.btn-primary.btn-xs(type='button',disabled,ng-click='edit(idea.id)') تعديل
-        button.btn.btn-danger.btn-xs(type='button',disabled,ng-click='edit(idea.id)') حذف
+    
+    //- Showing view
+    article.text-center.lead(ng-repeat='idea in ideas | orderBy:"body.length":true')
+      div(ng-hide='isEditing(idea.id)')
+        p {{idea.body}}
+        div.btn-group
+          button.btn.btn-primary.btn-xs(type='button',ng-click='edit(idea.id)') تعديل
+          button.btn.btn-danger.btn-xs(type='button',ng-click='destroy(idea.id)') حذف
+
+      //- Editing view
+      div(ng-show='isEditing(idea.id)')
+        div.form-group
+          select.form-control(required, autofocus,ng-model='idea.trade_id',
+            ng-options='t.id as t.name for t in trades')
+
+        div.form-group
+          textarea.form-control(placeholder='محتوى الفكرة',required,
+            ng-model='idea.body')
+
+        div.btn-group
+          button.btn.btn-primary.btn-xs(type='button',ng-click='update(idea)') تعديل
+          button.btn.btn-success.btn-xs(type='button',ng-click='reset(idea.id)') إلغاء
+          button.btn.btn-danger.btn-xs(type='button',ng-click='destroy(idea.id)') حذف
       hr
 
 my-modal-form(modal-button='إضافة فكرة')

@@ -1,12 +1,27 @@
 
 <div class="row">
-  <section class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></section>
+  <section my-pending="my-pending" hide-condition="trades.length == 0" class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></section>
   <section hide-condition="ideas.length == 0" my-pending="my-pending" class="col-sm-9">
-    <article ng-repeat="idea in ideas | orderBy:'body.length':true" class="text-center lead">
-      <p>{{idea.body}}</p>
-      <div class="btn-group">
-        <button type="button" disabled="disabled" ng-click="edit(idea.id)" class="btn btn-primary btn-xs">تعديل</button>
-        <button type="button" disabled="disabled" ng-click="edit(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+    <article ng-repeat="idea in ideas | orderBy:&quot;body.length&quot;:true" class="text-center lead">
+      <div ng-hide="isEditing(idea.id)">
+        <p>{{idea.body}}</p>
+        <div class="btn-group">
+          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary btn-xs">تعديل</button>
+          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+        </div>
+      </div>
+      <div ng-show="isEditing(idea.id)">
+        <div class="form-group">
+          <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
+        </div>
+        <div class="btn-group">
+          <button type="button" ng-click="update(idea)" class="btn btn-primary btn-xs">تعديل</button>
+          <button type="button" ng-click="reset(idea.id)" class="btn btn-success btn-xs">إلغاء</button>
+          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+        </div>
       </div>
       <hr/>
     </article>

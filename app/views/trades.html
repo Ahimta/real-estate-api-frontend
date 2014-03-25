@@ -1,22 +1,15 @@
 
 <section hide-condition="trades.length == 0" my-pending="my-pending" class="row">
-  <article ng-repeat="trade in trades | orderBy:'name'" class="col-sm-4">
-    <div ng-hide="isEditing(trade.id)" class="panel panel-primary">
-      <header class="panel-heading"><span>{{trade.name}}</span></header>
-      <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}</div>
-      <footer class="panel-footer">
-        <button type="button" ng-click="edit(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
-        <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger btn-xs">حذف</button>
-      </footer>
-    </div>
-    <div ng-show="isEditing(trade.id)" class="panel panel-primary">
-      <header class="panel-heading">
-        <input required="required" autofocus="autofocus" type="text" ng-model="trade.name"/>
+  <article ng-repeat="trade in trades | orderBy:&quot;name&quot;" class="col-sm-4">
+    <div class="panel panel-primary">
+      <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>
+        <input required="required" autofocus="autofocus" type="text" ng-model="trade.name" ng-show="isEditing(trade.id)"/>
       </header>
-      <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}</div>
+      <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}<br/>عدد المحلات: {{trade.shops_count}}<br/>عدد العمال: {{trade.workers_count}}<br/>عدد المواد: {{trade.materials_count}}</div>
       <footer class="panel-footer">
-        <button type="button" ng-click="update(trade)" class="btn btn-primary btn-xs">تعديل</button>
-        <button type="button" ng-click="reset(trade.id)" class="btn btn-xs">إلغاء</button>
+        <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
+        <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
+        <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-xs">إلغاء</button>
         <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger btn-xs">حذف</button>
       </footer>
     </div>

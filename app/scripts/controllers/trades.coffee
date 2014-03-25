@@ -1,9 +1,10 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'TradesCtrl', ($scope, $log, Trade) ->
+  .controller 'TradesCtrl', ($scope, $log, Trade, Utils) ->
+    Utils.makeEditible $scope
+
     $scope.trades = Trade.all()
-    isEditing     = {}
 
     $scope.create = (trade) ->
       Trade.create trade, (data, headers) ->
@@ -16,18 +17,7 @@ angular.module('realEstateFrontEndApp')
         $scope.trades = Trade.all()
 
     $scope.update = (trade) ->
+      $scope.reset trade.id
+
       Trade.update trade, (data, headers) ->
         $scope.trades = Trade.all()
-        setEditing(trade.id, false)
-
-    $scope.isEditing = (id) ->
-      isEditing[id]
-
-    $scope.edit = (id) ->
-      setEditing(id, true)
-
-    $scope.reset = (id) ->
-      setEditing(id, false)
-
-    setEditing = (id, bool) ->
-      isEditing[id] = bool

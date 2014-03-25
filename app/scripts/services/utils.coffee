@@ -21,3 +21,15 @@ angular.module('realEstateFrontEndApp')
 
       destroy: (id, callbacks) ->
         service.delete {id: id}, callbacks
+
+    makeEditible: (scope) ->
+      _isEditing = {}
+
+      scope.edit = (id) ->
+        _isEditing[id] = true
+
+      scope.isEditing = (id) ->
+        _isEditing[id]
+
+      scope.reset = (id) ->
+        _isEditing[id] = false
