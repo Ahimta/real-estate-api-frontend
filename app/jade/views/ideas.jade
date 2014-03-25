@@ -12,8 +12,8 @@ div.row
       div(ng-hide='isEditing(idea.id)')
         p {{idea.body}}
         div.btn-group
-          button.btn.btn-primary.btn-xs(type='button',ng-click='edit(idea.id)') تعديل
-          button.btn.btn-danger.btn-xs(type='button',ng-click='destroy(idea.id)') حذف
+          button.btn.btn-primary(type='button',ng-click='edit(idea.id)') تعديل
+          button.btn.btn-danger(type='button',ng-click='destroy(idea.id)') حذف
 
       //- Editing view
       div(ng-show='isEditing(idea.id)')
@@ -26,9 +26,8 @@ div.row
             ng-model='idea.body')
 
         div.btn-group
-          button.btn.btn-primary.btn-xs(type='button',ng-click='update(idea)') تعديل
-          button.btn.btn-success.btn-xs(type='button',ng-click='reset(idea.id)') إلغاء
-          button.btn.btn-danger.btn-xs(type='button',ng-click='destroy(idea.id)') حذف
+          button.btn.btn-success(type='button',ng-click='reset(idea.id)') إلغاء
+          button.btn.btn-primary(type='button',ng-click='update(idea)') حفظ
       hr
 
 my-modal-form(modal-button='إضافة فكرة')

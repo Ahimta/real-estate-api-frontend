@@ -6,8 +6,8 @@
       <div ng-hide="isEditing(idea.id)">
         <p>{{idea.body}}</p>
         <div class="btn-group">
-          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary btn-xs">تعديل</button>
-          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary">تعديل</button>
+          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger">حذف</button>
         </div>
       </div>
       <div ng-show="isEditing(idea.id)">
@@ -18,9 +18,8 @@
           <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
         </div>
         <div class="btn-group">
-          <button type="button" ng-click="update(idea)" class="btn btn-primary btn-xs">تعديل</button>
-          <button type="button" ng-click="reset(idea.id)" class="btn btn-success btn-xs">إلغاء</button>
-          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger btn-xs">حذف</button>
+          <button type="button" ng-click="reset(idea.id)" class="btn btn-success">إلغاء</button>
+          <button type="button" ng-click="update(idea)" class="btn btn-primary">حفظ</button>
         </div>
       </div>
       <hr/>

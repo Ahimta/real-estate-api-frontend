@@ -42,11 +42,9 @@ html.no-js(lang="ar")
 
           //- Collect the nav links, forms, and other content for toggling
           div#bs-example-navbar-collapse-1.collapse.navbar-collapse
-            ul.nav.navbar-nav.pull-right
-              li
-                a(href="#/trades") الفئات
-              li
-                a(href="#/ideas") الأفكار
+            ul.nav.navbar-nav.pull-right(ng-controller='NavbarCtrl')
+              li(ng-repeat='item in items',ng-class='{active: isActive(item.path)}')
+                a(href='{{item.path}}',ng-bind='item.name')
 
     div.container(ng-view="")
 
@@ -77,6 +75,7 @@ html.no-js(lang="ar")
     script(src="scripts/app.js")
 
     //- controllers
+    script(src="scripts/controllers/navbar.js")
     script(src="scripts/controllers/ideas.js")
     script(src="scripts/controllers/trades.js")
 

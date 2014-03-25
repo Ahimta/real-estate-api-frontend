@@ -15,15 +15,16 @@ section.row(hide-condition='trades.length == 0' my-pending)
         br
         عدد المواد: {{trade.materials_count}}
       footer.panel-footer
-        button.btn.btn-primary.btn-xs(type='button',
+        button.btn.btn-primary(type='button',
           ng-click='edit(trade.id)',
           ng-hide='isEditing(trade.id)') تعديل
-        button.btn.btn-primary.btn-xs(type='button',
-          ng-click='update(trade)',ng-show='isEditing(trade.id)') تعديل
-        button.btn.btn-xs(type='button',
+        button.btn.btn-primary(type='button',
+          ng-click='update(trade)',ng-show='isEditing(trade.id)') حفظ
+        button.btn.btn-success(type='button',
           ng-click='reset(trade.id)',ng-show='isEditing(trade.id)') إلغاء
-        button.btn.btn-danger.btn-xs(type='button',
-          ng-click='destroy(trade.id)') حذف
+        button.btn.btn-danger(type='button',
+          ng-click='destroy(trade.id)',
+          ng-hide='isEditing(trade.id)') حذف
 
 my-modal-form(modal-button='إضافة فئة')
   form(role='form',ng-submit='create(trade)')

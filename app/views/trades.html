@@ -7,10 +7,10 @@
       </header>
       <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}<br/>عدد المحلات: {{trade.shops_count}}<br/>عدد العمال: {{trade.workers_count}}<br/>عدد المواد: {{trade.materials_count}}</div>
       <footer class="panel-footer">
-        <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
-        <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary btn-xs">تعديل</button>
-        <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-xs">إلغاء</button>
-        <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger btn-xs">حذف</button>
+        <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary">تعديل</button>
+        <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary">حفظ</button>
+        <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-success">إلغاء</button>
+        <button type="button" ng-click="destroy(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-danger">حذف</button>
       </footer>
     </div>
   </article>
