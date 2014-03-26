@@ -2,43 +2,40 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'IdeasCtrl', ($scope, Idea, Trade, Utils) ->
+
     Utils.makeEditible $scope
-  
-    $scope.trades = Trade.all()
-    $scope.ideas  = Idea.all()
-
-    _selectedTrade = -1
-
-    $scope.selectTrade = (id) ->
-      _selectedTrade = id
-      $scope.ideas = []
+    Utils.makeSelectable $scope, (id) ->
+      $scope.ideas = undefined
       Idea.all (data, headers) ->
         $scope.ideas = _.filter data, (idea) ->
           idea.trade_id == id
 
 
-    $scope.isTradeSelected = (id) ->
-      id == _selectedTrade
+    invalidate = ->
+      $scope.trades = undefined
+      $scope.ideas  = undefined
+      $scope.idea  = {}
+
+      Trade.all (data, headers) ->
+        $scope.trades = data
+
+      Idea.all (data, headers) ->
+        $scope.ideas = data
+
+    
+    invalidate()
 
     $scope.getTrade = (id) ->
       _.find $scope.trades, (trade) ->
         trade.id == id
 
     $scope.create = (idea) ->
-      Idea.create idea, (data, headers) ->
-        $scope.trades = Trade.all()
-        $scope.ideas  = Idea.all()
-        $scope.idea = {}
-        idea = {}
+      Idea.create idea, invalidate
+        
 
     $scope.update = (idea) ->
       $scope.reset idea.id
-
-      Idea.update idea, (data, headers) ->
-        $scope.trades = Trade.all()
-        $scope.ideas = Idea.all()
+      Idea.update idea, invalidate
 
     $scope.destroy = (id) ->
-      Idea.destroy id, (data, headers) ->
-        $scope.trades = Trade.all()
-        $scope.ideas  = Idea.all()
+      Idea.destroy id, invalidate

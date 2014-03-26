@@ -1,4 +1,4 @@
-section.row(hide-condition='trades.length == 0' my-pending)
+section.row(hide-condition='!trades' my-pending)
   article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
     //- Reading view
     div.panel.panel-primary

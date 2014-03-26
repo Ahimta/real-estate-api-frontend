@@ -1,7 +1,7 @@
 
 <div class="row">
-  <section my-pending="my-pending" hide-condition="trades.length == 0" class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></section>
-  <section hide-condition="ideas.length == 0" my-pending="my-pending" class="col-sm-9">
+  <section my-pending="my-pending" hide-condition="!trades" class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></section>
+  <section hide-condition="!ideas" my-pending="my-pending" class="col-sm-9">
     <article ng-repeat="idea in ideas | orderBy:&quot;body.length&quot;:true" class="text-center lead">
       <div ng-hide="isEditing(idea.id)">
         <p>{{idea.body}}</p>

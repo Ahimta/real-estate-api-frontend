@@ -1,5 +1,5 @@
 
-<section hide-condition="trades.length == 0" my-pending="my-pending" class="row">
+<section hide-condition="!trades" my-pending="my-pending" class="row">
   <article ng-repeat="trade in trades | orderBy:&quot;name&quot;" class="col-sm-4">
     <div class="panel panel-primary">
       <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>

@@ -4,20 +4,22 @@ angular.module('realEstateFrontEndApp')
   .controller 'TradesCtrl', ($scope, $log, Trade, Utils) ->
     Utils.makeEditible $scope
 
-    $scope.trades = Trade.all()
+    invalidate = () ->
+      $scope.trades = undefined
+      $scope.trade  = {}
+
+      Trade.all (data) ->
+        $scope.trades = data
+
+    invalidate()
 
     $scope.create = (trade) ->
-      Trade.create trade, (data, headers) ->
-        $scope.trades = Trade.all()
-        $scope.trade = {}
-        trade  = {}
+      Trade.create trade, invalidate
 
     $scope.destroy = (id) ->
-      Trade.destroy id, (data, headers) ->
-        $scope.trades = Trade.all()
+      Trade.destroy id, invalidate
 
     $scope.update = (trade) ->
       $scope.reset trade.id
 
-      Trade.update trade, (data, headers) ->
-        $scope.trades = Trade.all()
+      Trade.update trade, invalidate

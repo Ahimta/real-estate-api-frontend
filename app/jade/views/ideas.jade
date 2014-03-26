@@ -1,11 +1,11 @@
 div.row
   section.col-sm-3.list-group(my-pending,
-    hide-condition='trades.length == 0')
+    hide-condition='!trades')
     a.list-group-item(ng-repeat='trade in trades',
-      ng-click='selectTrade(trade.id)',ng-bind='trade.name',
-      ng-class='{active: isTradeSelected(trade.id)}')
+      ng-click='select(trade.id)',ng-bind='trade.name',
+      ng-class='{active: isSelected(trade.id)}')
 
-  section.col-sm-9(hide-condition='ideas.length == 0' my-pending)
+  section.col-sm-9(hide-condition='!ideas' my-pending)
     
     //- Showing view
     article.text-center.lead(ng-repeat='idea in ideas | orderBy:"body.length":true')

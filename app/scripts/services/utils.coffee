@@ -33,3 +33,14 @@ angular.module('realEstateFrontEndApp')
 
       scope.reset = (id) ->
         _isEditing[id] = false
+
+    makeSelectable: (scope, callback) ->
+      _selectedItem = undefined
+
+      scope.select = (id) ->
+        _selectedItem = id
+        callback(id)
+
+
+      scope.isSelected = (id) ->
+        id == _selectedItem
