@@ -7,8 +7,11 @@ angular.module('realEstateFrontEndApp')
     Utils.makeSelectable $scope, (id) ->
       $scope.ideas = undefined
       Idea.all (data, headers) ->
-        $scope.ideas = _.filter data, (idea) ->
-          idea.trade_id == id
+        if id is undefined
+          $scope.ideas = data
+        else
+          $scope.ideas = _.filter data, (idea) ->
+            idea.trade_id == id
 
 
     invalidate = ->

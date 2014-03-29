@@ -10,9 +10,9 @@ angular.module('realEstateFrontEndApp')
       trades:
         name: 'الفئات'
         path: '#/trades'
-      # shops:
-      #   name: 'المحلات'
-      #   path: '#/shops'
+      shops:
+        name: 'المحلات'
+        path: '#/shops'
       # workers:
       #   name: 'العمال'
       #   path: '#/workers'

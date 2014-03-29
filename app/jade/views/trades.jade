@@ -1,11 +1,12 @@
 section.row(hide-condition='!trades' my-pending)
   article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
     //- Reading view
-    div.panel.panel-primary
+    div.panel.panel-primary.lead
       header.panel-heading
         span(ng-hide='isEditing(trade.id)') {{trade.name}}
-        input(required, autofocus, type='text',
-          ng-model='trade.name',ng-show='isEditing(trade.id)')
+        div.form-group(ng-show='isEditing(trade.id)')
+          input.form-control(required, autofocus, type='text',
+            ng-model='trade.name')
       div.panel-body
         عدد الأفكار: {{trade.ideas_count}}
         br

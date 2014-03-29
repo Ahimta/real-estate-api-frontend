@@ -1,9 +1,11 @@
 
 <section hide-condition="!trades" my-pending="my-pending" class="row">
   <article ng-repeat="trade in trades | orderBy:&quot;name&quot;" class="col-sm-4">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary lead">
       <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>
-        <input required="required" autofocus="autofocus" type="text" ng-model="trade.name" ng-show="isEditing(trade.id)"/>
+        <div ng-show="isEditing(trade.id)" class="form-group">
+          <input required="required" autofocus="autofocus" type="text" ng-model="trade.name" class="form-control"/>
+        </div>
       </header>
       <div class="panel-body">عدد الأفكار: {{trade.ideas_count}}<br/>عدد المحلات: {{trade.shops_count}}<br/>عدد العمال: {{trade.workers_count}}<br/>عدد المواد: {{trade.materials_count}}</div>
       <footer class="panel-footer">

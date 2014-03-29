@@ -38,8 +38,8 @@ angular.module('realEstateFrontEndApp')
       _selectedItem = undefined
 
       scope.select = (id) ->
-        _selectedItem = id
-        callback(id)
+        _selectedItem = if _selectedItem == id then undefined else id
+        callback(_selectedItem)
 
 
       scope.isSelected = (id) ->

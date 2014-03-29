@@ -14,5 +14,8 @@ angular.module('realEstateFrontEndApp', [
       .when '/trades',
         templateUrl: 'views/trades.html'
         controller: 'TradesCtrl'
+      .when '/shops',
+        templateUrl: 'views/shops.html'
+        controller: 'ShopsCtrl'
       .otherwise
         redirectTo: '/trades'
