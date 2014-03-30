@@ -3,7 +3,6 @@
 angular.module('realEstateFrontEndApp')
   .controller 'IdeasCtrl', ($scope, Idea, Trade, Utils) ->
 
-    Utils.makeEditible $scope
     Utils.makeSelectable $scope, (id) ->
       $scope.ideas = undefined
       Idea.all (data, headers) ->
@@ -14,7 +13,7 @@ angular.module('realEstateFrontEndApp')
             idea.trade_id == id
 
 
-    invalidate = ->
+    invalidate = () ->
       $scope.trades = undefined
       $scope.ideas  = undefined
       $scope.idea  = {}
@@ -28,17 +27,4 @@ angular.module('realEstateFrontEndApp')
     
     invalidate()
 
-    $scope.getTrade = (id) ->
-      _.find $scope.trades, (trade) ->
-        trade.id == id
-
-    $scope.create = (idea) ->
-      Idea.create idea, invalidate
-        
-
-    $scope.update = (idea) ->
-      $scope.reset idea.id
-      Idea.update idea, invalidate
-
-    $scope.destroy = (id) ->
-      Idea.destroy id, invalidate
+    Utils.makeCrudable $scope, Idea, invalidate

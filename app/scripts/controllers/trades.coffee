@@ -2,8 +2,7 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'TradesCtrl', ($scope, $log, Trade, Utils) ->
-    Utils.makeEditible $scope
-
+    
     invalidate = () ->
       $scope.trades = undefined
       $scope.trade  = {}
@@ -13,13 +12,4 @@ angular.module('realEstateFrontEndApp')
 
     invalidate()
 
-    $scope.create = (trade) ->
-      Trade.create trade, invalidate
-
-    $scope.destroy = (id) ->
-      Trade.destroy id, invalidate
-
-    $scope.update = (trade) ->
-      $scope.reset trade.id
-
-      Trade.update trade, invalidate
+    Utils.makeCrudable $scope, Trade, invalidate

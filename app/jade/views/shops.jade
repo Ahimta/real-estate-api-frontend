@@ -23,17 +23,17 @@ div.row
             input.form-control(type='tel',placeholder='الهاتف',
               ng-model='shop.phone')
 
-          p(ng-hide='isEditing(shop.id)') التقييم: {{shop.rating}}
+          p(required,ng-hide='isEditing(shop.id)') التقييم: {{shop.rating}}
           div.form-group(ng-show='isEditing(shop.id)')
             input.form-control(type='number',min='0',max='5',placeholder='الهاتف',
               ng-model='shop.rating')
 
-          p(ng-hide='isEditing(shop.id)') السعر الأدنى: {{shop.lower_price}}
+          p(required,ng-hide='isEditing(shop.id)') السعر الأدنى: {{shop.lower_price}}
           div.form-group(ng-show='isEditing(shop.id)')
             input.form-control(type='number',min='0',placeholder='السعر الأدنى',
               ng-model='shop.lower_price')
 
-          p(ng-hide='isEditing(shop.id)') السعر الأعلى: {{shop.higher_price}}
+          p(required,ng-hide='isEditing(shop.id)') السعر الأعلى: {{shop.higher_price}}
           div.form-group(ng-show='isEditing(shop.id)')
             input.form-control(type='number',min='0',placeholder='السعر الأعلى',
               ng-model='shop.higher_price')
@@ -62,9 +62,9 @@ my-modal-form(modal-button='إضافة محل')
     div.form-group
       input.form-control(type='tel', placeholder="الهاتف", ng-model='shop.phone')
     div.form-group
-      input.form-control(type='number', placeholder="التقييم", min='0', max='5', ng-model='shop.rating')
+      input.form-control(required,type='number', placeholder="التقييم", min='0', max='5', ng-model='shop.rating')
     div.form-group
-      input.form-control(type='number', placeholder="السعر الأدنى", min='0', ng-model='shop.lower_price')
+      input.form-control(required,type='number', placeholder="السعر الأدنى", min='0', ng-model='shop.lower_price')
     div.form-group
-      input.form-control(type='number', placeholder="السعر الأعلى", min='0', ng-model='shop.higher_price')
+      input.form-control(required,type='number', placeholder="السعر الأعلى", min='0', ng-model='shop.higher_price')
     button.btn.btn-primary.btn-lg.btn-block(type='submit') إضافة محل

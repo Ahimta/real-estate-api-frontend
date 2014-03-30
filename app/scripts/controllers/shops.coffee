@@ -3,7 +3,6 @@
 angular.module('realEstateFrontEndApp')
   .controller 'ShopsCtrl', ($scope, Utils, Trade, Shop) ->
     
-    Utils.makeEditible $scope
     Utils.makeSelectable $scope, (id) ->
       $scope.shops = undefined
       Shop.all (data, headers) ->
@@ -32,13 +31,4 @@ angular.module('realEstateFrontEndApp')
       _.find $scope.trades, (trade) ->
         trade.id == id
 
-    $scope.create = (shop) ->
-      Shop.create shop, invalidate
-        
-
-    $scope.update = (shop) ->
-      $scope.reset shop.id
-      Shop.update shop, invalidate
-
-    $scope.destroy = (id) ->
-      Shop.destroy id, invalidate
+    Utils.makeCrudable $scope, Shop, invalidate

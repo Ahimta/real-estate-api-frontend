@@ -17,15 +17,15 @@
           <div ng-show="isEditing(shop.id)" class="form-group">
             <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
           </div>
-          <p ng-hide="isEditing(shop.id)">التقييم: {{shop.rating}}</p>
+          <p required="required" ng-hide="isEditing(shop.id)">التقييم: {{shop.rating}}</p>
           <div ng-show="isEditing(shop.id)" class="form-group">
             <input type="number" min="0" max="5" placeholder="الهاتف" ng-model="shop.rating" class="form-control"/>
           </div>
-          <p ng-hide="isEditing(shop.id)">السعر الأدنى: {{shop.lower_price}}</p>
+          <p required="required" ng-hide="isEditing(shop.id)">السعر الأدنى: {{shop.lower_price}}</p>
           <div ng-show="isEditing(shop.id)" class="form-group">
             <input type="number" min="0" placeholder="السعر الأدنى" ng-model="shop.lower_price" class="form-control"/>
           </div>
-          <p ng-hide="isEditing(shop.id)">السعر الأعلى: {{shop.higher_price}}</p>
+          <p required="required" ng-hide="isEditing(shop.id)">السعر الأعلى: {{shop.higher_price}}</p>
           <div ng-show="isEditing(shop.id)" class="form-group">
             <input type="number" min="0" placeholder="السعر الأعلى" ng-model="shop.higher_price" class="form-control"/>
           </div>
@@ -55,13 +55,13 @@
       <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
     </div>
     <div class="form-group">
-      <input type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+      <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
     </div>
     <div class="form-group">
-      <input type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
+      <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
     </div>
     <div class="form-group">
-      <input type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+      <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
     </div>
     <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة محل</button>
   </form>

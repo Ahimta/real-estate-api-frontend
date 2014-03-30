@@ -3,6 +3,17 @@
 angular.module('realEstateFrontEndApp')
   .service 'Utils', ($log, $resource, REALESTATEAPI) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
+    makeEditible = (scope) ->
+      _isEditing = {}
+
+      scope.edit = (id) ->
+        _isEditing[id] = true
+
+      scope.isEditing = (id) ->
+        _isEditing[id]
+
+      scope.reset = (id) ->
+        _isEditing[id] = false
 
     generateSimpleResource: (name) ->
       service = $resource "#{REALESTATEAPI}/#{name}/:id",
@@ -22,18 +33,6 @@ angular.module('realEstateFrontEndApp')
       destroy: (id, callbacks) ->
         service.delete {id: id}, callbacks
 
-    makeEditible: (scope) ->
-      _isEditing = {}
-
-      scope.edit = (id) ->
-        _isEditing[id] = true
-
-      scope.isEditing = (id) ->
-        _isEditing[id]
-
-      scope.reset = (id) ->
-        _isEditing[id] = false
-
     makeSelectable: (scope, callback) ->
       _selectedItem = undefined
 
@@ -44,3 +43,16 @@ angular.module('realEstateFrontEndApp')
 
       scope.isSelected = (id) ->
         id == _selectedItem
+
+    makeCrudable: (scope, model, invalidate) ->
+      makeEditible scope
+
+      scope.create = (record) ->
+        model.create record, invalidate
+
+      scope.update = (record) ->
+        scope.reset record.id
+        model.update record, invalidate
+
+      scope.destroy = (id) ->
+        model.destroy id, invalidate
