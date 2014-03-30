@@ -20,7 +20,7 @@ div.row
               ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
           p(ng-hide='isEditing(shop.id)') الهاتف: {{shop.phone}}
           div.form-group(ng-show='isEditing(shop.id)')
-            input.form-control(type='phone',placeholder='الهاتف',
+            input.form-control(type='tel',placeholder='الهاتف',
               ng-model='shop.phone')
 
           p(ng-hide='isEditing(shop.id)') التقييم: {{shop.rating}}
@@ -60,7 +60,7 @@ my-modal-form(modal-button='إضافة محل')
     div.form-group
       input.form-control(type='text', required, placeholder="اسم المحل", ng-model='shop.name')
     div.form-group
-      input.form-control(type='phone', placeholder="الهاتف", ng-model='shop.phone')
+      input.form-control(type='tel', placeholder="الهاتف", ng-model='shop.phone')
     div.form-group
       input.form-control(type='number', placeholder="التقييم", min='0', max='5', ng-model='shop.rating')
     div.form-group

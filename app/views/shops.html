@@ -15,7 +15,7 @@
           </div>
           <p ng-hide="isEditing(shop.id)">الهاتف: {{shop.phone}}</p>
           <div ng-show="isEditing(shop.id)" class="form-group">
-            <input type="phone" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+            <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
           </div>
           <p ng-hide="isEditing(shop.id)">التقييم: {{shop.rating}}</p>
           <div ng-show="isEditing(shop.id)" class="form-group">
@@ -52,7 +52,7 @@
       <input type="text" required="required" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
     </div>
     <div class="form-group">
-      <input type="phone" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+      <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
     </div>
     <div class="form-group">
       <input type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
