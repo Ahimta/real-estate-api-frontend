@@ -15,6 +15,7 @@ angular.module('realEstateFrontEndApp')
       scope.reset = (id) ->
         _isEditing[id] = false
 
+
     generateSimpleResource: (name) ->
       service = $resource "#{REALESTATEAPI}/#{name}/:id",
         {id: '@id'}, {'update': {method: 'PUT'}}
@@ -56,3 +57,7 @@ angular.module('realEstateFrontEndApp')
 
       scope.destroy = (id) ->
         model.destroy id, invalidate
+
+      scope.getTrade = (id) ->
+        _.find scope.trades, (trade) ->
+          trade.id == id

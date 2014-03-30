@@ -27,8 +27,4 @@ angular.module('realEstateFrontEndApp')
     
     invalidate()
 
-    $scope.getTrade = (id) ->
-      _.find $scope.trades, (trade) ->
-        trade.id == id
-
     Utils.makeCrudable $scope, Shop, invalidate
