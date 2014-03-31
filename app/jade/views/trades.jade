@@ -1,31 +1,34 @@
-section.row(hide-condition='!trades' my-pending)
-  article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
-    //- Reading view
-    div.panel.panel-primary.lead
-      header.panel-heading
-        span(ng-hide='isEditing(trade.id)') {{trade.name}}
-        div.form-group(ng-show='isEditing(trade.id)')
-          input.form-control(required, autofocus, type='text',
-            ng-model='trade.name')
-      div.panel-body
-        p عدد الأفكار: {{trade.ideas_count}}
-        p عدد المحلات: {{trade.shops_count}}
-        p عدد العمال: {{trade.workers_count}}
-        p عدد المواد: {{trade.materials_count}}
-      footer.panel-footer
-        button.btn.btn-primary(type='button',
-          ng-click='edit(trade.id)',
-          ng-hide='isEditing(trade.id)') تعديل
-        button.btn.btn-primary(type='button',
-          ng-click='update(trade)',ng-show='isEditing(trade.id)') حفظ
-        button.btn.btn-success(type='button',
-          ng-click='reset(trade.id)',ng-show='isEditing(trade.id)') إلغاء
-        button.btn.btn-danger(type='button',
-          ng-click='destroy(trade.id)',
-          ng-hide='isEditing(trade.id)') حذف
-
-
 include mixins/mymodalform
+include mixins/mypending
+
++my-pending('!trades')
+  section.row
+    article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
+      //- Reading view
+      div.panel.panel-primary.lead
+        header.panel-heading
+          span(ng-hide='isEditing(trade.id)') {{trade.name}}
+          div.form-group(ng-show='isEditing(trade.id)')
+            input.form-control(required, autofocus, type='text',
+              ng-model='trade.name')
+        div.panel-body
+          p عدد الأفكار: {{trade.ideas_count}}
+          p عدد المحلات: {{trade.shops_count}}
+          p عدد العمال: {{trade.workers_count}}
+          p عدد المواد: {{trade.materials_count}}
+        footer.panel-footer
+          button.btn.btn-primary(type='button',
+            ng-click='edit(trade.id)',
+            ng-hide='isEditing(trade.id)') تعديل
+          button.btn.btn-primary(type='button',
+            ng-click='update(trade)',ng-show='isEditing(trade.id)') حفظ
+          button.btn.btn-success(type='button',
+            ng-click='reset(trade.id)',ng-show='isEditing(trade.id)') إلغاء
+          button.btn.btn-danger(type='button',
+            ng-click='destroy(trade.id)',
+            ng-hide='isEditing(trade.id)') حذف
+
+
 +my-modal-form('إضافة فئة', 'create(trade)')
   div.form-group
     input.form-control(type='text' autofocus required
