@@ -1,68 +1,85 @@
 
 <div class="row">
-  <section my-pending="my-pending" hide-condition="!trades" class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></section>
-  <section hide-condition="!shops" my-pending="my-pending" class="col-sm-9">
-    <article ng-repeat="shop in shops | orderBy:&quot;name&quot;" class="lead col-sm-6">
-      <div class="panel panel-primary">
-        <header class="panel-heading"><span ng-hide="isEditing(shop.id)">{{shop.name}}</span>
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <input required="required" type="text" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
+  <div class="text-center"><i ng-show="!trades" class="fa fa-refresh fa-spin fa-5x"></i></div>
+  <section ng-hide="!trades">
+    <section class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></section>
+  </section>
+  <div class="text-center"><i ng-show="!shops" class="fa fa-refresh fa-spin fa-5x"></i></div>
+  <section ng-hide="!shops">
+    <section class="col-sm-9">
+      <article ng-repeat="shop in shops | orderBy:&quot;name&quot;" class="lead col-sm-6">
+        <div class="panel panel-primary">
+          <header class="panel-heading"><span ng-hide="isEditing(shop.id)">{{shop.name}}</span>
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <input required="required" type="text" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
+            </div>
+          </header>
+          <div class="panel-body lead">
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <select autofocus="autofocus" required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            </div>
+            <p ng-hide="isEditing(shop.id)">الهاتف: {{shop.phone}}</p>
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+            </div>
+            <p required="required" ng-hide="isEditing(shop.id)">التقييم: {{shop.rating}}</p>
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <input type="number" min="0" max="5" placeholder="الهاتف" ng-model="shop.rating" class="form-control"/>
+            </div>
+            <p required="required" ng-hide="isEditing(shop.id)">السعر الأدنى: {{shop.lower_price}}</p>
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <input type="number" min="0" placeholder="السعر الأدنى" ng-model="shop.lower_price" class="form-control"/>
+            </div>
+            <p required="required" ng-hide="isEditing(shop.id)">السعر الأعلى: {{shop.higher_price}}</p>
+            <div ng-show="isEditing(shop.id)" class="form-group">
+              <input type="number" min="0" placeholder="السعر الأعلى" ng-model="shop.higher_price" class="form-control"/>
+            </div>
+            <p>متوسط السعر: {{(shop.lower_price + shop.higher_price) / 2}}</p>
+            <p>عدد العمال: {{shop.workers_count}}</p>
+            <p>عدد المواد: {{shop.materials_count}}</p>
           </div>
-        </header>
-        <div class="panel-body lead">
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <select autofocus="autofocus" required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
-          </div>
-          <p ng-hide="isEditing(shop.id)">الهاتف: {{shop.phone}}</p>
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
-          </div>
-          <p required="required" ng-hide="isEditing(shop.id)">التقييم: {{shop.rating}}</p>
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <input type="number" min="0" max="5" placeholder="الهاتف" ng-model="shop.rating" class="form-control"/>
-          </div>
-          <p required="required" ng-hide="isEditing(shop.id)">السعر الأدنى: {{shop.lower_price}}</p>
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <input type="number" min="0" placeholder="السعر الأدنى" ng-model="shop.lower_price" class="form-control"/>
-          </div>
-          <p required="required" ng-hide="isEditing(shop.id)">السعر الأعلى: {{shop.higher_price}}</p>
-          <div ng-show="isEditing(shop.id)" class="form-group">
-            <input type="number" min="0" placeholder="السعر الأعلى" ng-model="shop.higher_price" class="form-control"/>
-          </div>
-          <p>متوسط السعر: {{(shop.lower_price + shop.higher_price) / 2}}</p>
-          <p>عدد العمال: {{shop.workers_count}}</p>
-          <p>عدد المواد: {{shop.materials_count}}</p>
+          <footer class="panel-footer">
+            <button type="button" ng-click="edit(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-primary">تعديل</button>
+            <button type="button" ng-click="update(shop)" ng-show="isEditing(shop.id)" class="btn btn-primary">حفظ</button>
+            <button type="button" ng-click="reset(shop.id)" ng-show="isEditing(shop.id)" class="btn btn-success">إلغاء</button>
+            <button type="button" ng-click="destroy(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-danger">حذف</button>
+          </footer>
         </div>
-        <footer class="panel-footer">
-          <button type="button" ng-click="edit(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-primary">تعديل</button>
-          <button type="button" ng-click="update(shop)" ng-show="isEditing(shop.id)" class="btn btn-primary">حفظ</button>
-          <button type="button" ng-click="reset(shop.id)" ng-show="isEditing(shop.id)" class="btn btn-success">إلغاء</button>
-          <button type="button" ng-click="destroy(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-danger">حذف</button>
-        </footer>
-      </div>
-    </article>
+      </article>
+    </section>
   </section>
 </div>
-<my-modal-form modal-button="إضافة محل">
-  <form role="form" ng-submit="create(shop)">
-    <div class="form-group">
-      <select autofocus="autofocus" required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">إضافة محل</button>
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close pull-left">&times;</button>
+        <h4 id="myModalLabel" class="modal-title">إضافة محل</h4>
+      </header>
+      <div class="modal-body">
+        <form role="form" ng-submit="create(shop)">
+          <div class="form-group">
+            <select autofocus="autofocus" required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <input type="text" required="required" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة محل</button>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <input type="text" required="required" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
-    </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة محل</button>
-  </form>
-</my-modal-form>
+  </div>
+</div>

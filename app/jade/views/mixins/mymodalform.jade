@@ -1,0 +1,13 @@
+mixin my-modal-form(title, callback)
+  button.btn.btn-success.btn-lg.btn-block(type='button',data-toggle='modal',data-target='#myModal')= title
+
+  div#myModal.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+    div.modal-dialog
+      div.modal-content
+        header.modal-header
+          button.close.pull-left(type="button", data-dismiss="modal", aria-hidden="true") &times;
+          h4#myModalLabel.modal-title= title
+        div.modal-body
+          form(role='form',ng-submit=callback)
+            block
+            button.btn.btn-primary.btn-lg.btn-block(type='submit')= title

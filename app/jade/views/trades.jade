@@ -8,13 +8,10 @@ section.row(hide-condition='!trades' my-pending)
           input.form-control(required, autofocus, type='text',
             ng-model='trade.name')
       div.panel-body
-        عدد الأفكار: {{trade.ideas_count}}
-        br
-        عدد المحلات: {{trade.shops_count}}
-        br
-        عدد العمال: {{trade.workers_count}}
-        br
-        عدد المواد: {{trade.materials_count}}
+        p عدد الأفكار: {{trade.ideas_count}}
+        p عدد المحلات: {{trade.shops_count}}
+        p عدد العمال: {{trade.workers_count}}
+        p عدد المواد: {{trade.materials_count}}
       footer.panel-footer
         button.btn.btn-primary(type='button',
           ng-click='edit(trade.id)',
@@ -27,8 +24,9 @@ section.row(hide-condition='!trades' my-pending)
           ng-click='destroy(trade.id)',
           ng-hide='isEditing(trade.id)') حذف
 
-my-modal-form(modal-button='إضافة فئة')
-  form(role='form',ng-submit='create(trade)')
-    div.form-group
-      input.form-control(type='text', autofocus, required, placeholder="اسم الفئة" ng-model='trade.name')
-    button.btn.btn-primary.btn-lg.btn-block(type='submit') إضافة فئة
+
+include mixins/mymodalform
++my-modal-form('إضافة فئة', 'create(trade)')
+  div.form-group
+    input.form-control(type='text' autofocus required
+      placeholder="اسم الفئة" ng-model='trade.name')

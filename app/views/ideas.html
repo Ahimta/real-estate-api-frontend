@@ -1,39 +1,56 @@
 
 <div class="row">
-  <section my-pending="my-pending" hide-condition="!trades" class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></section>
-  <section hide-condition="!ideas" my-pending="my-pending" class="col-sm-9">
-    <article ng-repeat="idea in ideas | orderBy:&quot;body.length&quot;:true" class="text-center lead">
-      <div ng-hide="isEditing(idea.id)">
-        <p>{{idea.body}}</p>
-        <div class="btn-group">
-          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary">تعديل</button>
-          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger">حذف</button>
+  <div class="text-center"><i ng-show="!trades" class="fa fa-refresh fa-spin fa-5x"></i></div>
+  <section ng-hide="!trades">
+    <section class="col-sm-3 list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></section>
+  </section>
+  <div class="text-center"><i ng-show="!ideas" class="fa fa-refresh fa-spin fa-5x"></i></div>
+  <section ng-hide="!ideas">
+    <section class="col-sm-9">
+      <article ng-repeat="idea in ideas | orderBy:&quot;body.length&quot;:true" class="text-center lead">
+        <div ng-hide="isEditing(idea.id)">
+          <p>{{idea.body}}</p>
+          <div class="btn-group">
+            <button type="button" ng-click="edit(idea.id)" class="btn btn-primary">تعديل</button>
+            <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger">حذف</button>
+          </div>
         </div>
-      </div>
-      <div ng-show="isEditing(idea.id)">
-        <div class="form-group">
-          <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+        <div ng-show="isEditing(idea.id)">
+          <div class="form-group">
+            <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
+          </div>
+          <div class="btn-group">
+            <button type="button" ng-click="reset(idea.id)" class="btn btn-success">إلغاء</button>
+            <button type="button" ng-click="update(idea)" class="btn btn-primary">حفظ</button>
+          </div>
         </div>
-        <div class="form-group">
-          <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
-        </div>
-        <div class="btn-group">
-          <button type="button" ng-click="reset(idea.id)" class="btn btn-success">إلغاء</button>
-          <button type="button" ng-click="update(idea)" class="btn btn-primary">حفظ</button>
-        </div>
-      </div>
-      <hr/>
-    </article>
+        <hr/>
+      </article>
+    </section>
   </section>
 </div>
-<my-modal-form modal-button="إضافة فكرة">
-  <form role="form" ng-submit="create(idea)">
-    <div class="form-group">
-      <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">إضافة فكرة</button>
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close pull-left">&times;</button>
+        <h4 id="myModalLabel" class="modal-title">إضافة فكرة</h4>
+      </header>
+      <div class="modal-body">
+        <form role="form" ng-submit="create(idea)">
+          <div class="form-group">
+            <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فكرة</button>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <textarea placeholder="محتوى الفكرة" required="required" ng-model="idea.body" class="form-control"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فكرة</button>
-  </form>
-</my-modal-form>
+  </div>
+</div>
