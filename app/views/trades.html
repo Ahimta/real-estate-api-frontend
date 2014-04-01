@@ -6,7 +6,7 @@
       <div class="panel panel-primary lead">
         <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>
           <div ng-show="isEditing(trade.id)" class="form-group">
-            <input required="required" autofocus="autofocus" type="text" ng-model="trade.name" class="form-control"/>
+            <input type="text" autofocus="autofocus" required="required" placeholder="اسم الفئة" ng-model="trade.name" class="form-control"/>
           </div>
         </header>
         <div class="panel-body">
@@ -35,7 +35,7 @@
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(trade)">
-          <div class="form-group">
+          <div ng-show="ng-show" class="form-group">
             <input type="text" autofocus="autofocus" required="required" placeholder="اسم الفئة" ng-model="trade.name" class="form-control"/>
           </div>
           <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>

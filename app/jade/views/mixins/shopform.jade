@@ -1,0 +1,18 @@
+mixin shop-form(isShown)
+  div.form-group(ng-show=isShown)
+    select.form-control(required, placeholer='الفئة',
+      ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
+  if block
+    block
+  div.form-group(ng-show=isShown)
+    input.form-control(type='tel' placeholder='الهاتف'
+      ng-model='shop.phone')
+  div.form-group(ng-show=isShown)
+    input.form-control(required type='number' placeholder='التقييم'
+      min='0' max='5' ng-model='shop.rating')
+  div.form-group(ng-show=isShown)
+    input.form-control(required type='number' placeholder='السعر الأدنى'
+      min='0', ng-model='shop.lower_price')
+  div.form-group(ng-show=isShown)
+    input.form-control(required type='number' placeholder='السعر الأعلى'
+      min='0', ng-model='shop.higher_price')

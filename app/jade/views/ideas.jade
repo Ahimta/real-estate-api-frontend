@@ -1,5 +1,7 @@
+include mixins/formbtngroup
 include mixins/mymodalform
 include mixins/mypending
+include mixins/ideaform
 include mixins/trades
 
 div.row
@@ -7,33 +9,18 @@ div.row
 
   +my-pending('!ideas')
     section.col-sm-9
-      
-      //- Showing view
       article.text-center.lead(ng-repeat='idea in ideas | orderBy:"body.length":true')
-        div(ng-hide='isEditing(idea.id)')
+        - var _isEditing = 'isEditing(idea.id)'
+        
+        div(ng-hide=_isEditing)
           p {{idea.body}}
-          div.btn-group
-            button.btn.btn-primary(type='button',ng-click='edit(idea.id)') تعديل
-            button.btn.btn-danger(type='button',ng-click='destroy(idea.id)') حذف
 
-        //- Editing view
-        div(ng-show='isEditing(idea.id)')
-          div.form-group
-            select.form-control(required, autofocus,ng-model='idea.trade_id',
-              ng-options='t.id as t.name for t in trades')
+        div(ng-show=_isEditing)
+          +idea-form
 
-          div.form-group
-            textarea.form-control(placeholder='محتوى الفكرة',required,
-              ng-model='idea.body')
+        +form-btn-group('idea')
 
-          div.btn-group
-            button.btn.btn-success(type='button',ng-click='reset(idea.id)') إلغاء
-            button.btn.btn-primary(type='button',ng-click='update(idea)') حفظ
         hr
 
 +my-modal-form('إضافة فكرة', 'create(idea)')
-  div.form-group
-    select.form-control(required, autofocus, ng-model='idea.trade_id', ng-options="t.id as t.name for t in trades")
-
-  div.form-group
-    textarea.form-control(placeholder='محتوى الفكرة', required, ng-model='idea.body')
+  +idea-form

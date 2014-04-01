@@ -1,5 +1,8 @@
+include mixins/panelfooter
 include mixins/mymodalform
 include mixins/mypending
+include mixins/shopname
+include mixins/shopform
 include mixins/trades
 
 div.row
@@ -8,62 +11,31 @@ div.row
   +my-pending('!shops')
     section.col-sm-9
       article.lead.col-sm-6(ng-repeat='shop in shops | orderBy:"name"')
-        //- Reading view
         div.panel.panel-primary
+          - var _isEditing = 'isEditing(shop.id)'
+          
           header.panel-heading
-            span(ng-hide='isEditing(shop.id)') {{shop.name}}
-            div.form-group(ng-show='isEditing(shop.id)')
-              input.form-control(required, type='text',placeholder='اسم المحل',
-                ng-model='shop.name')
+            span(ng-hide=_isEditing) {{shop.name}}
+            +shop-name(_isEditing)
+
           div.panel-body.lead
-            div.form-group(ng-show='isEditing(shop.id)')
-              select.form-control(autofocus, required, placeholer='الفئة',
-                ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
-            p(ng-hide='isEditing(shop.id)') الهاتف: {{shop.phone}}
-            div.form-group(ng-show='isEditing(shop.id)')
-              input.form-control(type='tel',placeholder='الهاتف',
-                ng-model='shop.phone')
+            +shop-form(_isEditing)
 
-            p(required,ng-hide='isEditing(shop.id)') التقييم: {{shop.rating}}
-            div.form-group(ng-show='isEditing(shop.id)')
-              input.form-control(type='number',min='0',max='5',placeholder='الهاتف',
-                ng-model='shop.rating')
+            div(ng-hide=_isEditing)
+              p الهاتف: {{shop.phone}}
 
-            p(required,ng-hide='isEditing(shop.id)') السعر الأدنى: {{shop.lower_price}}
-            div.form-group(ng-show='isEditing(shop.id)')
-              input.form-control(type='number',min='0',placeholder='السعر الأدنى',
-                ng-model='shop.lower_price')
+              p التقييم: {{shop.rating}}
 
-            p(required,ng-hide='isEditing(shop.id)') السعر الأعلى: {{shop.higher_price}}
-            div.form-group(ng-show='isEditing(shop.id)')
-              input.form-control(type='number',min='0',placeholder='السعر الأعلى',
-                ng-model='shop.higher_price')
+              p السعر الأدنى: {{shop.lower_price}}
+
+              p السعر الأعلى: {{shop.higher_price}}
+
             p متوسط السعر: {{(shop.lower_price + shop.higher_price) / 2}}
             p عدد العمال: {{shop.workers_count}}
             p عدد المواد: {{shop.materials_count}}
-          footer.panel-footer
-            button.btn.btn-primary(type='button',
-              ng-click='edit(shop.id)',
-              ng-hide='isEditing(shop.id)') تعديل
-            button.btn.btn-primary(type='button',
-              ng-click='update(shop)',ng-show='isEditing(shop.id)') حفظ
-            button.btn.btn-success(type='button',
-              ng-click='reset(shop.id)',ng-show='isEditing(shop.id)') إلغاء
-            button.btn.btn-danger(type='button',
-              ng-click='destroy(shop.id)',
-              ng-hide='isEditing(shop.id)') حذف
+          
+          +panel-footer('shop')
 
 +my-modal-form('إضافة محل', 'create(shop)')
-  div.form-group
-    select.form-control(autofocus, required, placeholer='الفئة',
-      ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
-  div.form-group
-    input.form-control(type='text', required, placeholder="اسم المحل", ng-model='shop.name')
-  div.form-group
-    input.form-control(type='tel', placeholder="الهاتف", ng-model='shop.phone')
-  div.form-group
-    input.form-control(required,type='number', placeholder="التقييم", min='0', max='5', ng-model='shop.rating')
-  div.form-group
-    input.form-control(required,type='number', placeholder="السعر الأدنى", min='0', ng-model='shop.lower_price')
-  div.form-group
-    input.form-control(required,type='number', placeholder="السعر الأعلى", min='0', ng-model='shop.higher_price')
+  +shop-form(false)
+    +shop-name(false)

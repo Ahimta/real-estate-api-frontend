@@ -1,0 +1,8 @@
+mixin idea-form
+  div.form-group
+    select.form-control(required autofocus ng-model='idea.trade_id',
+      ng-options='t.id as t.name for t in trades')
+
+  div.form-group
+    textarea.form-control(placeholder='محتوى الفكرة' required
+      ng-model='idea.body')
