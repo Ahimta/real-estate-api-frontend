@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'NavbarCtrl', ($scope, $location, $log) ->
+  .controller 'NavbarCtrl', ($scope, $location) ->
     
     $scope.isActive = (path) ->
       "##{$location.url()}" == path
