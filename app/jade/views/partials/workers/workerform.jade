@@ -1,22 +1,25 @@
-mixin shop-form(isShown)
+mixin worker-form(isShown)
   div(ng-show=isShown)
     div.form-group
       select.form-control(required, placeholer='الفئة',
-        ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
+        ng-model='worker.trade_id', ng-options='t.id as t.name for t in trades')
+    div.form-group
+      select.form-control(required, placeholer='المحل',
+        ng-model='worker.shop_id', ng-options='s.id as s.name for s in shops')
     if block
       block
     div.form-group
       input.form-control(type='tel' placeholder='الهاتف'
-        ng-model='shop.phone')
+        ng-model='worker.phone')
     div.form-group
       input.form-control(required type='number' placeholder='التقييم'
-        min='0' max='5' ng-model='shop.rating')
+        min='0' max='5' ng-model='worker.rating')
     div.form-group
       input.form-control(required type='number' placeholder='السعر الأدنى'
-        min='0', ng-model='shop.lower_price')
+        min='0', ng-model='worker.lower_price')
     div.form-group
       input.form-control(required type='number' placeholder='السعر الأعلى'
-        min='0', ng-model='shop.higher_price')
+        min='0', ng-model='worker.higher_price')
     div.form-group
       textarea.form-control(required placeholder='ملاحظات'
-        min='0', ng-model='shop.notes')
+        min='0', ng-model='worker.notes')

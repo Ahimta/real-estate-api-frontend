@@ -13,9 +13,9 @@ angular.module('realEstateFrontEndApp')
       shops:
         name: 'المحلات'
         path: '#/shops'
-      # workers:
-      #   name: 'العمال'
-      #   path: '#/workers'
+      workers:
+        name: 'العمال'
+        path: '#/workers'
       ideas:
         name: 'الأفكار'
         path: '#/ideas'

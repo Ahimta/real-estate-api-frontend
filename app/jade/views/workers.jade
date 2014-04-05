@@ -1,0 +1,41 @@
+include partials/shared/editable/panelfooter
+include partials/shared/mymodalform
+include partials/shared/mypending
+include partials/workers/workerform
+include partials/workers/workername
+include partials/shared/tradable/trades
+
+div.row
+  +trades
+  
+  +my-pending('!workers')
+    section.col-sm-9
+      article.lead.col-sm-6(ng-repeat='worker in workers | orderBy:"name"')
+        div.panel.panel-primary
+          - var _isEditing = 'isEditing(worker.id)'
+          
+          header.panel-heading
+            span(ng-hide=_isEditing) {{worker.name}}
+            +worker-name(_isEditing)
+
+          div.panel-body.lead
+            +worker-form(_isEditing)
+
+            div(ng-hide=_isEditing)
+              p الهاتف: {{worker.phone}}
+
+              p التقييم: {{worker.rating}}
+
+              p السعر الأدنى: {{worker.lower_price}}
+
+              p السعر الأعلى: {{worker.higher_price}}
+              p ملاحظات: {{worker.notes}}
+
+            p متوسط السعر: {{(worker.lower_price + worker.higher_price) / 2}}
+          
+          +panel-footer('worker')
+
++my-modal-form('إضافة عامل', 'create(worker)')
+  +worker-form(false)
+    +worker-name(false)
+

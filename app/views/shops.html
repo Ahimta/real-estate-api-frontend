@@ -15,26 +15,32 @@
             </div>
           </header>
           <div class="panel-body lead">
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <select required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
-            </div>
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
-            </div>
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
-            </div>
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
-            </div>
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+            <div ng-show="isEditing(shop.id)">
+              <div class="form-group">
+                <select required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <textarea required="required" placeholder="ملاحظات" min="0" ng-model="shop.notes" class="form-control"></textarea>
+              </div>
             </div>
             <div ng-hide="isEditing(shop.id)">
               <p>الهاتف: {{shop.phone}}</p>
               <p>التقييم: {{shop.rating}}</p>
               <p>السعر الأدنى: {{shop.lower_price}}</p>
               <p>السعر الأعلى: {{shop.higher_price}}</p>
+              <p>ملاحظات: {{shop.notes}}</p>
             </div>
             <p>متوسط السعر: {{(shop.lower_price + shop.higher_price) / 2}}</p>
             <p>عدد العمال: {{shop.workers_count}}</p>
@@ -61,23 +67,28 @@
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(shop)">
-          <div class="form-group">
-            <select required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
-          </div>
-          <div class="form-group">
-            <input type="text" autofocus="autofocus" required="required" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
-          </div>
-          <div class="form-group">
-            <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
-          </div>
-          <div class="form-group">
-            <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
-          </div>
-          <div class="form-group">
-            <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
-          </div>
-          <div class="form-group">
-            <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+          <div>
+            <div class="form-group">
+              <select required="required" placeholer="الفئة" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            </div>
+            <div class="form-group">
+              <input type="text" autofocus="autofocus" required="required" placeholder="اسم المحل" ng-model="shop.name" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="الهاتف" ng-model="shop.phone" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <input required="required" type="number" placeholder="التقييم" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <input required="required" type="number" placeholder="السعر الأدنى" min="0" ng-model="shop.lower_price" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <input required="required" type="number" placeholder="السعر الأعلى" min="0" ng-model="shop.higher_price" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <textarea required="required" placeholder="ملاحظات" min="0" ng-model="shop.notes" class="form-control"></textarea>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة محل</button>
         </form>
