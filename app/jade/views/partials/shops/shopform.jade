@@ -9,14 +9,14 @@ mixin shop-form(isShown)
       input.form-control(type='tel' placeholder='الهاتف'
         ng-model='shop.phone')
     div.form-group
-      input.form-control(required type='number' placeholder='التقييم'
+      input.form-control(type='number' placeholder='التقييم'
         min='0' max='5' ng-model='shop.rating')
     div.form-group
-      input.form-control(required type='number' placeholder='السعر الأدنى'
+      input.form-control(type='number' placeholder='السعر الأدنى'
         min='0', ng-model='shop.lower_price')
     div.form-group
-      input.form-control(required type='number' placeholder='السعر الأعلى'
+      input.form-control(type='number' placeholder='السعر الأعلى'
         min='0', ng-model='shop.higher_price')
     div.form-group
-      textarea.form-control(required placeholder='ملاحظات'
+      textarea.form-control(placeholder='ملاحظات'
         min='0', ng-model='shop.notes')
