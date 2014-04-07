@@ -14,6 +14,3 @@ describe 'Controller: TradesCtrl', () ->
     TradesCtrl = $controller 'TradesCtrl', {
       $scope: scope
     }
-
-  it 'should attach a list of awesomeThings to the scope', () ->
-    expect(1).toBe 1

@@ -24,16 +24,3 @@ describe 'Controller: IdeasCtrl', () ->
       Trade: Trade,
       Idea: Idea
     }
-
-  it 'should attach a list of trades', () ->
-    expect(scope.trades).toBe 99
-
-  it 'scope.create', () ->
-    spyOn(Idea, 'create')
-    scope.create()
-    expect(Idea.create).toHaveBeenCalled()
-
-  it 'scope.destroy', () ->
-    spyOn(Idea, 'destroy')
-    scope.destroy 7
-    expect(Idea.destroy).toHaveBeenCalled()
