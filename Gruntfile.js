@@ -337,7 +337,8 @@ module.exports = function (grunt) {
             }
             return path.join(dest, src);
           }
-      }]
+        }
+      ]
       },
       styles: {
         expand: true,
