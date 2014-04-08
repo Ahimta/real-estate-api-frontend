@@ -9,6 +9,3 @@ describe 'Service: Trade', () ->
   Trade = {}
   beforeEach inject (_Trade_) ->
     Trade = _Trade_
-
-  it 'should do something', () ->
-    expect(!!Trade).toBe true

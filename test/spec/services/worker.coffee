@@ -9,6 +9,3 @@ describe 'Service: Worker', ->
   Worker = {}
   beforeEach inject (_Worker_) ->
     Worker = _Worker_
-
-  it 'should do something', ->
-    expect(!!Worker).toBe true

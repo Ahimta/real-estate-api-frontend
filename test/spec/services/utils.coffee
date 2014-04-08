@@ -9,6 +9,3 @@ describe 'Service: Utils', () ->
   Utils = {}
   beforeEach inject (_Utils_) ->
     Utils = _Utils_
-
-  it 'should do something', () ->
-    expect(!!Utils).toBe true
