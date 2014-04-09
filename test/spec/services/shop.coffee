@@ -7,8 +7,11 @@ describe 'Service: Shop', () ->
 
   # instantiate service
   Shop = {}
-  beforeEach inject (_Shop_) ->
-    Shop = _Shop_
+  Myjasmine = undefined
 
-  it 'should do something', () ->
-    expect(!!Shop).toBe true
+  beforeEach inject (_Shop_, _Myjasmine_) ->
+    Shop = _Shop_
+    Myjasmine = _Myjasmine_
+
+  it 'a', () ->
+    Myjasmine.itBehavesLike(Shop, 'shops')
