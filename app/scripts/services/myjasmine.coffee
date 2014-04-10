@@ -4,7 +4,7 @@ angular.module('realEstateFrontEndApp')
   .service 'Myjasmine', ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
-    itBehavesLike: (Model, name) ->
+    simpleCrudable = (Model, name) ->
       API = undefined
       httpBackend = undefined
 
@@ -70,3 +70,7 @@ angular.module('realEstateFrontEndApp')
 
       httpBackend.flush()
       myAfter()
+
+    itBehavesLike: (example, args...) ->
+      switch example
+        when 'SimpleCrudable' then simpleCrudable(args...)

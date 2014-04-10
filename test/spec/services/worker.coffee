@@ -7,5 +7,11 @@ describe 'Service: Worker', ->
 
   # instantiate service
   Worker = {}
-  beforeEach inject (_Worker_) ->
+  Myjasmine = undefined
+
+  beforeEach inject (_Worker_, _Myjasmine_) ->
     Worker = _Worker_
+    Myjasmine = _Myjasmine_
+
+  it 'shared behavior', () ->
+    Myjasmine.itBehavesLike('SimpleCrudable', Worker, 'workers')

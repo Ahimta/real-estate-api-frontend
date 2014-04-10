@@ -13,5 +13,5 @@ describe 'Service: Shop', () ->
     Shop = _Shop_
     Myjasmine = _Myjasmine_
 
-  it 'a', () ->
-    Myjasmine.itBehavesLike(Shop, 'shops')
+  it 'shared behavior', () ->
+    Myjasmine.itBehavesLike('SimpleCrudable', Shop, 'shops')
