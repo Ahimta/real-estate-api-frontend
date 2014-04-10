@@ -17,22 +17,22 @@ angular.module('realEstateFrontEndApp')
 
 
     generateSimpleResource: (name) ->
-      service = $resource "#{REALESTATEAPI}/#{name}/:id",
+      _service = $resource "#{REALESTATEAPI}/#{name}/:id",
         {id: '@id'}, {'update': {method: 'PUT'}}
 
       all: (callbacks) ->
-        service.query callbacks
+        _service.query callbacks
 
       create: (resource, callbacks) ->
         $log.debug resource
-        service.save resource, callbacks
+        _service.save resource, callbacks
 
       update: (resource, callbacks) ->
         $log.debug resource
-        service.update resource.id, resource, callbacks
+        _service.update resource.id, resource, callbacks
 
       destroy: (id, callbacks) ->
-        service.delete {id: id}, callbacks
+        _service.delete {id: id}, callbacks
 
     makeSelectable: (scope, name, callback) ->
       _selectedItem = undefined
