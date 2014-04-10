@@ -9,7 +9,7 @@
   <div class="text-center"><i ng-show="!shops" class="fa fa-refresh fa-spin fa-5x"></i></div>
   <section ng-hide="!shops">
     <section class="col-sm-9">
-      <article ng-repeat="shop in shops | orderBy:&quot;name&quot;" class="lead col-sm-6">
+      <article ng-repeat="shop in shops | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;name&quot;" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(shop.id)">{{shop.name}}</span>
             <div ng-show="isEditing(shop.id)" class="form-group">

@@ -9,7 +9,7 @@
   <div class="text-center"><i ng-show="!ideas" class="fa fa-refresh fa-spin fa-5x"></i></div>
   <section ng-hide="!ideas">
     <section class="col-sm-9">
-      <article ng-repeat="idea in ideas | orderBy:&quot;body.length&quot;:true" class="text-center lead">
+      <article ng-repeat="idea in ideas | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;body.length&quot;:true" class="text-center lead">
         <div ng-hide="isEditing(idea.id)">
           <p>{{idea.body}}</p>
         </div>

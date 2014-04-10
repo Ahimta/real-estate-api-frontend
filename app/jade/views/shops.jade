@@ -11,7 +11,8 @@ div.row
   
   +my-pending('!shops')
     section.col-sm-9
-      article.lead.col-sm-6(ng-repeat='shop in shops | orderBy:"name"')
+      article.lead.col-sm-6(
+        ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade | orderBy:"name"')
         div.panel.panel-primary
           - var _isEditing = 'isEditing(shop.id)'
           

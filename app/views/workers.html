@@ -14,7 +14,7 @@
   <div class="text-center"><i ng-show="!workers" class="fa fa-refresh fa-spin fa-5x"></i></div>
   <section ng-hide="!workers">
     <section class="col-sm-9">
-      <article ng-repeat="worker in workers | orderBy:&quot;name&quot;" class="lead col-sm-6">
+      <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop | orderBy:&quot;name&quot;" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
             <div ng-show="isEditing(worker.id)" class="form-group">
