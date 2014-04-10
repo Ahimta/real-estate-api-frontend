@@ -4,10 +4,13 @@ include partials/shared/mypending
 include partials/workers/workerform
 include partials/workers/workername
 include partials/shared/tradable/trades
+include partials/shared/shopable/shops
 
 div.row
   section.col-sm-3
     +trades
+    hr
+    +shops
   
   +my-pending('!workers')
     section.col-sm-9

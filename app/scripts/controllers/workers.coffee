@@ -11,6 +11,15 @@ angular.module('realEstateFrontEndApp')
           $scope.workers = _.filter data, (worker) ->
             worker.trade_id == id
 
+    Utils.makeSelectable $scope, 'Shop', (id) ->
+      $scope.workers = undefined
+      Worker.all (data, headers) ->
+        if id is undefined
+          $scope.workers = data
+        else
+          $scope.workers = _.filter data, (worker) ->
+            worker.shop_id == id
+
 
     invalidate = () ->
       $scope.trades  = undefined
