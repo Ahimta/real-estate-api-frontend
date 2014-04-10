@@ -2,7 +2,7 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'WorkersCtrl', ($scope, Utils, Trade, Shop, Worker) ->
-    Utils.makeSelectable $scope, 'Trade', Worker, 'workers', 'shop_id'
+    Utils.makeSelectable $scope, 'Trade', Worker, 'workers', 'trade_id'
     Utils.makeSelectable $scope, 'Shop', Worker, 'workers', 'shop_id'
 
 
