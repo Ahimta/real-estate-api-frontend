@@ -3,7 +3,7 @@
   <section class="col-sm-3">
     <div class="text-center"><i ng-show="!trades" class="fa fa-refresh fa-spin fa-5x"></i></div>
     <section ng-hide="!trades">
-      <div class="list-group"><a ng-repeat="trade in trades" ng-click="select(trade.id)" ng-bind="trade.name" ng-class="{active: isSelected(trade.id)}" class="list-group-item"></a></div>
+      <div class="list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
     </section>
   </section>
   <div class="text-center"><i ng-show="!shops" class="fa fa-refresh fa-spin fa-5x"></i></div>

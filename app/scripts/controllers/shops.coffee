@@ -3,7 +3,7 @@
 angular.module('realEstateFrontEndApp')
   .controller 'ShopsCtrl', ($scope, Utils, Trade, Shop) ->
     
-    Utils.makeSelectable $scope, (id) ->
+    Utils.makeSelectable $scope, 'Trade', (id) ->
       $scope.shops = undefined
       Shop.all (data, headers) ->
         if id is undefined

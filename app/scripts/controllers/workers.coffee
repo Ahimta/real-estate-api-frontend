@@ -2,7 +2,7 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'WorkersCtrl', ($scope, Utils, Trade, Shop, Worker) ->
-    Utils.makeSelectable $scope, (id) ->
+    Utils.makeSelectable $scope, 'Trade', (id) ->
       $scope.workers = undefined
       Worker.all (data, headers) ->
         if id is undefined

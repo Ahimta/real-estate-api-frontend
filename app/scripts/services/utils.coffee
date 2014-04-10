@@ -34,15 +34,15 @@ angular.module('realEstateFrontEndApp')
       destroy: (id, callbacks) ->
         service.delete {id: id}, callbacks
 
-    makeSelectable: (scope, callback) ->
+    makeSelectable: (scope, name, callback) ->
       _selectedItem = undefined
 
-      scope.select = (id) ->
+      scope["select#{name}"] = (id) ->
         _selectedItem = if _selectedItem == id then undefined else id
         callback(_selectedItem)
 
 
-      scope.isSelected = (id) ->
+      scope["is#{name}Selected"] = (id) ->
         id == _selectedItem
 
     makeCrudable: (scope, model, invalidate) ->
