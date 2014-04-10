@@ -34,8 +34,17 @@ angular.module('realEstateFrontEndApp')
       destroy: (id, callbacks) ->
         _service.delete {id: id}, callbacks
 
-    makeSelectable: (scope, name, callback) ->
+    makeSelectable: (scope, name, service, collection, fkey='trade_id') ->
       _selectedItem = undefined
+
+      callback = (id) ->
+        scope[collection] = undefined
+        service.all (data, headers) ->
+          if id is undefined
+            scope[collection] = data
+          else
+            scope[collection] = _.filter data, (element) ->
+              element[fkey] == id
 
       scope["select#{name}"] = (id) ->
         _selectedItem = if _selectedItem == id then undefined else id

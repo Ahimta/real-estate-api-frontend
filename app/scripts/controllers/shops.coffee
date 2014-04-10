@@ -3,14 +3,7 @@
 angular.module('realEstateFrontEndApp')
   .controller 'ShopsCtrl', ($scope, Utils, Trade, Shop) ->
     
-    Utils.makeSelectable $scope, 'Trade', (id) ->
-      $scope.shops = undefined
-      Shop.all (data, headers) ->
-        if id is undefined
-          $scope.shops = data
-        else
-          $scope.shops = _.filter data, (shop) ->
-            shop.trade_id == id
+    Utils.makeSelectable $scope, 'Trade', Shop, 'shops'
 
 
     invalidate = () ->
