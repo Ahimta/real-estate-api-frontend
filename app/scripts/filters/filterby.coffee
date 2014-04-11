@@ -6,5 +6,4 @@ angular.module('realEstateFrontEndApp')
       if selectedId is undefined
         input
       else
-        _.filter input, (element) ->
-          element[fkey] == selectedId
+      	element for element in input when element[fkey] == selectedId

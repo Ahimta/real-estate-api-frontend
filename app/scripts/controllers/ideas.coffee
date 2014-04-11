@@ -17,7 +17,7 @@ angular.module('realEstateFrontEndApp')
       Idea.all (data, headers) ->
         $scope.ideas = data
 
-    
+    #invalidate = Utils.makeInvalidate($scope, [Trade, Idea], ['trades', 'ideas'], ['idea'])
     invalidate()
 
     Utils.makeCrudable $scope, Idea, invalidate
