@@ -64,6 +64,10 @@ angular.module('realEstateFrontEndApp')
           trade.id == id
 
     makeInvalidate: (scope, models, collections, records, object) ->
+      f = (model, collection) ->
+        model.all (data, status) ->
+          scope[collection] = data
+
       () ->
         for collection in collections
           scope[collection] = undefined
@@ -71,8 +75,5 @@ angular.module('realEstateFrontEndApp')
         for record in records
           scope[record] = {}
 
-        for tuple in _.zip(models, collections)
-          [model, collection] = tuple
-
-          model.all (data, status) ->
-            scope[collection] = data
+        for [model, collection] in _.zip(models, collections)
+          f(model, collection)

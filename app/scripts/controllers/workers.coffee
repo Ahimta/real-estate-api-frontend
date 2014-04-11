@@ -6,20 +6,8 @@ angular.module('realEstateFrontEndApp')
     Utils.makeSelectable $scope, 'Shop', Worker, 'workers', 'shop_id'
 
 
-    invalidate = () ->
-      $scope.trades  = undefined
-      $scope.shops   = undefined
-      $scope.workers = undefined
-      $scope.worker  = {}
-
-      Trade.all (data, headers) ->
-        $scope.trades = data
-
-      Shop.all (data, headers) ->
-        $scope.shops = data
-
-      Worker.all (data, headers) ->
-      	$scope.workers = data
+    invalidate = Utils.makeInvalidate($scope, [Trade, Shop, Worker],
+      ['trades', 'shops', 'workers'], ['worker'])
 
     
     invalidate()
