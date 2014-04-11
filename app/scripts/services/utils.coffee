@@ -49,24 +49,24 @@ angular.module('realEstateFrontEndApp')
         id == selectedId
 
 
-    makeCrudable: (scope, model, invalidate) ->
+    makeCrudable: (scope, model, invalidator) ->
       makeEditible scope
 
       scope.create = (record) ->
-        model.create record, invalidate
+        model.create record, invalidator
 
       scope.update = (record) ->
         scope.reset record.id
-        model.update record, invalidate
+        model.update record, invalidator
 
       scope.destroy = (id) ->
-        model.destroy id, invalidate
+        model.destroy id, invalidator
 
       scope.getTrade = (id) ->
         _.find scope.trades, (trade) ->
           trade.id == id
 
-    makeInvalidate: (scope, models, collections, records, object) ->
+    makeInvalidate: (scope, models, collections, records) ->
       f = (model, collection) ->
         scope[collection] = undefined
         
