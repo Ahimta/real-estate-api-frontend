@@ -1,15 +1,13 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'WorkersCtrl', ($scope, Utils, Trade, Shop, Worker) ->
-    Utils.makeSelectable $scope, 'Trade', Worker, 'workers', 'trade_id'
-    Utils.makeSelectable $scope, 'Shop', Worker, 'workers', 'shop_id'
+  .controller 'WorkersCtrl', ($scope, ControllersTraits, Trade, Shop, Worker) ->
+    ControllersTraits.Selectable $scope, 'Trade', Worker, 'workers', 'trade_id'
+    ControllersTraits.Selectable $scope, 'Shop', Worker, 'workers', 'shop_id'
 
 
-    invalidate = Utils.makeInvalidate($scope, [Trade, Shop, Worker],
+    invalidator = ControllersTraits.Crudable($scope, Worker, [Trade, Shop, Worker],
       ['trades', 'shops', 'workers'], ['worker'])
 
     
-    invalidate()
-
-    Utils.makeCrudable $scope, Worker, invalidate
+    invalidator()

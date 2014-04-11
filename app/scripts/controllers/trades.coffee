@@ -1,10 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'TradesCtrl', ($scope, $log, Trade, Utils) ->
+  .controller 'TradesCtrl', ($scope, Trade, ControllersTraits) ->
     
-    invalidate = Utils.makeInvalidate $scope, [Trade], ['trades'], ['trade']
-
-    invalidate()
-
-    Utils.makeCrudable $scope, Trade, invalidate
+    invalidator = ControllersTraits.Crudable $scope, Trade, [Trade], ['trades'], ['trade']
+    invalidator()

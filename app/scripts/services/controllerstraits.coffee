@@ -16,7 +16,8 @@ angular.module('realEstateFrontEndApp')
       scope.reset = (id) ->
         _isEditing[id] = false
 
-    Crudable: (scope, model, invalidator) ->
+    makeCrudable = (scope, model, invalidator) ->
+      console.log 'hi2'
       makeEditible scope
 
       scope.create = (record) ->
@@ -33,7 +34,8 @@ angular.module('realEstateFrontEndApp')
         _.find scope.trades, (trade) ->
           trade.id == id
 
-    Invalidatable: (scope, models, collections, records) ->
+    Invalidatable = (scope, models, collections, records) ->
+      console.log 'hi'
       f = (model, collection) ->
         scope[collection] = undefined
         
@@ -61,3 +63,8 @@ angular.module('realEstateFrontEndApp')
 
       scope[isSelectedName] = (id) ->
         id == selectedId
+
+    Crudable: (scope, mainModel, models, collections, records) ->
+      invalidator = Invalidatable(scope, models, collections, records)
+      makeCrudable(scope, mainModel, invalidator)
+      invalidator
