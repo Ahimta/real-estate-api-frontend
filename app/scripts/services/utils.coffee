@@ -36,14 +36,17 @@ angular.module('realEstateFrontEndApp')
 
 
     makeSelectable: (scope, name, service, collection, fkey='trade_id') ->
-      _selectedItem = undefined
+      selectedId     = undefined
+      isSelectedName = "is#{name}Selected"
+      selectedName   = "selected#{name}"
+      selectName     = "select#{name}"
 
-      scope["select#{name}"] = (id) ->
-        _selectedItem = if _selectedItem == id then undefined else id
-        scope["selected#{name}"] = _selectedItem
+      scope[selectName] = (id) ->
+        selectedId = if selectedId == id then undefined else id
+        scope[selectedName] = selectedId
 
-      scope["is#{name}Selected"] = (id) ->
-        id == _selectedItem
+      scope[isSelectedName] = (id) ->
+        id == selectedId
 
 
     makeCrudable: (scope, model, invalidate) ->
