@@ -17,7 +17,6 @@ angular.module('realEstateFrontEndApp')
         _isEditing[id] = false
 
     makeCrudable = (scope, model, invalidator) ->
-      console.log 'hi2'
       makeEditible scope
 
       scope.create = (record) ->
@@ -35,7 +34,6 @@ angular.module('realEstateFrontEndApp')
           trade.id == id
 
     Invalidatable = (scope, models, collections, records) ->
-      console.log 'hi'
       f = (model, collection) ->
         scope[collection] = undefined
         
