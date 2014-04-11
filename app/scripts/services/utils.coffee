@@ -65,15 +65,16 @@ angular.module('realEstateFrontEndApp')
 
     makeInvalidate: (scope, models, collections, records, object) ->
       f = (model, collection) ->
+        scope[collection] = undefined
+        
         model.all (data, status) ->
           scope[collection] = data
 
-      () ->
-        for collection in collections
-          scope[collection] = undefined
+      zipped = _.zip(models, collections)
 
+      () ->
         for record in records
           scope[record] = {}
 
-        for [model, collection] in _.zip(models, collections)
+        for [model, collection] in zipped
           f(model, collection)
