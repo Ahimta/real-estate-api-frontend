@@ -62,7 +62,7 @@ module.exports = function (grunt) {
         tasks: ['jade']
       },
       test: {
-        files: ['<%= yeoman.app %>/scripts/**/*.coffee'],
+        files: ['<%= yeoman.app %>/scripts/**/*.coffee', 'test/spec/**/*.coffee'],
         tasks: ['test']
       }
     },
