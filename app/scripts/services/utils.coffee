@@ -62,3 +62,16 @@ angular.module('realEstateFrontEndApp')
       scope.getTrade = (id) ->
         _.find scope.trades, (trade) ->
           trade.id == id
+
+    makeInvalidate: (scope, models, collections, records) ->
+      for collection in collections
+        do (collection) ->
+          scope[collection] = undefined
+
+      for record in records
+        do (record) ->
+          scope[record] = {}
+
+      for model, collection of _.object(models, collections)
+        model.all (data, status) ->
+          scope[collection] = data
