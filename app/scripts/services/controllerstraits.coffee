@@ -11,7 +11,7 @@ angular.module('realEstateFrontEndApp')
         _isEditing[id] = true
 
       scope.isEditing = (id) ->
-        _isEditing[id]
+        _isEditing[id] is true
 
       scope.reset = (id) ->
         _isEditing[id] = false

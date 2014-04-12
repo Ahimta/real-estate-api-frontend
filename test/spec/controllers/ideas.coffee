@@ -23,6 +23,20 @@ describe 'Controller: IdeasCtrl', () ->
     httpBackend = $httpBackend
 
   describe 'Crudable', () ->
+    describe 'Editable', () ->
+      it 'initial state', () ->
+        expect(scope.isEditing(id)).toBe false for id in [1..31]
+
+      it '.edit', () ->
+        for id in [1..7]
+          expect(scope.isEditing(id)).toBe false
+          scope.edit id
+
+          expect(scope.isEditing(i)).toBe true for i in [1..id]
+
+          for i in [(id+1)..7] when id != 7
+            expect(scope.isEditing(i)).toBe false
+        
     it 'initial state', (done) ->
       trades = [{a:1,b:2}]
       ideas  = [{x:1,b:2}]
@@ -43,10 +57,13 @@ describe 'Controller: IdeasCtrl', () ->
 
   describe 'Selectable', () ->
     it 'initial state', () ->
+      expect(scope.selectedTrade).toBe undefined
       expect(scope.isTradeSelected(id)).toBe(false) for id in [1..31]
 
     it 'with one select', () ->
       scope.selectTrade 1
+
+      expect(scope.selectedTrade).toBe 1
       expect(scope.isTradeSelected(1)).toBe true
 
     it 'with more than one select', () ->
@@ -56,8 +73,11 @@ describe 'Controller: IdeasCtrl', () ->
       expect(scope.isTradeSelected(1)).toBe false
       expect(scope.isTradeSelected(2)).toBe true
 
+      expect(scope.selectedTrade).toBe 2
+
     it 'selecting an already selected item', () ->
       scope.selectTrade 1
       scope.selectTrade 1
 
       expect(scope.isTradeSelected(1)).toBe false
+      expect(scope.selectedTrade).toBe undefined
