@@ -5,6 +5,7 @@ angular.module('realEstateFrontEndApp')
     
     ControllersTraits.Selectable $scope, 'Trade', Shop, 'shops'
 
-
-    invalidator = ControllersTraits.Crudable($scope, Shop, [Trade, Shop], ['trades', 'shops'], ['shop'])
+    invalidator = ControllersTraits.Crudable($scope, Shop, [Trade, Shop],
+      ['trades', 'shops'], ['shop'])
+    
     invalidator()
