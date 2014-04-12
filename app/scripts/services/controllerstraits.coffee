@@ -49,7 +49,7 @@ angular.module('realEstateFrontEndApp')
         for [model, collection] in zipped
           f(model, collection)
 
-    Selectable: (scope, name, service, collection, fkey='trade_id') ->
+    Selectable: (scope, name) ->
       selectedId     = undefined
       isSelectedName = "is#{name}Selected"
       selectedName   = "selected#{name}"

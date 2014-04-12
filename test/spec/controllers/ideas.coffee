@@ -23,10 +23,6 @@ describe 'Controller: IdeasCtrl', () ->
     httpBackend = $httpBackend
 
   describe 'Crudable', () ->
-    afterEach () ->
-      httpBackend.verifyNoOutstandingExpectation()
-      httpBackend.verifyNoOutstandingRequest()
-    
     it 'initial state', (done) ->
       trades = [{a:1,b:2}]
       ideas  = [{x:1,b:2}]
@@ -44,3 +40,18 @@ describe 'Controller: IdeasCtrl', () ->
           done()
 
       httpBackend.flush()
+
+  describe 'Selectable', () ->
+    it 'initial state', () ->
+      expect(scope.isTradeSelected(id)).toBe(false) for id in [1..31]
+
+    it 'with one select', () ->
+      scope.selectTrade 1
+      expect(scope.isTradeSelected(1)).toBe true
+
+    it 'with more than one select', () ->
+      scope.selectTrade 1
+      scope.selectTrade 2
+
+      expect(scope.isTradeSelected(1)).toBe false
+      expect(scope.isTradeSelected(2)).toBe true
