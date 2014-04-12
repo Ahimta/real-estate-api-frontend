@@ -3,7 +3,7 @@
 angular.module('realEstateFrontEndApp')
   .controller 'IdeasCtrl', ($scope, Idea, Trade, ControllersTraits) ->
 
-    ControllersTraits.Selectable $scope, 'Trade', Idea, 'ideas'
+    ControllersTraits.Selectable $scope, 'Trade'
     
     invalidator = ControllersTraits.Crudable($scope, Idea, [Trade, Idea],
       ['trades', 'ideas'], ['idea'])
