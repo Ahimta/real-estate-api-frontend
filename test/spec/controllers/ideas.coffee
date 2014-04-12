@@ -55,3 +55,9 @@ describe 'Controller: IdeasCtrl', () ->
 
       expect(scope.isTradeSelected(1)).toBe false
       expect(scope.isTradeSelected(2)).toBe true
+
+    it 'selecting an already selected item', () ->
+      scope.selectTrade 1
+      scope.selectTrade 1
+
+      expect(scope.isTradeSelected(1)).toBe false
