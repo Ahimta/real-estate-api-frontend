@@ -49,7 +49,7 @@ angular.module('realEstateFrontEndApp')
         for [model, collection] in zipped
           f(model, collection)
 
-    Selectable: (scope, name) ->
+    makeSelectable = (scope, name) ->
       selectedId     = undefined
       isSelectedName = "is#{name}Selected"
       selectedName   = "selected#{name}"
@@ -61,6 +61,9 @@ angular.module('realEstateFrontEndApp')
 
       scope[isSelectedName] = (id) ->
         id == selectedId
+
+    Selectable: (scope, names...) ->
+      makeSelectable(scope, name) for name in names
 
     Crudable: (scope, mainModel, models, collections, records) ->
       invalidator = Invalidatable(scope, models, collections, records)
