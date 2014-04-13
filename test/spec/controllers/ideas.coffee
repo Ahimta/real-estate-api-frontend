@@ -115,33 +115,35 @@ describe 'Controller: IdeasCtrl', () ->
 
 
   describe 'Selectable', () ->
-    name = 'Trade'
-    selectName = "select#{name}"
-    selectedName = "selected#{name}"
-    isNameSelected = "is#{name}Selected"
+    names = ['Trade']
 
-    it 'initial state', () ->
-      expect(scope[selectedName]).toBe undefined
-      expect(scope[isNameSelected](id)).toBe(false) for id in [1..31]
+    for name in names
+      isNameSelected = "is#{name}Selected"
+      selectedName = "selected#{name}"
+      selectName = "select#{name}"
 
-    it 'with one select', () ->
-      scope[selectName] 1
+      it 'initial state', () ->
+        expect(scope[selectedName]).toBe undefined
+        expect(scope[isNameSelected](id)).toBe(false) for id in [1..31]
 
-      expect(scope[selectedName]).toBe 1
-      expect(scope[isNameSelected](1)).toBe true
+      it 'with one select', () ->
+        scope[selectName] 1
 
-    it 'with more than one select', () ->
-      scope[selectName] 1
-      scope[selectName] 2
+        expect(scope[selectedName]).toBe 1
+        expect(scope[isNameSelected](1)).toBe true
 
-      expect(scope[isNameSelected](1)).toBe false
-      expect(scope[isNameSelected](2)).toBe true
+      it 'with more than one select', () ->
+        scope[selectName] 1
+        scope[selectName] 2
 
-      expect(scope[selectedName]).toBe 2
+        expect(scope[isNameSelected](1)).toBe false
+        expect(scope[isNameSelected](2)).toBe true
 
-    it 'selecting an already selected item', () ->
-      scope[selectName] 1
-      scope[selectName] 1
+        expect(scope[selectedName]).toBe 2
 
-      expect(scope[isNameSelected](1)).toBe false
-      expect(scope[selectedName]).toBe undefined
+      it 'selecting an already selected item', () ->
+        scope[selectName] 1
+        scope[selectName] 1
+
+        expect(scope[isNameSelected](1)).toBe false
+        expect(scope[selectedName]).toBe undefined
