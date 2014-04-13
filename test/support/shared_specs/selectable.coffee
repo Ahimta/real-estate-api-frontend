@@ -14,7 +14,6 @@ Selectable = (controller, names) ->
       isNameSelected = "is#{name}Selected"
       selectedName = "selected#{name}"
       selectName = "select#{name}"
-      console.log scope
 
       it 'initial state', () ->
         expect(scope[selectedName]).toBe undefined
@@ -41,9 +40,3 @@ Selectable = (controller, names) ->
 
         expect(scope[isNameSelected](1)).toBe false
         expect(scope[selectedName]).toBe undefined
-
-window.MyApp.itBehavesLike = (name, args...) ->
-  switch name
-    when 'Selectable' then Selectable args...
-    
-  

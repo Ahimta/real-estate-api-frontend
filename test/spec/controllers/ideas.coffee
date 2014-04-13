@@ -20,13 +20,21 @@ describe 'Controller: IdeasCtrl', () ->
 
 
   describe 'Crudable', () ->
+    mainResource = 'ideas'
+    otherResources = ['trades']
 
+    mainUrl = undefined
+    otherUrls = undefined
     httpBackend = undefined
     API = undefined
 
     beforeEach inject ($httpBackend, REALESTATEAPI) ->
       httpBackend = $httpBackend
       API = REALESTATEAPI
+
+      mainUrl = "#{API}/#{mainResource}"
+      otherUrls = _.map otherResources, (resource) ->
+        "#{API}/#{resource}"
 
     describe 'Editable', () ->
       it 'initial state', () ->
@@ -54,15 +62,15 @@ describe 'Controller: IdeasCtrl', () ->
     describe '.create, .update, .destroy', () ->
 
       beforeEach () ->
-        httpBackend.whenGET("#{API}/trades").respond [{}]
-        httpBackend.whenGET("#{API}/ideas").respond [{}]
+        httpBackend.whenGET(url).respond [{}] for url in otherUrls
+        httpBackend.whenGET(mainUrl).respond [{}]
 
-        httpBackend.expectGET "#{API}/trades"
-        httpBackend.expectGET "#{API}/ideas"
+        httpBackend.expectGET url for url in otherUrls
+        httpBackend.expectGET mainUrl
 
       afterEach () ->
-        httpBackend.expectGET "#{API}/trades"
-        httpBackend.expectGET "#{API}/ideas"
+        httpBackend.expectGET url for url in otherUrls
+        httpBackend.expectGET mainUrl
 
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
@@ -72,8 +80,8 @@ describe 'Controller: IdeasCtrl', () ->
       it '.create', () ->
         record = {a: 1, b: 2}
 
-        httpBackend.whenPOST("#{API}/ideas").respond record
-        httpBackend.expectPOST("#{API}/ideas", record)
+        httpBackend.whenPOST(mainUrl).respond record
+        httpBackend.expectPOST(mainUrl, record)
 
         scope.create record
 
@@ -81,16 +89,16 @@ describe 'Controller: IdeasCtrl', () ->
         record = {id: 7, a: 1, b: 2}
         updatedRecord = {id: 7, a: 2, b: 1}
 
-        httpBackend.whenPUT("#{API}/ideas/#{record.id}").respond updatedRecord
-        httpBackend.expectPUT("#{API}/ideas/#{record.id}", updatedRecord)
+        httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
+        httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
 
         scope.update updatedRecord
 
       it '.destroy', () ->
         record = {id: 3, a: 1, b: 2}
 
-        httpBackend.whenDELETE("#{API}/ideas/#{record.id}").respond record
-        httpBackend.expectDELETE("#{API}/ideas/#{record.id}")
+        httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
+        httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
 
         scope.destroy record.id
 
@@ -100,7 +108,7 @@ describe 'Controller: IdeasCtrl', () ->
       ideas  = [{x:1,b:2}]
 
       httpBackend.whenGET("#{API}/trades").respond trades
-      httpBackend.whenGET("#{API}/ideas").respond ideas
+      httpBackend.whenGET(mainUrl).respond ideas
 
       expect(scope.trades).toBe undefined
       expect(scope.ideas).toBe undefined

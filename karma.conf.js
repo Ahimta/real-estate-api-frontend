@@ -12,7 +12,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/spec_helpers/*.coffee',
+      'test/support/*.coffee',
+      'test/support/shared_specs/*.coffee',
 
       'app/bower_components/underscore/underscore.js',
       'app/bower_components/angular/angular.js',
