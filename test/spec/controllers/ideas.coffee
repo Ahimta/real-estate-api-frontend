@@ -30,6 +30,7 @@ describe 'Controller: IdeasCtrl', () ->
       expect(scope[resource]).toBe undefined for resource in otherResources
 
       window.setTimeout () ->
+        expect(false).toBe true
         expect(angular.equals(scope[mainResource], records)).toBe true
         for [collection, resource] in _.zip(othersRecords, otherResources)
           expect(angular.equals(scope[resource], collection)).toBe true

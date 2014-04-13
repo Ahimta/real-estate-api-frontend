@@ -1,6 +1,6 @@
 Crudable = (controller, mainResource, otherResources) ->
 
-  describe '.create, .update, .destroy', () ->
+  describe 'Crudable', () ->
   
     mainUrl = undefined
     otherUrls = undefined
@@ -21,43 +21,76 @@ Crudable = (controller, mainResource, otherResources) ->
       otherUrls = _.map otherResources, (resource) ->
         "#{API}/#{resource}"
 
-    beforeEach () ->
-      httpBackend.whenGET(url).respond [{}] for url in otherUrls
-      httpBackend.whenGET(mainUrl).respond [{}]
 
-      httpBackend.expectGET url for url in otherUrls
-      httpBackend.expectGET mainUrl
+    xdescribe 'initial state', () ->
+      afterEach () ->
+        httpBackend.flush()
 
-    afterEach () ->
-      httpBackend.expectGET url for url in otherUrls
-      httpBackend.expectGET mainUrl
+        httpBackend.verifyNoOutstandingExpectation()
+        httpBackend.verifyNoOutstandingRequest()
 
-      httpBackend.flush()
-      httpBackend.verifyNoOutstandingExpectation()
-      httpBackend.verifyNoOutstandingRequest()
+      it 'initial state', (done) ->
+        othersRecords  = _.map [1..(otherResources.length)], (i) ->
+          [{a:i,b:i+1}]
+
+        records = [{x:1,b:2}]
+
+        for [collection, url] in _.zip(othersRecords, otherUrls)
+          httpBackend.whenGET(url).respond collection
+
+        httpBackend.whenGET(mainUrl).respond records
+
+        expect(scope[mainResource]).toBe undefined
+        expect(scope[resource]).toBe undefined for resource in otherResources
+
+        window.setTimeout () ->
+          expect(angular.equals(scope[mainResource], records)).toBe true
+
+          for [collection, resource] in _.zip(othersRecords, otherResources)
+            expect(angular.equals(scope[resource], collection)).toBe true
+
+          done()
 
 
-    it '.create', () ->
-      record = {a: 1, b: 2}
+    describe '.create, .update, .destroy', () ->
 
-      httpBackend.whenPOST(mainUrl).respond record
-      httpBackend.expectPOST(mainUrl, record)
+      beforeEach () ->
+        httpBackend.whenGET(url).respond [{}] for url in otherUrls
+        httpBackend.whenGET(mainUrl).respond [{}]
 
-      scope.create record
+        httpBackend.expectGET url for url in otherUrls
+        httpBackend.expectGET mainUrl
 
-    it '.update', () ->
-      record = {id: 7, a: 1, b: 2}
-      updatedRecord = {id: 7, a: 2, b: 1}
+      afterEach () ->
+        httpBackend.expectGET url for url in otherUrls
+        httpBackend.expectGET mainUrl
 
-      httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
-      httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
+        httpBackend.flush()
+        httpBackend.verifyNoOutstandingExpectation()
+        httpBackend.verifyNoOutstandingRequest()
 
-      scope.update updatedRecord
 
-    it '.destroy', () ->
-      record = {id: 3, a: 1, b: 2}
+      it '.create', () ->
+        record = {a: 1, b: 2}
 
-      httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
-      httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
+        httpBackend.whenPOST(mainUrl).respond record
+        httpBackend.expectPOST(mainUrl, record)
 
-      scope.destroy record.id
+        scope.create record
+
+      it '.update', () ->
+        record = {id: 7, a: 1, b: 2}
+        updatedRecord = {id: 7, a: 2, b: 1}
+
+        httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
+        httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
+
+        scope.update updatedRecord
+
+      it '.destroy', () ->
+        record = {id: 3, a: 1, b: 2}
+
+        httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
+        httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
+
+        scope.destroy record.id
