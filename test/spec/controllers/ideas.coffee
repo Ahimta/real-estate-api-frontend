@@ -6,8 +6,6 @@ describe 'Controller: IdeasCtrl', () ->
   beforeEach module 'realEstateFrontEndApp'
 
   IdeasCtrl = {}
-  httpBackend = undefined
-  API = undefined
   timeout = undefined
   scope = {}
 
@@ -15,14 +13,20 @@ describe 'Controller: IdeasCtrl', () ->
   beforeEach inject ($controller, $rootScope, $httpBackend, REALESTATEAPI,
     $timeout) ->
     timeout = $timeout
-    API = REALESTATEAPI
     scope = $rootScope.$new()
     IdeasCtrl = $controller 'IdeasCtrl', {
       $scope: scope
     }
-    httpBackend = $httpBackend
+
 
   describe 'Crudable', () ->
+
+    httpBackend = undefined
+    API = undefined
+
+    beforeEach inject ($httpBackend, REALESTATEAPI) ->
+      httpBackend = $httpBackend
+      API = REALESTATEAPI
 
     describe 'Editable', () ->
       it 'initial state', () ->
@@ -59,10 +63,11 @@ describe 'Controller: IdeasCtrl', () ->
       afterEach () ->
         httpBackend.expectGET "#{API}/trades"
         httpBackend.expectGET "#{API}/ideas"
-        
+
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
+
 
       it '.create', () ->
         record = {a: 1, b: 2}
@@ -102,36 +107,41 @@ describe 'Controller: IdeasCtrl', () ->
 
       window.setTimeout () ->
         expect(angular.equals(scope.ideas, ideas)).toBe true
-        window.setTimeout () ->
-          expect(angular.equals(scope.trades, trades)).toBe true
-          done()
+        expect(angular.equals(scope.trades, trades)).toBe true
+
+        done()
 
       httpBackend.flush()
 
 
   describe 'Selectable', () ->
+    name = 'Trade'
+    selectName = "select#{name}"
+    selectedName = "selected#{name}"
+    isNameSelected = "is#{name}Selected"
+
     it 'initial state', () ->
-      expect(scope.selectedTrade).toBe undefined
-      expect(scope.isTradeSelected(id)).toBe(false) for id in [1..31]
+      expect(scope[selectedName]).toBe undefined
+      expect(scope[isNameSelected](id)).toBe(false) for id in [1..31]
 
     it 'with one select', () ->
-      scope.selectTrade 1
+      scope[selectName] 1
 
-      expect(scope.selectedTrade).toBe 1
-      expect(scope.isTradeSelected(1)).toBe true
+      expect(scope[selectedName]).toBe 1
+      expect(scope[isNameSelected](1)).toBe true
 
     it 'with more than one select', () ->
-      scope.selectTrade 1
-      scope.selectTrade 2
+      scope[selectName] 1
+      scope[selectName] 2
 
-      expect(scope.isTradeSelected(1)).toBe false
-      expect(scope.isTradeSelected(2)).toBe true
+      expect(scope[isNameSelected](1)).toBe false
+      expect(scope[isNameSelected](2)).toBe true
 
-      expect(scope.selectedTrade).toBe 2
+      expect(scope[selectedName]).toBe 2
 
     it 'selecting an already selected item', () ->
-      scope.selectTrade 1
-      scope.selectTrade 1
+      scope[selectName] 1
+      scope[selectName] 1
 
-      expect(scope.isTradeSelected(1)).toBe false
-      expect(scope.selectedTrade).toBe undefined
+      expect(scope[isNameSelected](1)).toBe false
+      expect(scope[selectedName]).toBe undefined
