@@ -53,8 +53,16 @@ describe 'Controller: IdeasCtrl', () ->
         httpBackend.whenGET("#{API}/trades").respond [{}]
         httpBackend.whenGET("#{API}/ideas").respond [{}]
 
+        httpBackend.expectGET "#{API}/trades"
+        httpBackend.expectGET "#{API}/ideas"
+
       afterEach () ->
+        httpBackend.expectGET "#{API}/trades"
+        httpBackend.expectGET "#{API}/ideas"
+        
         httpBackend.flush()
+        httpBackend.verifyNoOutstandingExpectation()
+        httpBackend.verifyNoOutstandingRequest()
 
       it '.create', () ->
         record = {a: 1, b: 2}
@@ -74,7 +82,7 @@ describe 'Controller: IdeasCtrl', () ->
         scope.update updatedRecord
 
       it '.destroy', () ->
-        record = {id: 7, a: 1, b: 2}
+        record = {id: 3, a: 1, b: 2}
 
         httpBackend.whenDELETE("#{API}/ideas/#{record.id}").respond record
         httpBackend.expectDELETE("#{API}/ideas/#{record.id}")
