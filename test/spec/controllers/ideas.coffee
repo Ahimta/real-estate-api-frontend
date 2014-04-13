@@ -104,18 +104,23 @@ describe 'Controller: IdeasCtrl', () ->
 
         
     it 'initial state', (done) ->
-      trades = [{a:1,b:2}]
-      ideas  = [{x:1,b:2}]
+      othersRecords  = _.map [1..(otherResources.length)], (i) ->
+        [{a:i,b:i+1}]
 
-      httpBackend.whenGET("#{API}/trades").respond trades
-      httpBackend.whenGET(mainUrl).respond ideas
+      records = [{x:1,b:2}]
 
-      expect(scope.trades).toBe undefined
-      expect(scope.ideas).toBe undefined
+      for [collection, url] in _.zip(othersRecords, otherUrls)
+        httpBackend.whenGET(url).respond collection
+
+      httpBackend.whenGET(mainUrl).respond records
+
+      expect(scope[mainResource]).toBe undefined
+      expect(scope[resource]).toBe undefined for resource in otherResources
 
       window.setTimeout () ->
-        expect(angular.equals(scope.ideas, ideas)).toBe true
-        expect(angular.equals(scope.trades, trades)).toBe true
+        expect(angular.equals(scope[mainResource], records)).toBe true
+        for [collection, resource] in _.zip(othersRecords, otherResources)
+          expect(angular.equals(scope[resource], collection)).toBe true
 
         done()
 
