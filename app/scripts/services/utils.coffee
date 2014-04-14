@@ -7,19 +7,20 @@ angular.module('realEstateFrontEndApp')
     generateSimpleResource: (name) ->
       _service = $resource "#{REALESTATEAPI}/#{name}/:id",
         {id: '@id'}, {'update': {method: 'PUT'}}
+      resource = "#{REALESTATEAPI}/#{name}"
 
       all2: () ->
-        $http.get "#{REALESTATEAPI}/#{name}"
+        $http.get resource
 
       create2: (record) ->
-        $http.post "#{REALESTATEAPI}/#{name}", record
+        $http.post resource, record
 
       update2: (record) ->
-        $http.put "#{REALESTATEAPI}/#{name}/#{record.id}", record
+        $http.put "#{resource}/#{record.id}", record
 
       destroy2: (id) ->
-        $http.delete "#{REALESTATEAPI}/#{name}/#{id}"
-      
+        $http.delete "#{resource}/#{id}"
+
 
       all: (callbacks) ->
         _service.query callbacks
