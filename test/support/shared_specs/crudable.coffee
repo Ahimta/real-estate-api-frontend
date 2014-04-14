@@ -44,10 +44,10 @@ Crudable = (controller, mainResource, otherResources) ->
         expect(scope[resource]).toBe undefined for resource in otherResources
 
         window.setTimeout () ->
-          expect(angular.equals(scope[mainResource], records)).toBe true
+          expect(scope[mainResource]).toEqual records
 
           for [collection, resource] in _.zip(othersRecords, otherResources)
-            expect(angular.equals(scope[resource], collection)).toBe true
+            expect(scope[resource]).toEqual collection
 
           done()
 
@@ -76,7 +76,8 @@ Crudable = (controller, mainResource, otherResources) ->
         httpBackend.whenPOST(mainUrl).respond record
         httpBackend.expectPOST(mainUrl, record)
 
-        scope.create record
+        scope.create2(record).then (response) ->
+          expect(response.data).toEqual record
 
       it '.update', () ->
         record = {id: 7, a: 1, b: 2}
@@ -85,7 +86,8 @@ Crudable = (controller, mainResource, otherResources) ->
         httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
         httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
 
-        scope.update updatedRecord
+        scope.update2(updatedRecord).then (response) ->
+          expect(response.data).toEqual updatedRecord
 
       it '.destroy', () ->
         record = {id: 3, a: 1, b: 2}
@@ -93,4 +95,5 @@ Crudable = (controller, mainResource, otherResources) ->
         httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
         httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
 
-        scope.destroy record.id
+        scope.destroy2(record.id).then (response) ->
+          expect(response.data).toEqual record

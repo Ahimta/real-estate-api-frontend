@@ -22,14 +22,17 @@ angular.module('realEstateFrontEndApp')
       scope.create2 = (record) ->
         model.create2(record).then (response) ->
           invalidator()
+          response
 
       scope.update2 = (record) ->
         model.update2(record).then (response) ->
           invalidator()
+          response
 
       scope.destroy2 = (id) ->
-        model.destroy(id).then (response) ->
+        model.destroy2(id).then (response) ->
           invalidator()
+          response
 
       scope.create = (record) ->
         model.create record, invalidator
