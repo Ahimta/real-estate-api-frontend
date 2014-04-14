@@ -5,12 +5,5 @@ describe 'Controller: WorkersCtrl', ->
   # load the controller's module
   beforeEach module 'realEstateFrontEndApp'
 
-  WorkersCtrl = {}
-  scope = {}
-
-  # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope) ->
-    scope = $rootScope.$new()
-    WorkersCtrl = $controller 'WorkersCtrl', {
-      $scope: scope
-    }
+  window.MyApp.itBehavesLike 'Selectable', 'WorkersCtrl', ['Trade', 'Shop']
+  window.MyApp.itBehavesLike 'Crudable', 'WorkersCtrl', 'workers', ['trades', 'shops']

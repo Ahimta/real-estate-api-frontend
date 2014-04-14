@@ -5,12 +5,4 @@ describe 'Controller: TradesCtrl', () ->
   # load the controller's module
   beforeEach module 'realEstateFrontEndApp'
 
-  TradesCtrl = {}
-  scope = {}
-
-  # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope) ->
-    scope = $rootScope.$new()
-    TradesCtrl = $controller 'TradesCtrl', {
-      $scope: scope
-    }
+  window.MyApp.itBehavesLike 'Crudable', 'TradesCtrl', 'trades'
