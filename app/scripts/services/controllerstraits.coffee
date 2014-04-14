@@ -40,13 +40,13 @@ angular.module('realEstateFrontEndApp')
         _.find scope.trades, (trade) ->
           trade.id == id
 
-    Invalidatable = (scope, models, collections, records) ->
-      f = (model, collection) ->
-        scope[collection] = undefined
-        
-        model.all().then (response) ->
-          scope[collection] = response.data
+    invalidatableHelper = (scope, model, collection) ->
+      scope[collection] = undefined
+      
+      model.all().then (response) ->
+        scope[collection] = response.data
 
+    Invalidatable = (scope, models, collections, records) ->
       zipped = _.zip(models, collections)
 
       () ->
@@ -54,7 +54,7 @@ angular.module('realEstateFrontEndApp')
           scope[record] = {}
 
         for [model, collection] in zipped
-          f(model, collection)
+          invalidatableHelper(scope, model, collection)
 
     makeSelectable = (scope, name) ->
       selectedId     = undefined
