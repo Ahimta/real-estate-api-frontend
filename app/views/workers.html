@@ -55,10 +55,14 @@
             <p>Average price: {{(worker.lower_price + worker.higher_price) / 2}}</p>
           </div>
           <footer class="panel-footer">
-            <button type="button" ng-click="edit(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-primary">Edit</button>
-            <button type="button" ng-click="update(worker)" ng-show="isEditing(worker.id)" class="btn btn-primary">Save</button>
-            <button type="button" ng-click="reset(worker.id)" ng-show="isEditing(worker.id)" class="btn btn-success">Reset</button>
-            <button type="button" ng-click="destroy(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-danger">Delete</button>
+            <div ng-hide="isEditing(worker.id)">
+              <button type="button" ng-click="edit(worker.id)" class="btn btn-primary">Edit</button>
+              <button type="button" ng-click="destroy(worker.id)" class="btn btn-danger">Delete</button>
+            </div>
+            <div ng-show="isEditing(worker.id)">
+              <button type="button" ng-click="reset(worker.id)" class="btn btn-success">Reset</button>
+              <button type="button" ng-click="update(worker)" class="btn btn-primary">Save</button>
+            </div>
           </footer>
         </div>
       </article>

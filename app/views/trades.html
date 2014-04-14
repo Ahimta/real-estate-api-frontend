@@ -16,10 +16,14 @@
           <p>Materials count: {{trade.materials_count}}</p>
         </div>
         <footer class="panel-footer">
-          <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary">Edit</button>
-          <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary">Save</button>
-          <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-success">Reset</button>
-          <button type="button" ng-click="destroy(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-danger">Delete</button>
+          <div ng-hide="isEditing(trade.id)">
+            <button type="button" ng-click="edit(trade.id)" class="btn btn-primary">Edit</button>
+            <button type="button" ng-click="destroy(trade.id)" class="btn btn-danger">Delete</button>
+          </div>
+          <div ng-show="isEditing(trade.id)">
+            <button type="button" ng-click="reset(trade.id)" class="btn btn-success">Reset</button>
+            <button type="button" ng-click="update(trade)" class="btn btn-primary">Save</button>
+          </div>
         </footer>
       </div>
     </article>

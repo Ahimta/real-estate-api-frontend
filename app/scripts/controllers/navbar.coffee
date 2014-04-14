@@ -6,19 +6,26 @@ angular.module('realEstateFrontEndApp')
     $scope.isActive = (path) ->
       "##{$location.url()}" == path
 
-    $scope.items =
-      trades:
+    $scope.items = [
+      {
         name: 'Trades'
         path: '#/trades'
-      shops:
+      },
+      {
         name: 'Shops'
         path: '#/shops'
-      workers:
+      },
+      {
         name: 'Workers'
         path: '#/workers'
-      ideas:
+      },
+      {
         name: 'Ideas'
         path: '#/ideas'
+      }
       # materials:
-      #   name: 'المواد'
+      #   name: 'Materials'
       #   path: '#/materials'
+    ]
+
+    console.log $scope.items

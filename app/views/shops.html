@@ -49,10 +49,14 @@
             <p>Materials count: {{shop.materials_count}}</p>
           </div>
           <footer class="panel-footer">
-            <button type="button" ng-click="edit(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-primary">Edit</button>
-            <button type="button" ng-click="update(shop)" ng-show="isEditing(shop.id)" class="btn btn-primary">Save</button>
-            <button type="button" ng-click="reset(shop.id)" ng-show="isEditing(shop.id)" class="btn btn-success">Reset</button>
-            <button type="button" ng-click="destroy(shop.id)" ng-hide="isEditing(shop.id)" class="btn btn-danger">Delete</button>
+            <div ng-hide="isEditing(shop.id)">
+              <button type="button" ng-click="edit(shop.id)" class="btn btn-primary">Edit</button>
+              <button type="button" ng-click="destroy(shop.id)" class="btn btn-danger">Delete</button>
+            </div>
+            <div ng-show="isEditing(shop.id)">
+              <button type="button" ng-click="reset(shop.id)" class="btn btn-success">Reset</button>
+              <button type="button" ng-click="update(shop)" class="btn btn-primary">Save</button>
+            </div>
           </footer>
         </div>
       </article>

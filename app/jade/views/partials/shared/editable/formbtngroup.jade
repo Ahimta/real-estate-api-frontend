@@ -2,10 +2,10 @@ mixin form-btn-group(resource)
   - var _isEditing = 'isEditing(' + resource + '.id)'
   
   div.btn-group(ng-hide=_isEditing)
-    button.btn.btn-danger(type='button'
-      ng-click='destroy('+resource+'.id)') Delete
     button.btn.btn-primary(type='button'
       ng-click='edit('+resource+'.id)') Edit
+    button.btn.btn-danger(type='button'
+      ng-click='destroy('+resource+'.id)') Delete
 
   div.btn-group(ng-show=_isEditing)
     button.btn.btn-success(type='button'
