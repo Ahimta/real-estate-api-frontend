@@ -28,7 +28,7 @@ simpleCrudable = (model) ->
       httpBackend.whenGET(resource).respond records
       httpBackend.expectGET resource
 
-      Model.all2().then (response) ->
+      Model.all().then (response) ->
         expect(response.data).toEqual records
 
 
@@ -38,7 +38,7 @@ simpleCrudable = (model) ->
       httpBackend.whenPOST(resource, record).respond record
       httpBackend.expectPOST resource, record
 
-      Model.create2(record).then (response) ->
+      Model.create(record).then (response) ->
         expect(response.data).toEqual record
 
 
@@ -49,7 +49,7 @@ simpleCrudable = (model) ->
       httpBackend.whenPUT(url, record).respond record
       httpBackend.expectPUT url, record
    
-      Model.update2(record).then (response) ->
+      Model.update(record).then (response) ->
         expect(response.data).toEqual record
 
       
@@ -60,5 +60,5 @@ simpleCrudable = (model) ->
       httpBackend.whenDELETE(url).respond record
       httpBackend.expectDELETE url
 
-      Model.destroy2(record.id).then (response) ->
+      Model.destroy(record.id).then (response) ->
         expect(response.data).toEqual record

@@ -76,18 +76,21 @@ Crudable = (controller, mainResource, otherResources) ->
         httpBackend.whenPOST(mainUrl).respond record
         httpBackend.expectPOST(mainUrl, record)
 
-        scope.create2(record).then (response) ->
+        scope.create(record).then (response) ->
           expect(response.data).toEqual record
 
       it '.update', () ->
         record = {id: 7, a: 1, b: 2}
         updatedRecord = {id: 7, a: 2, b: 1}
 
+        scope.edit record.id
+
         httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
         httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
 
-        scope.update2(updatedRecord).then (response) ->
+        scope.update(updatedRecord).then (response) ->
           expect(response.data).toEqual updatedRecord
+          expect(scope.isEditing(record.id)).toBe false
 
       it '.destroy', () ->
         record = {id: 3, a: 1, b: 2}
@@ -95,5 +98,5 @@ Crudable = (controller, mainResource, otherResources) ->
         httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
         httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
 
-        scope.destroy2(record.id).then (response) ->
+        scope.destroy(record.id).then (response) ->
           expect(response.data).toEqual record

@@ -19,30 +19,22 @@ angular.module('realEstateFrontEndApp')
     makeCrudable = (scope, model, invalidator) ->
       makeEditible scope
 
-      scope.create2 = (record) ->
-        model.create2(record).then (response) ->
-          invalidator()
-          response
-
-      scope.update2 = (record) ->
-        model.update2(record).then (response) ->
-          invalidator()
-          response
-
-      scope.destroy2 = (id) ->
-        model.destroy2(id).then (response) ->
-          invalidator()
-          response
-
       scope.create = (record) ->
-        model.create record, invalidator
+        model.create(record).then (response) ->
+          invalidator()
+          response
 
       scope.update = (record) ->
         scope.reset record.id
-        model.update record, invalidator
+        
+        model.update(record).then (response) ->
+          invalidator()
+          response
 
       scope.destroy = (id) ->
-        model.destroy id, invalidator
+        model.destroy(id).then (response) ->
+          invalidator()
+          response
 
       scope.getTrade = (id) ->
         _.find scope.trades, (trade) ->
@@ -52,8 +44,8 @@ angular.module('realEstateFrontEndApp')
       f = (model, collection) ->
         scope[collection] = undefined
         
-        model.all (data, status) ->
-          scope[collection] = data
+        model.all().then (response) ->
+          scope[collection] = response.data
 
       zipped = _.zip(models, collections)
 
