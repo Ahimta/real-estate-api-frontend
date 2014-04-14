@@ -14,13 +14,13 @@ include partials/trades/tradeform
           +trade-form(_isEditing)
 
         div.panel-body
-          p عدد الأفكار: {{trade.ideas_count}}
-          p عدد المحلات: {{trade.shops_count}}
-          p عدد العمال: {{trade.workers_count}}
-          p عدد المواد: {{trade.materials_count}}
+          p Ideas count: {{trade.ideas_count}}
+          p Shops count: {{trade.shops_count}}
+          p Workers count: {{trade.workers_count}}
+          p Materials count: {{trade.materials_count}}
 
         +panel-footer('trade')
 
 
-+my-modal-form('إضافة فئة', 'create(trade)')
++my-modal-form('New trade', 'create(trade)')
   +trade-form('true')

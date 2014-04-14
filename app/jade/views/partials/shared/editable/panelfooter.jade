@@ -2,10 +2,10 @@ mixin panel-footer(record)
   footer.panel-footer
     - var _isEditing = 'isEditing('+record+'.id)'
     button.btn.btn-primary(type='button' ng-click='edit('+record+'.id)'
-      ng-hide=_isEditing) تعديل
+      ng-hide=_isEditing) Edit
     button.btn.btn-primary(type='button' ng-click='update('+record+')'
-      ng-show=_isEditing) حفظ
+      ng-show=_isEditing) Save
     button.btn.btn-success(type='button' ng-click='reset('+record+'.id)'
-      ng-show=_isEditing) إلغاء
+      ng-show=_isEditing) Reset
     button.btn.btn-danger(type='button' ng-click='destroy('+record+'.id)'
-      ng-hide=_isEditing) حذف
+      ng-hide=_isEditing) Delete

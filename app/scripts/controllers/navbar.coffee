@@ -8,16 +8,16 @@ angular.module('realEstateFrontEndApp')
 
     $scope.items =
       trades:
-        name: 'الفئات'
+        name: 'Trades'
         path: '#/trades'
       shops:
-        name: 'المحلات'
+        name: 'Shops'
         path: '#/shops'
       workers:
-        name: 'العمال'
+        name: 'Workers'
         path: '#/workers'
       ideas:
-        name: 'الأفكار'
+        name: 'Ideas'
         path: '#/ideas'
       # materials:
       #   name: 'المواد'

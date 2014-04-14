@@ -3,12 +3,12 @@ mixin form-btn-group(resource)
   
   div.btn-group(ng-hide=_isEditing)
     button.btn.btn-danger(type='button'
-      ng-click='destroy('+resource+'.id)') حذف
+      ng-click='destroy('+resource+'.id)') Delete
     button.btn.btn-primary(type='button'
-      ng-click='edit('+resource+'.id)') تعديل
+      ng-click='edit('+resource+'.id)') Edit
 
   div.btn-group(ng-show=_isEditing)
     button.btn.btn-success(type='button'
-      ng-click='reset('+resource+'.id)') إلغاء
+      ng-click='reset('+resource+'.id)') Reset
     button.btn.btn-primary(type='button'
-      ng-click='update('+resource+')') حفظ
+      ng-click='update('+resource+')') Save

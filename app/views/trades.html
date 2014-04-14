@@ -6,39 +6,39 @@
       <div class="panel panel-primary lead">
         <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>
           <div ng-show="isEditing(trade.id)" class="form-group">
-            <input type="text" autofocus="autofocus" required="required" placeholder="اسم الفئة" ng-model="trade.name" class="form-control"/>
+            <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
           </div>
         </header>
         <div class="panel-body">
-          <p>عدد الأفكار: {{trade.ideas_count}}</p>
-          <p>عدد المحلات: {{trade.shops_count}}</p>
-          <p>عدد العمال: {{trade.workers_count}}</p>
-          <p>عدد المواد: {{trade.materials_count}}</p>
+          <p>Ideas count: {{trade.ideas_count}}</p>
+          <p>Shops count: {{trade.shops_count}}</p>
+          <p>Workers count: {{trade.workers_count}}</p>
+          <p>Materials count: {{trade.materials_count}}</p>
         </div>
         <footer class="panel-footer">
-          <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary">تعديل</button>
-          <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary">حفظ</button>
-          <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-success">إلغاء</button>
-          <button type="button" ng-click="destroy(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-danger">حذف</button>
+          <button type="button" ng-click="edit(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-primary">Edit</button>
+          <button type="button" ng-click="update(trade)" ng-show="isEditing(trade.id)" class="btn btn-primary">Save</button>
+          <button type="button" ng-click="reset(trade.id)" ng-show="isEditing(trade.id)" class="btn btn-success">Reset</button>
+          <button type="button" ng-click="destroy(trade.id)" ng-hide="isEditing(trade.id)" class="btn btn-danger">Delete</button>
         </footer>
       </div>
     </article>
   </section>
 </section>
-<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">إضافة فئة</button>
+<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New trade</button>
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <header class="modal-header">
-        <button type="button" data-dismiss="modal" aria-hidden="true" class="close pull-left">&times;</button>
-        <h4 id="myModalLabel" class="modal-title">إضافة فئة</h4>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+        <h4 id="myModalLabel" class="modal-title">New trade</h4>
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(trade)">
           <div ng-show="true" class="form-group">
-            <input type="text" autofocus="autofocus" required="required" placeholder="اسم الفئة" ng-model="trade.name" class="form-control"/>
+            <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة فئة</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">New trade</button>
         </form>
       </div>
     </div>

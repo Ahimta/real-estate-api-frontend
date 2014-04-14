@@ -18,90 +18,90 @@
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
             <div ng-show="isEditing(worker.id)" class="form-group">
-              <input type="text" autofocus="autofocus" required="required" placeholder="اسم العامل" ng-model="worker.name" class="form-control"/>
+              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
             </div>
           </header>
           <div class="panel-body lead">
             <div ng-show="isEditing(worker.id)">
               <div class="form-group">
-                <select required="required" placeholer="الفئة" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
               </div>
               <div class="form-group">
-                <select required="required" placeholer="المحل" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
+                <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
               </div>
               <div class="form-group">
-                <input type="tel" placeholder="الهاتف" ng-model="worker.phone" class="form-control"/>
+                <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
               </div>
               <div class="form-group">
-                <input type="number" placeholder="التقييم" min="0" max="5" ng-model="worker.rating" class="form-control"/>
+                <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
               </div>
               <div class="form-group">
-                <input type="number" placeholder="السعر الأدنى" min="0" ng-model="worker.lower_price" class="form-control"/>
+                <input type="number" placeholder="Lower price" min="0" ng-model="worker.lower_price" class="form-control"/>
               </div>
               <div class="form-group">
-                <input type="number" placeholder="السعر الأعلى" min="0" ng-model="worker.higher_price" class="form-control"/>
+                <input type="number" placeholder="Higher price" min="0" ng-model="worker.higher_price" class="form-control"/>
               </div>
               <div class="form-group">
-                <textarea placeholder="ملاحظات" min="0" ng-model="worker.notes" class="form-control"></textarea>
+                <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
               </div>
             </div>
             <div ng-hide="isEditing(worker.id)">
-              <p>الهاتف: {{worker.phone}}</p>
-              <p>التقييم: {{worker.rating}}</p>
-              <p>السعر الأدنى: {{worker.lower_price}}</p>
-              <p>السعر الأعلى: {{worker.higher_price}}</p>
-              <p>ملاحظات: {{worker.notes}}</p>
+              <p>Phone: {{worker.phone}}</p>
+              <p>Rating: {{worker.rating}}</p>
+              <p>Lower price: {{worker.lower_price}}</p>
+              <p>Higher price: {{worker.higher_price}}</p>
+              <p>Notes: {{worker.notes}}</p>
             </div>
-            <p>متوسط السعر: {{(worker.lower_price + worker.higher_price) / 2}}</p>
+            <p>Average price: {{(worker.lower_price + worker.higher_price) / 2}}</p>
           </div>
           <footer class="panel-footer">
-            <button type="button" ng-click="edit(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-primary">تعديل</button>
-            <button type="button" ng-click="update(worker)" ng-show="isEditing(worker.id)" class="btn btn-primary">حفظ</button>
-            <button type="button" ng-click="reset(worker.id)" ng-show="isEditing(worker.id)" class="btn btn-success">إلغاء</button>
-            <button type="button" ng-click="destroy(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-danger">حذف</button>
+            <button type="button" ng-click="edit(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-primary">Edit</button>
+            <button type="button" ng-click="update(worker)" ng-show="isEditing(worker.id)" class="btn btn-primary">Save</button>
+            <button type="button" ng-click="reset(worker.id)" ng-show="isEditing(worker.id)" class="btn btn-success">Reset</button>
+            <button type="button" ng-click="destroy(worker.id)" ng-hide="isEditing(worker.id)" class="btn btn-danger">Delete</button>
           </footer>
         </div>
       </article>
     </section>
   </section>
 </div>
-<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">إضافة عامل</button>
+<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New worker</button>
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <header class="modal-header">
-        <button type="button" data-dismiss="modal" aria-hidden="true" class="close pull-left">&times;</button>
-        <h4 id="myModalLabel" class="modal-title">إضافة عامل</h4>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+        <h4 id="myModalLabel" class="modal-title">New worker</h4>
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(worker)">
           <div>
             <div class="form-group">
-              <select required="required" placeholer="الفئة" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+              <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
             </div>
             <div class="form-group">
-              <select required="required" placeholer="المحل" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
+              <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
             </div>
             <div class="form-group">
-              <input type="text" autofocus="autofocus" required="required" placeholder="اسم العامل" ng-model="worker.name" class="form-control"/>
+              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
             </div>
             <div class="form-group">
-              <input type="tel" placeholder="الهاتف" ng-model="worker.phone" class="form-control"/>
+              <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
             </div>
             <div class="form-group">
-              <input type="number" placeholder="التقييم" min="0" max="5" ng-model="worker.rating" class="form-control"/>
+              <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
             </div>
             <div class="form-group">
-              <input type="number" placeholder="السعر الأدنى" min="0" ng-model="worker.lower_price" class="form-control"/>
+              <input type="number" placeholder="Lower price" min="0" ng-model="worker.lower_price" class="form-control"/>
             </div>
             <div class="form-group">
-              <input type="number" placeholder="السعر الأعلى" min="0" ng-model="worker.higher_price" class="form-control"/>
+              <input type="number" placeholder="Higher price" min="0" ng-model="worker.higher_price" class="form-control"/>
             </div>
             <div class="form-group">
-              <textarea placeholder="ملاحظات" min="0" ng-model="worker.notes" class="form-control"></textarea>
+              <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">إضافة عامل</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">New worker</button>
         </form>
       </div>
     </div>

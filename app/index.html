@@ -15,20 +15,20 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild-->
   </head>
-  <body ng-app="realEstateFrontEndApp" dir="rtl">
+  <body ng-app="realEstateFrontEndApp">
     <!--
     [if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]
     
     -->
-    <header>
-      <nav role="navigation" class="navbar navbar-default navbar-static-top navbar-inverse">
+    <header style="margin-bottom: 7em">
+      <nav role="navigation" class="navbar navbar-default navbar-fixed-top navbar-inverse">
         <div class="container">
           <div class="navbar-header"></div>
           <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
           <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-            <ul ng-controller="NavbarCtrl" class="nav navbar-nav pull-right">
+            <ul ng-controller="NavbarCtrl" class="nav navbar-nav">
               <li ng-repeat="item in items" ng-class="{active: isActive(item.path)}"><a href="{{item.path}}" ng-bind="item.name"></a></li>
             </ul>
           </div>

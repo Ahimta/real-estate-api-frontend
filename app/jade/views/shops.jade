@@ -24,21 +24,21 @@ div.row
             +shop-form(_isEditing)
 
             div(ng-hide=_isEditing)
-              p الهاتف: {{shop.phone}}
+              p Phone: {{shop.phone}}
 
-              p التقييم: {{shop.rating}}
+              p Rating: {{shop.rating}}
 
-              p السعر الأدنى: {{shop.lower_price}}
+              p Lower price: {{shop.lower_price}}
 
-              p السعر الأعلى: {{shop.higher_price}}
-              p ملاحظات: {{shop.notes}}
+              p Higher price: {{shop.higher_price}}
+              p Notes: {{shop.notes}}
 
-            p متوسط السعر: {{(shop.lower_price + shop.higher_price) / 2}}
-            p عدد العمال: {{shop.workers_count}}
-            p عدد المواد: {{shop.materials_count}}
+            p Average price: {{(shop.lower_price + shop.higher_price) / 2}}
+            p Workers count: {{shop.workers_count}}
+            p Materials count: {{shop.materials_count}}
           
           +panel-footer('shop')
 
-+my-modal-form('إضافة محل', 'create(shop)')
++my-modal-form('New shop', 'create(shop)')
   +shop-form(false)
     +shop-name(false)

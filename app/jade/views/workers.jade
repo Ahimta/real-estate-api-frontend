@@ -27,20 +27,20 @@ div.row
             +worker-form(_isEditing)
 
             div(ng-hide=_isEditing)
-              p الهاتف: {{worker.phone}}
+              p Phone: {{worker.phone}}
 
-              p التقييم: {{worker.rating}}
+              p Rating: {{worker.rating}}
 
-              p السعر الأدنى: {{worker.lower_price}}
+              p Lower price: {{worker.lower_price}}
 
-              p السعر الأعلى: {{worker.higher_price}}
-              p ملاحظات: {{worker.notes}}
+              p Higher price: {{worker.higher_price}}
+              p Notes: {{worker.notes}}
 
-            p متوسط السعر: {{(worker.lower_price + worker.higher_price) / 2}}
+            p Average price: {{(worker.lower_price + worker.higher_price) / 2}}
           
           +panel-footer('worker')
 
-+my-modal-form('إضافة عامل', 'create(worker)')
++my-modal-form('New worker', 'create(worker)')
   +worker-form(false)
     +worker-name(false)
 
