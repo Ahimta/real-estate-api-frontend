@@ -1,4 +1,6 @@
-window.MyApp = MyApp ? {}
+window.MyApp ?= {}
+window.MyApp.sharedSpecs ?= {}
+window.MyApp.sharedSpecs.controllers ?= {}
 
 Selectable = (controller, names) ->
   describe 'Selectable', () ->

@@ -1,3 +1,7 @@
+window.MyApp ?= {}
+window.MyApp.sharedSpecs ?= {}
+window.MyApp.sharedSpecs.controllers ?= {}
+
 Crudable = (controller, mainResource, otherResources) ->
 
   describe 'Crudable', () ->
