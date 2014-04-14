@@ -2,7 +2,7 @@ window.MyApp ?= {}
 window.MyApp.sharedSpecs ?= {}
 window.MyApp.sharedSpecs.controllers ?= {}
 
-Crudable = (controller, mainResource, otherResources) ->
+window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, otherResources) ->
 
   describe 'Crudable', () ->
   

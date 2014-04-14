@@ -2,7 +2,7 @@ window.MyApp ?= {}
 window.MyApp.sharedSpecs ?= {}
 window.MyApp.sharedSpecs.controllers ?= {}
 
-Selectable = (controller, names) ->
+window.MyApp.sharedSpecs.controllers.selectable = (controller, names) ->
   describe 'Selectable', () ->
     scope = undefined
 

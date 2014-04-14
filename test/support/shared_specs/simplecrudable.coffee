@@ -2,7 +2,7 @@ window.MyApp ?= {}
 window.MyApp.sharedSpecs ?= {}
 window.MyApp.sharedSpecs.services ?= {}
 
-simpleCrudable = (model) ->
+window.MyApp.sharedSpecs.services.simpleCrudable = (model) ->
 
   describe 'SimpleCrudable', () ->
 
