@@ -5,13 +5,4 @@ describe 'Service: Shop', () ->
   # load the service's module
   beforeEach module 'realEstateFrontEndApp'
 
-  # instantiate service
-  Shop = {}
-  Myjasmine = undefined
-
-  beforeEach inject (_Shop_, _Myjasmine_) ->
-    Shop = _Shop_
-    Myjasmine = _Myjasmine_
-
-  it 'shared behavior', () ->
-    Myjasmine.itBehavesLike('SimpleCrudable', Shop, 'shops')
+  window.MyApp.itBehavesLike 'SimpleCrudable', 'Shop'
