@@ -16,3 +16,5 @@ describe 'Service: Idea', () ->
 
   it 'shared behavior', () ->
     Myjasmine.itBehavesLike('SimpleCrudable', Idea, 'ideas')
+
+  window.MyApp.itBehavesLike 'SimpleCrudable', 'Idea'
