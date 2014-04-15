@@ -59,15 +59,12 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
     describe '.create, .update, .destroy', () ->
 
       beforeEach () ->
-        httpBackend.whenGET(url).respond [{}] for url in otherUrls
-        httpBackend.whenGET(mainUrl).respond [{}]
-
-        httpBackend.expectGET url for url in otherUrls
-        httpBackend.expectGET mainUrl
+        httpBackend.expectGET(url).respond [{}] for url in otherUrls
+        httpBackend.expectGET(mainUrl).respond [{}]
 
       afterEach () ->
-        httpBackend.expectGET url for url in otherUrls
-        httpBackend.expectGET mainUrl
+        httpBackend.expectGET(url).respond [{}] for url in otherUrls
+        httpBackend.expectGET(mainUrl).respond [{}]
 
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
@@ -77,8 +74,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
       it '.create', () ->
         record = {a: 1, b: 2}
 
-        httpBackend.whenPOST(mainUrl).respond record
-        httpBackend.expectPOST(mainUrl, record)
+        httpBackend.expectPOST(mainUrl, record).respond record
 
         scope.create(record).then (response) ->
           expect(response.data).toEqual record
@@ -89,8 +85,8 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
         scope.edit record.id
 
-        httpBackend.whenPUT("#{API}/#{mainResource}/#{record.id}").respond updatedRecord
-        httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord)
+        httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord).
+          respond updatedRecord
 
         scope.update(updatedRecord).then (response) ->
           expect(response.data).toEqual updatedRecord
@@ -99,8 +95,8 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
       it '.destroy', () ->
         record = {id: 3, a: 1, b: 2}
 
-        httpBackend.whenDELETE("#{API}/#{mainResource}/#{record.id}").respond record
-        httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}")
+        httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}").
+          respond record
 
         scope.destroy(record.id).then (response) ->
           expect(response.data).toEqual record
