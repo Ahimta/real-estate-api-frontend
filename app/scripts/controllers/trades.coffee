@@ -3,6 +3,6 @@
 angular.module('realEstateFrontEndApp')
   .controller 'TradesCtrl', ($scope, Trade, ControllersTraits) ->
     
-    invalidator = ControllersTraits.Crudable($scope, Trade, [Trade],
-      ['trades'], ['trade'])
+    invalidator = ControllersTraits.Crudable($scope, Trade, 'trades',
+      [], ['trade'])
     invalidator()

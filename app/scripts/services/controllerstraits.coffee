@@ -46,15 +46,17 @@ angular.module('realEstateFrontEndApp')
       model.all().then (response) ->
         scope[collection] = response.data
 
-    Invalidatable = (scope, models, collections, records) ->
-      zipped = _.zip(models, collections)
-
+    Invalidatable = (scope, model, mainResource, otherResources, records) ->
       () ->
         for record in records
           scope[record] = {}
 
-        for [model, collection] in zipped
-          invalidatableHelper(scope, model, collection)
+        model.all().then (response) ->
+          data = response.data
+          scope[mainResource] = data[mainResource]
+
+          for resource in otherResources
+            scope[resource] = data.meta.parents[resource]
 
     makeSelectable = (scope, name) ->
       selectedId     = undefined
@@ -72,7 +74,9 @@ angular.module('realEstateFrontEndApp')
     Selectable: (scope, names...) ->
       makeSelectable(scope, name) for name in names
 
-    Crudable: (scope, mainModel, models, collections, records) ->
-      invalidator = Invalidatable(scope, models, collections, records)
+    Crudable: (scope, mainModel, mainResource, otherResources, records) ->
+      invalidator = Invalidatable(scope, mainModel, mainResource,
+        otherResources, records)
+      
       makeCrudable(scope, mainModel, invalidator)
       invalidator

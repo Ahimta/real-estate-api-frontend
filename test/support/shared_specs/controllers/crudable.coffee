@@ -7,7 +7,6 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
   describe 'Crudable', () ->
   
     mainUrl = undefined
-    otherUrls = undefined
     httpBackend = undefined
     API = undefined
     scope = undefined
@@ -22,8 +21,6 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
     beforeEach () ->
       mainUrl = "#{API}/#{mainResource}"
-      otherUrls = _.map otherResources, (resource) ->
-        "#{API}/#{resource}"
 
 
     xdescribe 'initial state', () ->
@@ -58,13 +55,13 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
     describe '.create, .update, .destroy', () ->
 
+      response = {'meta':{'parents': _.object(otherResources,{})},mainResource}
+
       beforeEach () ->
-        httpBackend.expectGET(url).respond [{}] for url in otherUrls
-        httpBackend.expectGET(mainUrl).respond [{}]
+        httpBackend.expectGET(mainUrl).respond response
 
       afterEach () ->
-        httpBackend.expectGET(url).respond [{}] for url in otherUrls
-        httpBackend.expectGET(mainUrl).respond [{}]
+        httpBackend.expectGET(mainUrl).respond response
 
         httpBackend.flush()
         httpBackend.verifyNoOutstandingExpectation()
