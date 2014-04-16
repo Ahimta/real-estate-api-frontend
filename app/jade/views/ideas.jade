@@ -4,11 +4,11 @@ include partials/shared/mypending
 include partials/ideas/ideaform
 include partials/shared/tradable/trades
 
-div.row
-  section.col-sm-3
-    +trades
++my-pending('!ideas')
+  div.row
+    section.col-sm-3
+      +trades
 
-  +my-pending('!ideas')
     section.col-sm-9
       article.text-center.lead(
         ng-repeat='idea in ideas | filterBy:"trade_id":selectedTrade | orderBy:"body.length":true')

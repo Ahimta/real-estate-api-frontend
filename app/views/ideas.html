@@ -1,13 +1,10 @@
 
-<div class="row">
-  <section class="col-sm-3">
-    <div class="text-center"><i ng-show="!trades" class="fa fa-refresh fa-spin fa-5x"></i></div>
-    <section ng-hide="!trades">
+<div class="text-center"><i ng-show="!ideas" class="fa fa-refresh fa-spin fa-5x"></i></div>
+<section ng-hide="!ideas">
+  <div class="row">
+    <section class="col-sm-3">
       <div class="list-group"><a ng-repeat="trade in trades" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
     </section>
-  </section>
-  <div class="text-center"><i ng-show="!ideas" class="fa fa-refresh fa-spin fa-5x"></i></div>
-  <section ng-hide="!ideas">
     <section class="col-sm-9">
       <article ng-repeat="idea in ideas | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;body.length&quot;:true" class="text-center lead">
         <div ng-hide="isEditing(idea.id)">
@@ -32,8 +29,8 @@
         <hr/>
       </article>
     </section>
-  </section>
-</div>
+  </div>
+</section>
 <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New idea</button>
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
   <div class="modal-dialog">

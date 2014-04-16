@@ -6,13 +6,13 @@ include partials/workers/workername
 include partials/shared/tradable/trades
 include partials/shared/shopable/shops
 
-div.row
-  section.col-sm-3
-    +trades
-    hr
-    +shops
++my-pending('!workers')
+  div.row
+    section.col-sm-3
+      +trades
+      hr
+      +shops
   
-  +my-pending('!workers')
     section.col-sm-9
       article.lead.col-sm-6(
         ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop | orderBy:"name"')

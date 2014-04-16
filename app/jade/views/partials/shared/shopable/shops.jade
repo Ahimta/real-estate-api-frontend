@@ -1,6 +1,5 @@
 mixin shops
-  +my-pending('!shops')
-    div.list-group
-      a.list-group-item(ng-repeat='shop in shops',
-        ng-click='selectShop(shop.id)',ng-bind='shop.name',
-        ng-class='{active: isShopSelected(shop.id)}')
+  div.list-group
+    a.list-group-item(ng-repeat='shop in shops',
+      ng-click='selectShop(shop.id)',ng-bind='shop.name',
+      ng-class='{active: isShopSelected(shop.id)}')
