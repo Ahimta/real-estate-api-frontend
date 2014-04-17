@@ -3,7 +3,7 @@
 <section ng-hide="!shops">
   <div class="row">
     <section class="col-sm-3">
-      <div class="list-group"><a ng-repeat="trade in trades | orderBy:&quot;name&quot;" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
+      <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
     </section>
     <section class="col-sm-9">
       <article ng-repeat="shop in shops | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;name&quot;" class="lead col-sm-6">
@@ -25,25 +25,15 @@
                 <input type="number" placeholder="Rating" min="0" max="5" ng-model="shop.rating" class="form-control"/>
               </div>
               <div class="form-group">
-                <input type="number" placeholder="Lower price" min="0" ng-model="shop.lower_price" class="form-control"/>
-              </div>
-              <div class="form-group">
-                <input type="number" placeholder="Higher price" min="0" ng-model="shop.higher_price" class="form-control"/>
-              </div>
-              <div class="form-group">
                 <textarea placeholder="Notes" min="0" ng-model="shop.notes" class="form-control"></textarea>
               </div>
             </div>
             <div ng-hide="isEditing(shop.id)">
               <p>Phone: {{shop.phone}}</p>
               <p>Rating: {{shop.rating}}</p>
-              <p>Lower price: {{shop.lower_price}}</p>
-              <p>Higher price: {{shop.higher_price}}</p>
               <p>Notes: {{shop.notes}}</p>
             </div>
-            <p>Average price: {{(shop.lower_price + shop.higher_price) / 2}}</p>
             <p>Workers count: {{shop.workers_count}}</p>
-            <p>Materials count: {{shop.materials_count}}</p>
           </div>
           <footer class="panel-footer">
             <div ng-hide="isEditing(shop.id)">
@@ -82,12 +72,6 @@
             </div>
             <div class="form-group">
               <input type="number" placeholder="Rating" min="0" max="5" ng-model="shop.rating" class="form-control"/>
-            </div>
-            <div class="form-group">
-              <input type="number" placeholder="Lower price" min="0" ng-model="shop.lower_price" class="form-control"/>
-            </div>
-            <div class="form-group">
-              <input type="number" placeholder="Higher price" min="0" ng-model="shop.higher_price" class="form-control"/>
             </div>
             <div class="form-group">
               <textarea placeholder="Notes" min="0" ng-model="shop.notes" class="form-control"></textarea>

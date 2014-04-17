@@ -3,9 +3,9 @@
 <section ng-hide="!workers">
   <div class="row">
     <section class="col-sm-3">
-      <div class="list-group"><a ng-repeat="trade in trades | orderBy:&quot;name&quot;" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
+      <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
       <hr/>
-      <div class="list-group"><a ng-repeat="shop in shops | orderBy:&quot;name&quot;" ng-click="selectShop(shop.id)" ng-bind="shop.name" ng-class="{active: isShopSelected(shop.id)}" class="list-group-item"></a></div>
+      <div class="list-group"><a ng-repeat="shop in shops | orderBy:'name'" ng-click="selectShop(shop.id)" ng-bind="shop.name" ng-class="{active: isShopSelected(shop.id)}" class="list-group-item"></a></div>
     </section>
     <section class="col-sm-9">
       <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop | orderBy:&quot;name&quot;" class="lead col-sm-6">
@@ -30,23 +30,14 @@
                 <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
               </div>
               <div class="form-group">
-                <input type="number" placeholder="Lower price" min="0" ng-model="worker.lower_price" class="form-control"/>
-              </div>
-              <div class="form-group">
-                <input type="number" placeholder="Higher price" min="0" ng-model="worker.higher_price" class="form-control"/>
-              </div>
-              <div class="form-group">
                 <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
               </div>
             </div>
             <div ng-hide="isEditing(worker.id)">
               <p>Phone: {{worker.phone}}</p>
               <p>Rating: {{worker.rating}}</p>
-              <p>Lower price: {{worker.lower_price}}</p>
-              <p>Higher price: {{worker.higher_price}}</p>
               <p>Notes: {{worker.notes}}</p>
             </div>
-            <p>Average price: {{(worker.lower_price + worker.higher_price) / 2}}</p>
           </div>
           <footer class="panel-footer">
             <div ng-hide="isEditing(worker.id)">
@@ -88,12 +79,6 @@
             </div>
             <div class="form-group">
               <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
-            </div>
-            <div class="form-group">
-              <input type="number" placeholder="Lower price" min="0" ng-model="worker.lower_price" class="form-control"/>
-            </div>
-            <div class="form-group">
-              <input type="number" placeholder="Higher price" min="0" ng-model="worker.higher_price" class="form-control"/>
             </div>
             <div class="form-group">
               <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>

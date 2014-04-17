@@ -15,11 +15,5 @@ mixin worker-form(isShown)
       input.form-control(type='number' placeholder='Rating'
         min='0' max='5' ng-model='worker.rating')
     div.form-group
-      input.form-control(type='number' placeholder='Lower price'
-        min='0', ng-model='worker.lower_price')
-    div.form-group
-      input.form-control(type='number' placeholder='Higher price'
-        min='0', ng-model='worker.higher_price')
-    div.form-group
       textarea.form-control(placeholder='Notes'
         min='0', ng-model='worker.notes')

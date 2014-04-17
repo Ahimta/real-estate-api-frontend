@@ -1,0 +1,8 @@
+mixin filter-list(name)
+  - var titlized = name[0].toUpperCase()
+  - for (i = 1; i < name.length; i++) { titlized += name[i] }
+
+  div.list-group
+    a.list-group-item(ng-repeat=name + ' in ' + name + "s | orderBy:'name'",
+      ng-click='select' + titlized + '(' + name + '.id)',ng-bind=(name+'.name'),
+      ng-class='{active: is' + titlized + 'Selected(' + name + '.id)}')

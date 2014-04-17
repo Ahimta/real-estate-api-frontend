@@ -3,7 +3,7 @@
 <section ng-hide="!ideas">
   <div class="row">
     <section class="col-sm-3">
-      <div class="list-group"><a ng-repeat="trade in trades | orderBy:&quot;name&quot;" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
+      <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-bind="trade.name" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item"></a></div>
     </section>
     <section class="col-sm-9">
       <article ng-repeat="idea in ideas | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;body.length&quot;:true" class="text-center lead">

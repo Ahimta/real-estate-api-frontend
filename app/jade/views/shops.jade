@@ -1,5 +1,6 @@
 include partials/shared/editable/panelfooter
 include partials/shared/mymodalform
+include partials/shared/filterlist
 include partials/shared/mypending
 include partials/shops/shopname
 include partials/shops/shopform
@@ -7,7 +8,7 @@ include partials/shops/shopform
 +my-pending('!shops')
   div.row
     section.col-sm-3
-      +filter-list('trades')
+      +filter-list('trade')
 
     section.col-sm-9
       article.lead.col-sm-6(
@@ -27,14 +28,9 @@ include partials/shops/shopform
 
               p Rating: {{shop.rating}}
 
-              p Lower price: {{shop.lower_price}}
-
-              p Higher price: {{shop.higher_price}}
               p Notes: {{shop.notes}}
 
-            p Average price: {{(shop.lower_price + shop.higher_price) / 2}}
             p Workers count: {{shop.workers_count}}
-            p Materials count: {{shop.materials_count}}
 
           +panel-footer('shop')
 

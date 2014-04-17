@@ -1,4 +1,5 @@
 include partials/shared/editable/panelfooter
+include partials/shared/filterlist
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/workers/workerform
@@ -7,9 +8,9 @@ include partials/workers/workername
 +my-pending('!workers')
   div.row
     section.col-sm-3
-      +filter-list('trades')
+      +filter-list('trade')
       hr
-      +filter-list('shops')
+      +filter-list('shop')
 
     section.col-sm-9
       article.lead.col-sm-6(
@@ -29,12 +30,7 @@ include partials/workers/workername
 
               p Rating: {{worker.rating}}
 
-              p Lower price: {{worker.lower_price}}
-
-              p Higher price: {{worker.higher_price}}
               p Notes: {{worker.notes}}
-
-            p Average price: {{(worker.lower_price + worker.higher_price) / 2}}
 
           +panel-footer('worker')
 
