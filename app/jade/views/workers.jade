@@ -3,22 +3,20 @@ include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/workers/workerform
 include partials/workers/workername
-include partials/shared/tradable/trades
-include partials/shared/shopable/shops
 
 +my-pending('!workers')
   div.row
     section.col-sm-3
-      +trades
+      +filter-list('trades')
       hr
-      +shops
-  
+      +filter-list('shops')
+
     section.col-sm-9
       article.lead.col-sm-6(
         ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop | orderBy:"name"')
         div.panel.panel-primary
           - var _isEditing = 'isEditing(worker.id)'
-          
+
           header.panel-heading
             span(ng-hide=_isEditing) {{worker.name}}
             +worker-name(_isEditing)
@@ -37,7 +35,7 @@ include partials/shared/shopable/shops
               p Notes: {{worker.notes}}
 
             p Average price: {{(worker.lower_price + worker.higher_price) / 2}}
-          
+
           +panel-footer('worker')
 
 +my-modal-form('New worker', 'create(worker)')

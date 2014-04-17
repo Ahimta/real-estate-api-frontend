@@ -3,19 +3,18 @@ include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shops/shopname
 include partials/shops/shopform
-include partials/shared/tradable/trades
 
 +my-pending('!shops')
   div.row
     section.col-sm-3
-      +trades
-  
+      +filter-list('trades')
+
     section.col-sm-9
       article.lead.col-sm-6(
         ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade | orderBy:"name"')
         div.panel.panel-primary
           - var _isEditing = 'isEditing(shop.id)'
-          
+
           header.panel-heading
             span(ng-hide=_isEditing) {{shop.name}}
             +shop-name(_isEditing)
@@ -36,7 +35,7 @@ include partials/shared/tradable/trades
             p Average price: {{(shop.lower_price + shop.higher_price) / 2}}
             p Workers count: {{shop.workers_count}}
             p Materials count: {{shop.materials_count}}
-          
+
           +panel-footer('shop')
 
 +my-modal-form('New shop', 'create(shop)')

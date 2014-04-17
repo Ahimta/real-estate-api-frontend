@@ -1,5 +1,0 @@
-mixin trades
-  div.list-group
-    a.list-group-item(ng-repeat='trade in trades | orderBy:"name"',
-      ng-click='selectTrade(trade.id)',ng-bind='trade.name',
-      ng-class='{active: isTradeSelected(trade.id)}')
