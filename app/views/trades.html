@@ -1,5 +1,7 @@
 
-<div class="text-center"><i ng-show="!trades" class="fa fa-refresh fa-spin fa-5x"></i></div>
+<div ng-show="!trades" class="text-center progress progress-striped active">
+  <div role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 100%" class="progress-bar"><span class="sr-only">Pending</span></div>
+</div>
 <section ng-hide="!trades">
   <section class="row">
     <article ng-repeat="trade in trades | orderBy:&quot;name&quot;" class="col-sm-4">
