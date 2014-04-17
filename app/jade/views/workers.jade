@@ -8,9 +8,9 @@ include partials/workers/workername
 +my-pending('!workers')
   div.row
     section.col-sm-3
-      +filter-list('trade')
+      +filter-list('trade', 'workers')
       hr
-      +filter-list('shop')
+      +filter-list('shop', 'workers')
 
     section.col-sm-9
       article.lead.col-sm-6(
