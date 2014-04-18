@@ -26,7 +26,7 @@ angular.module('realEstateFrontEndApp')
 
       scope.update = (record) ->
         scope.reset record.id
-        
+
         model.update(record).then (response) ->
           invalidator()
           response
@@ -40,11 +40,13 @@ angular.module('realEstateFrontEndApp')
         _.find scope.trades, (trade) ->
           trade.id == id
 
+
     invalidatableHelper = (scope, model, collection) ->
       scope[collection] = undefined
-      
+
       model.all().then (response) ->
         scope[collection] = response.data
+
 
     Invalidatable = (scope, model, mainResource, otherResources, records) ->
       () ->
@@ -57,6 +59,7 @@ angular.module('realEstateFrontEndApp')
 
           for resource in otherResources
             scope[resource] = data.meta.parents[resource]
+
 
     makeSelectable = (scope, name) ->
       selectedId     = undefined
@@ -71,12 +74,14 @@ angular.module('realEstateFrontEndApp')
       scope[isSelectedName] = (id) ->
         id == selectedId
 
+
     Selectable: (scope, names...) ->
       makeSelectable(scope, name) for name in names
+
 
     Crudable: (scope, mainModel, mainResource, otherResources, records) ->
       invalidator = Invalidatable(scope, mainModel, mainResource,
         otherResources, records)
-      
+
       makeCrudable(scope, mainModel, invalidator)
       invalidator

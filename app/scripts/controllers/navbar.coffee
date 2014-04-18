@@ -2,9 +2,9 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'NavbarCtrl', ($scope, $location) ->
-    
+
     $scope.isActive = (path) ->
-      "##{$location.url()}" == path
+      "##{$location.path()}" == path
 
     $scope.items = [
       {
@@ -16,16 +16,11 @@ angular.module('realEstateFrontEndApp')
         path: '#/shops'
       },
       {
-        name: 'Workers'
+        name: 'Contractors'
         path: '#/workers'
       },
       {
         name: 'Ideas'
         path: '#/ideas'
       }
-      # materials:
-      #   name: 'Materials'
-      #   path: '#/materials'
     ]
-
-    console.log $scope.items

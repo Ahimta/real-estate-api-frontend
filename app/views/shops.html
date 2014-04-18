@@ -62,11 +62,11 @@
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(shop)">
-          <div>
+          <div ng-show="true">
             <div class="form-group">
               <select required="required" placeholer="Trade" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
             </div>
-            <div class="form-group">
+            <div ng-show="true" class="form-group">
               <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="shop.name" class="form-control"/>
             </div>
             <div class="form-group">
