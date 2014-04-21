@@ -1,8 +1,14 @@
 mixin shop-form(isShown)
   div(ng-show=isShown)
-    div.form-group
-      select.form-control(required, placeholer='Trade',
-        ng-model='shop.trade_id', ng-options='t.id as t.name for t in trades')
+    div.form-group(ng-class="{'has-error': errors.trade_id}")
+      select.form-control(required placeholer='Trade',
+        ng-model='shop.trade_id'
+        ng-options='t.id as t.name for t in trades')
+
+      div(ng-if='errors.trade_id')
+        p.help-block(ng-repeat='error in errors.trade_id')
+          {{error}}
+
     if block
       block
     div.form-group

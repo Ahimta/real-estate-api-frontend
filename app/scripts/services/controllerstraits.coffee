@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .service 'ControllersTraits', ->
+  .service 'ControllersTraits', ($log) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
     makeEditible = (scope) ->
@@ -20,9 +20,13 @@ angular.module('realEstateFrontEndApp')
       makeEditible scope
 
       scope.create = (record) ->
-        model.create(record).then (response) ->
-          invalidator()
-          response
+        model.create(record)
+          .then (response) ->
+            invalidator()
+            response
+          .catch (response) ->
+            $log.debug response
+            scope.errors = response.data
 
       scope.update = (record) ->
         scope.reset record.id

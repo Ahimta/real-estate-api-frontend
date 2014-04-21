@@ -9,7 +9,7 @@ include partials/trades/tradeform
       div.panel.panel-primary.lead
         header.panel-heading
           - var _isEditing = 'isEditing(trade.id)'
-          
+
           span(ng-hide=_isEditing) {{trade.name}}
           +trade-form(_isEditing)
 
@@ -17,7 +17,6 @@ include partials/trades/tradeform
           p Ideas count: {{trade.ideas_count}}
           p Shops count: {{trade.shops_count}}
           p Workers count: {{trade.workers_count}}
-          p Materials count: {{trade.materials_count}}
 
         +panel-footer('trade')
 
