@@ -16,14 +16,16 @@ angular.module('realEstateFrontEndApp')
       scope.reset = (id) ->
         _isEditing[id] = false
 
+
     makeCrudable = (scope, model, invalidator) ->
       makeEditible scope
+      f = (response) ->
+        invalidator()
+        response
 
       scope.create = (record) ->
         model.create(record)
-          .then (response) ->
-            invalidator()
-            response
+          .then(f)
           .catch (response) ->
             $log.debug response
             scope.errors = response.data
@@ -31,31 +33,25 @@ angular.module('realEstateFrontEndApp')
       scope.update = (record) ->
         scope.reset record.id
 
-        model.update(record).then (response) ->
-          invalidator()
-          response
+        model.update(record)
+          .then(f)
 
       scope.destroy = (id) ->
-        model.destroy(id).then (response) ->
-          invalidator()
-          response
+        model.destroy(id)
+          .then(f)
 
       scope.getTrade = (id) ->
         _.find scope.trades, (trade) ->
           trade.id == id
 
 
-    invalidatableHelper = (scope, model, collection) ->
-      scope[collection] = undefined
-
-      model.all().then (response) ->
-        scope[collection] = response.data
-
-
     Invalidatable = (scope, model, mainResource, otherResources, records) ->
       () ->
         for record in records
           scope[record] = {}
+
+        scope[resource] = undefined for resource in otherResources
+        scope[mainResource] = undefined
 
         model.all().then (response) ->
           data = response.data
@@ -66,10 +62,10 @@ angular.module('realEstateFrontEndApp')
 
 
     makeSelectable = (scope, name) ->
-      selectedId     = undefined
       isSelectedName = "is#{name}Selected"
       selectedName   = "selected#{name}"
       selectName     = "select#{name}"
+      selectedId     = undefined
 
       scope[selectName] = (id) ->
         selectedId = if selectedId == id then undefined else id

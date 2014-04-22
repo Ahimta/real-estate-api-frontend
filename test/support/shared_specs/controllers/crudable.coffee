@@ -56,16 +56,36 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
     describe '.create, .update, .destroy', () ->
 
-      response = {'meta':{'parents': _.object(otherResources,{})},mainResource}
+      mainCollection = [1,2,3,4,5]
+      response = {'meta':{'parents': {trades: [], shops: []}}}
 
       beforeEach ->
+        mainCollection = _.shuffle mainCollection
+        response[mainResource] = mainCollection
+
         httpBackend.expectGET(mainUrl).respond response
+
+        expect(scope[mainResource]).toBe undefined
+        expect(scope[resource]).toBe undefined for resource in otherResources
+
         httpBackend.flush()
+
+        expect(scope[mainResource]).toEqual mainCollection
+        expect(scope[resource]).toEqual [] for resource in otherResources
+
+
 
       afterEach ->
+        mainCollection = _.shuffle mainCollection
+        response[mainResource] = mainCollection
+
         httpBackend.expectGET(mainUrl).respond response
 
         httpBackend.flush()
+
+        expect(scope[mainResource]).toEqual mainCollection
+        expect(scope[resource]).toEqual [] for resource in otherResources
+
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
 
