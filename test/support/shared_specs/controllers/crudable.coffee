@@ -2,14 +2,14 @@ window.MyApp ?= {}
 window.MyApp.sharedSpecs ?= {}
 window.MyApp.sharedSpecs.controllers ?= {}
 
-window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, otherResources) ->
+window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, otherResources=[]) ->
 
-  describe 'Crudable', () ->
-  
-    mainUrl = undefined
+  describe 'Crudable', ->
+
     httpBackend = undefined
-    API = undefined
-    scope = undefined
+    mainUrl     = undefined
+    scope       = undefined
+    API         = undefined
 
     beforeEach inject (REALESTATEAPI, $httpBackend, $rootScope, $controller) ->
       httpBackend = $httpBackend
@@ -19,48 +19,50 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         $scope: scope
       }
 
-    beforeEach () ->
+    beforeEach ->
       mainUrl = "#{API}/#{mainResource}"
 
 
-    xdescribe 'initial state', () ->
-      afterEach () ->
-        httpBackend.flush()
+    describe 'initial state', ->
 
+      response = {'meta':{'parents': {trades: [], shops: []}}}
+      mainCollection = [1,2,3]
+      response[mainResource] = mainCollection
+
+      beforeEach ->
+        httpBackend.expectGET(mainUrl).respond response
+
+      afterEach ->
         httpBackend.verifyNoOutstandingExpectation()
         httpBackend.verifyNoOutstandingRequest()
 
-      it 'initial state', (done) ->
-        othersRecords  = _.map [1..(otherResources.length)], (i) ->
-          [{a:i,b:i+1}]
 
-        records = [{x:1,b:2}]
+      describe '1', ->
+        afterEach ->
+          httpBackend.flush()
 
-        for [collection, url] in _.zip(othersRecords, otherUrls)
-          httpBackend.whenGET(url).respond collection
+        it '1', -> expect(scope[mainResource]).toBe undefined
 
-        httpBackend.whenGET(mainUrl).respond records
+        it '2', -> expect(scope[resource]).toBe undefined for resource in otherResources
 
-        expect(scope[mainResource]).toBe undefined
-        expect(scope[resource]).toBe undefined for resource in otherResources
+      describe '2', ->
+        beforeEach ->
+          httpBackend.flush()
 
-        window.setTimeout () ->
-          expect(scope[mainResource]).toEqual records
+        it '3', -> expect(scope[mainResource]).toEqual mainCollection
 
-          for [collection, resource] in _.zip(othersRecords, otherResources)
-            expect(scope[resource]).toEqual collection
-
-          done()
+        it '4', -> expect(scope[resource]).toEqual [] for resource in otherResources
 
 
     describe '.create, .update, .destroy', () ->
 
       response = {'meta':{'parents': _.object(otherResources,{})},mainResource}
 
-      beforeEach () ->
+      beforeEach ->
         httpBackend.expectGET(mainUrl).respond response
+        httpBackend.flush()
 
-      afterEach () ->
+      afterEach ->
         httpBackend.expectGET(mainUrl).respond response
 
         httpBackend.flush()
@@ -68,32 +70,43 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         httpBackend.verifyNoOutstandingRequest()
 
 
-      it '.create', () ->
+      describe 'create', ->
         record = {a: 1, b: 2}
 
-        httpBackend.expectPOST(mainUrl, record).respond record
+        beforeEach ->
+          httpBackend.expectPOST(mainUrl, record).respond record
 
-        scope.create(record).then (response) ->
-          expect(response.data).toEqual record
+        it '.create', ->
+          scope.create(record).then (response) ->
+            expect(response.data).toEqual record
 
-      it '.update', () ->
-        record = {id: 7, a: 1, b: 2}
+
+      describe 'update', ->
         updatedRecord = {id: 7, a: 2, b: 1}
+        record        = {id: 7, a: 1, b: 2}
 
-        scope.edit record.id
+        beforeEach ->
+          httpBackend.expectPUT("#{mainUrl}/#{record.id}", updatedRecord).
+            respond updatedRecord
 
-        httpBackend.expectPUT("#{API}/#{mainResource}/#{record.id}", updatedRecord).
-          respond updatedRecord
+        it 'response value', ->
+          scope.update(updatedRecord).then (response) ->
+            expect(response.data).toEqual updatedRecord
 
-        scope.update(updatedRecord).then (response) ->
-          expect(response.data).toEqual updatedRecord
-          expect(scope.isEditing(record.id)).toBe false
+        it 'scope.edit', ->
+          scope.edit record.id
 
-      it '.destroy', () ->
+          scope.update(updatedRecord).then (response) ->
+            expect(scope.isEditing(record.id)).toBe false
+
+
+      describe 'destroy', ->
         record = {id: 3, a: 1, b: 2}
 
-        httpBackend.expectDELETE("#{API}/#{mainResource}/#{record.id}").
-          respond record
+        beforeEach ->
+          httpBackend.expectDELETE("#{mainUrl}/#{record.id}").
+            respond record
 
-        scope.destroy(record.id).then (response) ->
-          expect(response.data).toEqual record
+        it 'returns the destroyed record', () ->
+          scope.destroy(record.id).then (response) ->
+            expect(response.data).toEqual record
