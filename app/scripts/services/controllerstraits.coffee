@@ -79,7 +79,7 @@ angular.module('realEstateFrontEndApp')
       makeSelectable(scope, name) for name in names
 
 
-    Crudable: (scope, mainModel, mainResource, otherResources, records, routeParams={}) ->
+    Crudable: (scope, mainModel, mainResource, otherResources, records, routeParams) ->
       scope.page = routeParams.page
 
       invalidator = Invalidatable(scope, mainModel, mainResource,
