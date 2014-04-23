@@ -4,7 +4,6 @@ include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
 include partials/workers/workerform
-include partials/workers/workername
 
 +my-pending('!workers')
   div.row
@@ -38,4 +37,3 @@ include partials/workers/workername
 +my-modal-form('New contractor', 'create(worker)')
   +worker-form('true')
     +name-field('worker', 'true')
-
