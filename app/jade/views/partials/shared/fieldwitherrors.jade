@@ -1,0 +1,8 @@
+mixin field-with-errors(field)
+  div.form-group(ng-class=("{'has-error': errors." + field + '}'))
+    block
+
+    - errors = 'errors.' + field
+    div(ng-if=errors)
+      p.help-block(ng-repeat=('error in ' + errors))
+        {{error}}

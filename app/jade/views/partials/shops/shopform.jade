@@ -1,22 +1,23 @@
+include ../shared/fieldwitherrors
+
 mixin shop-form(isShown)
   div(ng-show=isShown)
-    div.form-group(ng-class="{'has-error': errors.trade_id}")
+    +field-with-errors('trade_id')
       select.form-control(required placeholer='Trade',
         ng-model='shop.trade_id'
         ng-options='t.id as t.name for t in trades')
 
-      div(ng-if='errors.trade_id')
-        p.help-block(ng-repeat='error in errors.trade_id')
-          {{error}}
-
     if block
       block
-    div.form-group
+
+    +field-with-errors('phone')
       input.form-control(type='tel' placeholder='Phone'
         ng-model='shop.phone')
-    div.form-group
+
+    +field-with-errors('rating')
       input.form-control(type='number' placeholder='Rating'
         min='0' max='5' ng-model='shop.rating')
-    div.form-group
+
+    +field-with-errors('notes')
       textarea.form-control(placeholder='Notes'
         min='0', ng-model='shop.notes')
