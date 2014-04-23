@@ -37,21 +37,21 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         httpBackend.verifyNoOutstandingRequest()
 
 
-      describe '1', ->
+      describe 'before the data is fetched', ->
         afterEach ->
           httpBackend.flush()
 
-        it '1', -> expect(scope[mainResource]).toBe undefined
+        it '', -> expect(scope[mainResource]).toBe undefined
 
-        it '2', -> expect(scope[resource]).toBe undefined for resource in otherResources
+        it '', -> expect(scope[resource]).toBe undefined for resource in otherResources
 
-      describe '2', ->
+      describe 'after the data is fetched', ->
         beforeEach ->
           httpBackend.flush()
 
-        it '3', -> expect(scope[mainResource]).toEqual mainCollection
+        it '', -> expect(scope[mainResource]).toEqual mainCollection
 
-        it '4', -> expect(scope[resource]).toEqual [] for resource in otherResources
+        it '', -> expect(scope[resource]).toEqual [] for resource in otherResources
 
 
     describe '.create, .update, .destroy', () ->
@@ -96,7 +96,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         beforeEach ->
           httpBackend.expectPOST(mainUrl, record).respond record
 
-        it '.create', ->
+        it '', ->
           scope.create(record).then (response) ->
             expect(response.data).toEqual record
 
@@ -127,6 +127,6 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
           httpBackend.expectDELETE("#{mainUrl}/#{record.id}").
             respond record
 
-        it 'returns the destroyed record', () ->
+        it '', ->
           scope.destroy(record.id).then (response) ->
             expect(response.data).toEqual record
