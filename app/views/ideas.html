@@ -13,11 +13,17 @@
           <p>{{idea.body}}</p>
         </div>
         <div ng-show="isEditing(idea.id)">
-          <div class="form-group">
+          <div ng-class="{'has-error': errors.trade_id}" class="form-group">
             <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            <div ng-if="errors.trade_id">
+              <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
+            </div>
           </div>
-          <div class="form-group">
+          <div ng-class="{'has-error': errors.body}" class="form-group">
             <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
+            <div ng-if="errors.body">
+              <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
+            </div>
           </div>
         </div>
         <div ng-hide="isEditing(idea.id)" class="btn-group">
@@ -43,11 +49,17 @@
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(idea)">
-          <div class="form-group">
+          <div ng-class="{'has-error': errors.trade_id}" class="form-group">
             <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            <div ng-if="errors.trade_id">
+              <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
+            </div>
           </div>
-          <div class="form-group">
+          <div ng-class="{'has-error': errors.body}" class="form-group">
             <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
+            <div ng-if="errors.body">
+              <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-lg btn-block">New idea</button>
         </form>
