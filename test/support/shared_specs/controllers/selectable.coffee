@@ -17,28 +17,39 @@ window.MyApp.sharedSpecs.controllers.selectable = (controller, names) ->
       selectedName = "selected#{name}"
       selectName = "select#{name}"
 
-      it 'initial state', () ->
-        expect(scope[selectedName]).toBe undefined
-        expect(scope[isNameSelected](id)).toBe(false) for id in [1..31]
+      describe 'initial state', ->
+        it '', -> expect(scope[isNameSelected](id)).toBe(false) for id in [1..31]
+        it '', -> expect(scope[selectedName]).toBe undefined
 
-      it 'with one select', () ->
-        scope[selectName] 1
 
-        expect(scope[selectedName]).toBe 1
-        expect(scope[isNameSelected](1)).toBe true
+      describe 'with one select', ->
+        id = 1
 
-      it 'with more than one select', () ->
-        scope[selectName] 1
-        scope[selectName] 2
+        beforeEach -> scope[selectName](id)
 
-        expect(scope[isNameSelected](1)).toBe false
-        expect(scope[isNameSelected](2)).toBe true
+        it '', -> expect(scope[isNameSelected](id)).toBe true
+        it '', -> expect(scope[selectedName]).toBe id
 
-        expect(scope[selectedName]).toBe 2
 
-      it 'selecting an already selected item', () ->
-        scope[selectName] 1
-        scope[selectName] 1
+      describe 'with more than one select', ->
+        id1 = 1
+        id2 = 2
 
-        expect(scope[isNameSelected](1)).toBe false
-        expect(scope[selectedName]).toBe undefined
+        beforeEach ->
+          scope[selectName](id1)
+          scope[selectName](id2)
+
+        it '', -> expect(scope[isNameSelected](id1)).toBe false
+        it '', -> expect(scope[isNameSelected](2)).toBe true
+        it '', -> expect(scope[selectedName]).toBe 2
+
+
+      describe 'selecting an already selected item', ->
+        id = 1
+
+        beforeEach ->
+          scope[selectName](id)
+          scope[selectName](id)
+
+        it '', -> expect(scope[isNameSelected](1)).toBe false
+        it '', -> expect(scope[selectedName]).toBe undefined
