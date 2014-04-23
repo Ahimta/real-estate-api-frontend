@@ -1,7 +1,7 @@
 include partials/shared/mymodalform
 include partials/shared/editable/panelfooter
 include partials/shared/mypending
-include partials/trades/tradeform
+include partials/shared/namefield
 
 +my-pending('!trades')
   section.row
@@ -10,16 +10,17 @@ include partials/trades/tradeform
         header.panel-heading
           - var _isEditing = 'isEditing(trade.id)'
 
-          span(ng-hide=_isEditing) {{trade.name}}
-          +trade-form(_isEditing)
+          div(ng-hide=_isEditing)
+            span {{trade.name}}
+            span.pull-right
+              span.badge {{trade.workers_count}} workers
+              span.badge {{trade.shops_count}} shops
+              span.badge {{trade.ideas_count}} ideas
 
-        div.panel-body
-          p Ideas count: {{trade.ideas_count}}
-          p Shops count: {{trade.shops_count}}
-          p Workers count: {{trade.workers_count}}
+          +name-field('trade', _isEditing)
 
         +panel-footer('trade')
 
 
 +my-modal-form('New trade', 'create(trade)')
-  +trade-form('true')
+  +name-field('trade', 'true')

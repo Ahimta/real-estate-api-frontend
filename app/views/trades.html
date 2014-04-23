@@ -6,16 +6,12 @@
   <section class="row">
     <article ng-repeat="trade in trades | orderBy:&quot;name&quot;" class="col-sm-4">
       <div class="panel panel-primary lead">
-        <header class="panel-heading"><span ng-hide="isEditing(trade.id)">{{trade.name}}</span>
+        <header class="panel-heading">
+          <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span class="pull-right"><span class="badge">{{trade.workers_count}} workers</span><span class="badge">{{trade.shops_count}} shops</span><span class="badge">{{trade.ideas_count}} ideas</span></span></div>
           <div ng-show="isEditing(trade.id)" class="form-group">
             <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
           </div>
         </header>
-        <div class="panel-body">
-          <p>Ideas count: {{trade.ideas_count}}</p>
-          <p>Shops count: {{trade.shops_count}}</p>
-          <p>Workers count: {{trade.workers_count}}</p>
-        </div>
         <footer class="panel-footer">
           <div ng-hide="isEditing(trade.id)">
             <button type="button" ng-click="edit(trade.id)" class="btn btn-primary">Edit</button>
