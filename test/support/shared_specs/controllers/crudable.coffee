@@ -10,13 +10,16 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
     mainUrl     = undefined
     scope       = undefined
     API         = undefined
+    routeParams = undefined
 
     beforeEach inject (REALESTATEAPI, $httpBackend, $rootScope, $controller) ->
       httpBackend = $httpBackend
       API = REALESTATEAPI
       scope = $rootScope.$new()
+      routeParams = {page: _.random(100)}
       $controller controller, {
-        $scope: scope
+        $scope: scope,
+        $routeParams: routeParams
       }
 
     beforeEach ->
@@ -25,33 +28,38 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
     describe 'initial state', ->
 
-      response = {'meta':{'parents': {trades: [], shops: []}}}
-      mainCollection = [1,2,3]
-      response[mainResource] = mainCollection
+      describe 'pagination', ->
+        it '', -> expect(scope.page).toEqual routeParams.page
 
-      beforeEach ->
-        httpBackend.expectGET(mainUrl).respond response
+      describe 'http requests', ->
 
-      afterEach ->
-        httpBackend.verifyNoOutstandingExpectation()
-        httpBackend.verifyNoOutstandingRequest()
+        response = {'meta':{'parents': {trades: [], shops: []}}}
+        mainCollection = [1,2,3]
+        response[mainResource] = mainCollection
 
-
-      describe 'before the data is fetched', ->
-        afterEach ->
-          httpBackend.flush()
-
-        it '', -> expect(scope[mainResource]).toBe undefined
-
-        it '', -> expect(scope[resource]).toBe undefined for resource in otherResources
-
-      describe 'after the data is fetched', ->
         beforeEach ->
-          httpBackend.flush()
+          httpBackend.expectGET(mainUrl).respond response
 
-        it '', -> expect(scope[mainResource]).toEqual mainCollection
+        afterEach ->
+          httpBackend.verifyNoOutstandingExpectation()
+          httpBackend.verifyNoOutstandingRequest()
 
-        it '', -> expect(scope[resource]).toEqual [] for resource in otherResources
+
+        describe 'before the data is fetched', ->
+          afterEach ->
+            httpBackend.flush()
+
+          it '', -> expect(scope[mainResource]).toBe undefined
+
+          it '', -> expect(scope[resource]).toBe undefined for resource in otherResources
+
+        describe 'after the data is fetched', ->
+          beforeEach ->
+            httpBackend.flush()
+
+          it '', -> expect(scope[mainResource]).toEqual mainCollection
+
+          it '', -> expect(scope[resource]).toEqual [] for resource in otherResources
 
 
     describe '.create, .update, .destroy', () ->

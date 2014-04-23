@@ -1,11 +1,11 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'IdeasCtrl', ($scope, Idea, Trade, ControllersTraits) ->
+  .controller 'IdeasCtrl', ($scope, $routeParams, Idea, Trade, ControllersTraits) ->
 
     ControllersTraits.Selectable $scope, 'Trade'
-    
+
     invalidator = ControllersTraits.Crudable($scope, Idea, 'ideas',
-      ['trades'], ['idea'])
-    
+      ['trades'], ['idea'], $routeParams)
+
     invalidator()
