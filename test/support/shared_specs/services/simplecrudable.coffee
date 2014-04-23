@@ -8,17 +8,13 @@ window.MyApp.sharedSpecs.services.simpleCrudable = (model) ->
 
     name = "#{model.toLowerCase()}s"
     resource = undefined
-    API = undefined
     httpBackend = undefined
     Model = undefined
 
-    beforeEach inject (_REALESTATEAPI_, $httpBackend, $injector) ->
-      API = _REALESTATEAPI_
+    beforeEach inject (REALESTATEAPI, $httpBackend, $injector) ->
+      resource = "#{REALESTATEAPI}/#{name}"
       httpBackend = $httpBackend
       Model = $injector.get model
-
-    beforeEach () ->
-      resource = "#{API}/#{name}"
 
     afterEach () ->
       httpBackend.flush()
@@ -26,43 +22,51 @@ window.MyApp.sharedSpecs.services.simpleCrudable = (model) ->
       httpBackend.verifyNoOutstandingRequest()
 
 
-    it '.all', () ->
+    describe '.all', () ->
       records = ({id:i,body:"body#{i}",trade_id:i+1} for i in [1..7])
 
-      httpBackend.whenGET(resource).respond records
-      httpBackend.expectGET resource
+      beforeEach -> httpBackend.expectGET(resource).respond records
 
-      Model.all().then (response) ->
-        expect(response.data).toEqual records
+      it '', ->
+        Model.all().then (response) ->
+          expect(response.data).toEqual records
 
 
-    it '.create', () ->
+    describe '.create', () ->
       record = {body:'body',trade_id:31}
 
-      httpBackend.whenPOST(resource, record).respond record
-      httpBackend.expectPOST resource, record
+      beforeEach -> httpBackend.expectPOST(resource, record).respond record
 
-      Model.create(record).then (response) ->
-        expect(response.data).toEqual record
+      it '', ->
+        Model.create(record).then (response) ->
+          expect(response.data).toEqual record
 
 
-    it '.update', () ->
-      record = {id: 7}
-      url = "#{resource}/#{record.id}"
+    describe '.update', () ->
+      record = undefined
+      url    = undefined
 
-      httpBackend.whenPUT(url, record).respond record
-      httpBackend.expectPUT url, record
-   
-      Model.update(record).then (response) ->
-        expect(response.data).toEqual record
+      beforeEach ->
+        record = {id: 7}
+        url = "#{resource}/#{record.id}"
 
-      
-    it '.destroy', () ->
-      record = {id: 7,body:'body3',trade_id:'2'}
-      url = "#{resource}/#{record.id}"
+      beforeEach -> httpBackend.expectPUT(url).respond record
 
-      httpBackend.whenDELETE(url).respond record
-      httpBackend.expectDELETE url
+      it '', ->
+        Model.update(record).then (response) ->
+          expect(response.data).toEqual record
 
-      Model.destroy(record.id).then (response) ->
-        expect(response.data).toEqual record
+
+    describe '.destroy', () ->
+      record = undefined
+      url    = undefined
+
+      beforeEach ->
+        record = {id: 7,body:'body3',trade_id:'2'}
+        url = "#{resource}/#{record.id}"
+
+      beforeEach -> httpBackend.expectDELETE(url).respond record
+
+      it '', ->
+        Model.destroy(record.id).then (response) ->
+          expect(response.data).toEqual record
