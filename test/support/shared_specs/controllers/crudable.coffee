@@ -29,7 +29,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
     describe 'initial state', ->
 
       describe 'pagination', ->
-        it '', -> expect(scope.page).toEqual routeParams.page
+        it '', -> expect(scope.page).toBe routeParams.page
 
       describe 'http requests', ->
 

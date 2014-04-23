@@ -30,6 +30,10 @@
       </div>
     </article>
   </section>
+  <ul class="pager">
+    <li ng-class="{disabled: page &lt;= 1}" class="previous"><a ng-href="#/trades?page={{page-1}}">&larr; Previous</a></li>
+    <li ng-class="{disabled: page &gt;= pagination.pages}" class="next"><a ng-href="#/trades?page={{page - 1 + 2}}">Newer &rarr;</a></li>
+  </ul>
 </section>
 <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New trade</button>
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">

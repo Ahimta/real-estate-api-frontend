@@ -2,6 +2,7 @@ include partials/shared/mymodalform
 include partials/shared/editable/panelfooter
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 
 +my-pending('!trades')
   section.row
@@ -20,6 +21,8 @@ include partials/shared/namefield
           +name-field('trade', _isEditing)
 
         +panel-footer('trade')
+
+  +pager('trades')
 
 
 +my-modal-form('New trade', 'create(trade)')
