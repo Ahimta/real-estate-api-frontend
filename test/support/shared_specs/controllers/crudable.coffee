@@ -63,31 +63,30 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         mainCollection = _.shuffle mainCollection
         response[mainResource] = mainCollection
 
-        httpBackend.expectGET(mainUrl).respond response
+      beforeEach -> httpBackend.expectGET(mainUrl).respond response
 
-        expect(scope[mainResource]).toBe undefined
-        expect(scope[resource]).toBe undefined for resource in otherResources
+      beforeEach -> expect(scope[mainResource]).toBe undefined
+      beforeEach -> expect(scope[resource]).toBe undefined for resource in otherResources
 
-        httpBackend.flush()
+      beforeEach -> httpBackend.flush()
 
-        expect(scope[mainResource]).toEqual mainCollection
-        expect(scope[resource]).toEqual [] for resource in otherResources
-
+      beforeEach -> expect(scope[resource]).toEqual [] for resource in otherResources
+      beforeEach -> expect(scope[mainResource]).toEqual mainCollection
 
 
       afterEach ->
         mainCollection = _.shuffle mainCollection
         response[mainResource] = mainCollection
 
+      afterEach ->
         httpBackend.expectGET(mainUrl).respond response
-
         httpBackend.flush()
 
-        expect(scope[mainResource]).toEqual mainCollection
-        expect(scope[resource]).toEqual [] for resource in otherResources
+      afterEach -> expect(scope[resource]).toEqual [] for resource in otherResources
+      afterEach -> expect(scope[mainResource]).toEqual mainCollection
 
-        httpBackend.verifyNoOutstandingExpectation()
-        httpBackend.verifyNoOutstandingRequest()
+      afterEach -> httpBackend.verifyNoOutstandingExpectation()
+      afterEach -> httpBackend.verifyNoOutstandingRequest()
 
 
       describe 'create', ->
