@@ -18,7 +18,11 @@ include partials/shops/shopform
           - var _isEditing = 'isEditing(shop.id)'
 
           header.panel-heading
-            span(ng-hide=_isEditing) {{shop.name}}
+            span(ng-hide=_isEditing)
+              span {{shop.name}}
+              span.pull-right
+                span.badge {{shop.workers_count}} Workers
+
             +name-field('shop', _isEditing)
 
           div.panel-body.lead
@@ -30,8 +34,6 @@ include partials/shops/shopform
               p Rating: {{shop.rating}}
 
               p Notes: {{shop.notes}}
-
-            p Workers count: {{shop.workers_count}}
 
           +panel-footer('shop')
 

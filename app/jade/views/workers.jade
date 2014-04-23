@@ -2,6 +2,7 @@ include partials/shared/editable/panelfooter
 include partials/shared/filterlist
 include partials/shared/mymodalform
 include partials/shared/mypending
+include partials/shared/namefield
 include partials/workers/workerform
 include partials/workers/workername
 
@@ -20,7 +21,7 @@ include partials/workers/workername
 
           header.panel-heading
             span(ng-hide=_isEditing) {{worker.name}}
-            +worker-name(_isEditing)
+            +name-field('worker', _isEditing)
 
           div.panel-body.lead
             +worker-form(_isEditing)
@@ -34,7 +35,7 @@ include partials/workers/workername
 
           +panel-footer('worker')
 
-+my-modal-form('New worker', 'create(worker)')
++my-modal-form('New contractor', 'create(worker)')
   +worker-form('true')
-    +worker-name('true')
+    +name-field('worker', 'true')
 
