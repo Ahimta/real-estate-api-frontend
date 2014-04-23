@@ -2,6 +2,7 @@ include partials/shared/editable/panelfooter
 include partials/shared/mymodalform
 include partials/shared/filterlist
 include partials/shared/mypending
+include partials/shared/namefield
 include partials/shops/shopname
 include partials/shops/shopform
 
@@ -18,7 +19,7 @@ include partials/shops/shopform
 
           header.panel-heading
             span(ng-hide=_isEditing) {{shop.name}}
-            +shop-name(_isEditing)
+            +name-field('shop', _isEditing)
 
           div.panel-body.lead
             +shop-form(_isEditing)
@@ -36,4 +37,4 @@ include partials/shops/shopform
 
 +my-modal-form('New shop', 'create(shop)')
   +shop-form('true')
-    +shop-name('true')
+    +name-field('shop', 'true')

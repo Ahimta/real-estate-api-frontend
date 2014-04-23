@@ -8,8 +8,13 @@
       <div class="panel panel-primary lead">
         <header class="panel-heading">
           <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span class="pull-right"><span class="badge">{{trade.workers_count}} workers</span><span class="badge">{{trade.shops_count}} shops</span><span class="badge">{{trade.ideas_count}} ideas</span></span></div>
-          <div ng-show="isEditing(trade.id)" class="form-group">
-            <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
+          <div ng-show="isEditing(trade.id)">
+            <div ng-class="{'has-error': errors.name}" class="form-group">
+              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
+              <div ng-if="errors.name">
+                <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+              </div>
+            </div>
           </div>
         </header>
         <footer class="panel-footer">
@@ -36,8 +41,13 @@
       </header>
       <div class="modal-body">
         <form role="form" ng-submit="create(trade)">
-          <div ng-show="true" class="form-group">
-            <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
+          <div ng-show="true">
+            <div ng-class="{'has-error': errors.name}" class="form-group">
+              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="trade.name" class="form-control"/>
+              <div ng-if="errors.name">
+                <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-lg btn-block">New trade</button>
         </form>

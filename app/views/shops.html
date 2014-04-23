@@ -11,8 +11,13 @@
       <article ng-repeat="shop in shops | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;name&quot;" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(shop.id)">{{shop.name}}</span>
-            <div ng-show="isEditing(shop.id)" class="form-group">
-              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="shop.name" class="form-control"/>
+            <div ng-show="isEditing(shop.id)">
+              <div ng-class="{'has-error': errors.name}" class="form-group">
+                <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="shop.name" class="form-control"/>
+                <div ng-if="errors.name">
+                  <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+                </div>
+              </div>
             </div>
           </header>
           <div class="panel-body lead">
@@ -81,8 +86,13 @@
                 <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
               </div>
             </div>
-            <div ng-show="true" class="form-group">
-              <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="shop.name" class="form-control"/>
+            <div ng-show="true">
+              <div ng-class="{'has-error': errors.name}" class="form-group">
+                <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="shop.name" class="form-control"/>
+                <div ng-if="errors.name">
+                  <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+                </div>
+              </div>
             </div>
             <div ng-class="{'has-error': errors.phone}" class="form-group">
               <input type="tel" placeholder="Phone" ng-model="shop.phone" class="form-control"/>

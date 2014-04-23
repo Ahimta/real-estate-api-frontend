@@ -4,5 +4,4 @@ mixin field-with-errors(field)
 
     - errors = 'errors.' + field
     div(ng-if=errors)
-      p.help-block(ng-repeat=('error in ' + errors))
-        {{error}}
+      p.help-block(ng-repeat=('error in ' + errors))= '{{error}}'
