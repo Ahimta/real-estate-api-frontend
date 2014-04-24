@@ -3,6 +3,7 @@ include partials/shared/mymodalform
 include partials/shared/filterlist
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 include partials/shops/shopform
 
 +my-pending('!shops')
@@ -35,6 +36,8 @@ include partials/shops/shopform
               p Notes: {{shop.notes}}
 
           +panel-footer('shop')
+
+  +pager('shops')
 
 +my-modal-form('New shop', 'create(shop)')
   +shop-form('true')

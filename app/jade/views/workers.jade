@@ -3,6 +3,7 @@ include partials/shared/filterlist
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 include partials/workers/workerform
 
 +my-pending('!workers')
@@ -33,6 +34,8 @@ include partials/workers/workerform
               p Notes: {{worker.notes}}
 
           +panel-footer('worker')
+
+  +pager('workers')
 
 +my-modal-form('New contractor', 'create(worker)')
   +worker-form('true')

@@ -38,6 +38,10 @@
       </article>
     </section>
   </div>
+  <ul class="pager">
+    <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/ideas?page={{pagination.page-1}}">&larr; Previous</a></li>
+    <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/ideas?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
+  </ul>
 </section>
 <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New idea</button>
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">

@@ -2,6 +2,7 @@ include partials/shared/editable/formbtngroup
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/filterlist
+include partials/shared/pager
 include partials/ideas/ideaform
 
 +my-pending('!ideas')
@@ -23,6 +24,8 @@ include partials/ideas/ideaform
         +form-btn-group('idea')
 
         hr
+
+  +pager('ideas')
 
 +my-modal-form('New idea', 'create(idea)')
   +idea-form
