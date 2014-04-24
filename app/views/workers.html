@@ -73,66 +73,66 @@
           </footer>
         </div>
       </article>
-    </section>
-  </div>
-  <ul class="pager">
-    <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/workers?page={{pagination.page-1}}">&larr; Previous</a></li>
-    <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/workers?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
-  </ul>
-</section>
-<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New contractor</button>
-<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <header class="modal-header">
-        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-        <h4 id="myModalLabel" class="modal-title">New contractor</h4>
-      </header>
-      <div class="modal-body">
-        <form role="form" ng-submit="create(worker)">
-          <div ng-show="true">
-            <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-              <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
-              <div ng-if="errors.trade_id">
-                <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
-              </div>
-            </div>
-            <div ng-class="{'has-error': errors.shop_id}" class="form-group">
-              <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
-              <div ng-if="errors.shop_id">
-                <p ng-repeat="error in errors.shop_id" class="help-block">{{error}}</p>
-              </div>
-            </div>
-            <div ng-show="true">
-              <div ng-class="{'has-error': errors.name}" class="form-group">
-                <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
-                <div ng-if="errors.name">
-                  <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+      <ul class="pager">
+        <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/workers?page={{pagination.page-1}}">&larr; Previous</a></li>
+        <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/workers?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
+      </ul>
+      <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New contractor</button>
+      <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <header class="modal-header">
+              <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+              <h4 id="myModalLabel" class="modal-title">New contractor</h4>
+            </header>
+            <div class="modal-body">
+              <form role="form" ng-submit="create(worker)">
+                <div ng-show="true">
+                  <div ng-class="{'has-error': errors.trade_id}" class="form-group">
+                    <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                    <div ng-if="errors.trade_id">
+                      <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
+                    </div>
+                  </div>
+                  <div ng-class="{'has-error': errors.shop_id}" class="form-group">
+                    <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
+                    <div ng-if="errors.shop_id">
+                      <p ng-repeat="error in errors.shop_id" class="help-block">{{error}}</p>
+                    </div>
+                  </div>
+                  <div ng-show="true">
+                    <div ng-class="{'has-error': errors.name}" class="form-group">
+                      <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
+                      <div ng-if="errors.name">
+                        <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div ng-class="{'has-error': errors.phone}" class="form-group">
+                    <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
+                    <div ng-if="errors.phone">
+                      <p ng-repeat="error in errors.phone" class="help-block">{{error}}</p>
+                    </div>
+                  </div>
+                  <div ng-class="{'has-error': errors.rating}" class="form-group">
+                    <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
+                    <div ng-if="errors.rating">
+                      <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
+                    </div>
+                  </div>
+                  <div ng-class="{'has-error': errors.notes}" class="form-group">
+                    <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
+                    <div ng-if="errors.notes">
+                      <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div ng-class="{'has-error': errors.phone}" class="form-group">
-              <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
-              <div ng-if="errors.phone">
-                <p ng-repeat="error in errors.phone" class="help-block">{{error}}</p>
-              </div>
-            </div>
-            <div ng-class="{'has-error': errors.rating}" class="form-group">
-              <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
-              <div ng-if="errors.rating">
-                <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
-              </div>
-            </div>
-            <div ng-class="{'has-error': errors.notes}" class="form-group">
-              <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
-              <div ng-if="errors.notes">
-                <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
-              </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">New contractor</button>
+              </form>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">New contractor</button>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
-</div>
+</section>

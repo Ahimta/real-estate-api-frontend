@@ -36,38 +36,38 @@
         </div>
         <hr/>
       </article>
+      <ul class="pager">
+        <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/ideas?page={{pagination.page-1}}">&larr; Previous</a></li>
+        <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/ideas?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
+      </ul>
+      <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New idea</button>
+      <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <header class="modal-header">
+              <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+              <h4 id="myModalLabel" class="modal-title">New idea</h4>
+            </header>
+            <div class="modal-body">
+              <form role="form" ng-submit="create(idea)">
+                <div ng-class="{'has-error': errors.trade_id}" class="form-group">
+                  <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                  <div ng-if="errors.trade_id">
+                    <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
+                  </div>
+                </div>
+                <div ng-class="{'has-error': errors.body}" class="form-group">
+                  <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
+                  <div ng-if="errors.body">
+                    <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">New idea</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
-  <ul class="pager">
-    <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/ideas?page={{pagination.page-1}}">&larr; Previous</a></li>
-    <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/ideas?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
-  </ul>
 </section>
-<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New idea</button>
-<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <header class="modal-header">
-        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-        <h4 id="myModalLabel" class="modal-title">New idea</h4>
-      </header>
-      <div class="modal-body">
-        <form role="form" ng-submit="create(idea)">
-          <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-            <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
-            <div ng-if="errors.trade_id">
-              <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
-            </div>
-          </div>
-          <div ng-class="{'has-error': errors.body}" class="form-group">
-            <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
-            <div ng-if="errors.body">
-              <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">New idea</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
