@@ -36,15 +36,19 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         response       = undefined
 
         beforeEach ->
+          count = _.random(21, 100)
+          pages = Math.ceil(count / 10.0)
+          page  = _.random(1, pages)
+
           response =
             meta:
               parents:
                 trades: []
                 shops: []
               pagination:
-                count: _.random(21, 100)
-                pages: Math.ceil(@count / 10)
-                page: _.random(1, @pages)
+                count: count
+                pages: pages
+                page: page
 
         beforeEach ->
           mainCollection = _.shuffle [1..7]
@@ -73,22 +77,43 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
           it '', -> expect(scope[resource]).toEqual [] for resource in otherResources
           it '', -> expect(scope[mainResource]).toEqual mainCollection
+
           it '', -> expect(scope.pagination).toEqual response.meta.pagination
+          it '', -> expect(scope.page).toEqual response.meta.pagination.page
 
 
     describe '.create, .update, .destroy', () ->
 
-      mainCollection = [1,2,3,4,5]
-      response = {'meta':{'parents': {trades: [], shops: []}}}
+      mainCollection = undefined
+      response = undefined
 
       beforeEach ->
-        mainCollection = _.shuffle mainCollection
+        count = _.random(21, 100)
+        pages = Math.ceil(count / 10.0)
+        page  = _.random(1, pages)
+
+        response =
+          meta:
+            parents:
+              trades: []
+              shops: []
+            pagination:
+              count: count
+              pages: pages
+              page: page
+
+
+      beforeEach ->
+        mainCollection = _.shuffle [1..7]
         response[mainResource] = mainCollection
 
       beforeEach -> httpBackend.expectGET(mainUrl).respond response
 
       beforeEach -> expect(scope[mainResource]).toBe undefined
       beforeEach -> expect(scope[resource]).toBe undefined for resource in otherResources
+
+      beforeEach -> expect(scope.pagination).toBe undefined
+      beforeEach -> expect(scope.page).toEqual routeParams.page
 
       beforeEach -> httpBackend.flush()
 
@@ -106,6 +131,9 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
       afterEach -> expect(scope[resource]).toEqual [] for resource in otherResources
       afterEach -> expect(scope[mainResource]).toEqual mainCollection
+
+      afterEach -> expect(scope.pagination).toEqual response.meta.pagination
+      afterEach -> expect(scope.page).toEqual response.meta.pagination.page
 
       afterEach -> httpBackend.verifyNoOutstandingExpectation()
       afterEach -> httpBackend.verifyNoOutstandingRequest()
