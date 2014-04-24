@@ -53,7 +53,7 @@ angular.module('realEstateFrontEndApp')
         scope[resource] = undefined for resource in otherResources
         scope[mainResource] = undefined
 
-        model.all().then (response) ->
+        model.all(page: scope.page).then (response) ->
           data = response.data
           scope[mainResource] = data[mainResource]
           scope.pagination = data.meta.pagination

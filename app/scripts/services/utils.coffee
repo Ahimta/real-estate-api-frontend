@@ -7,8 +7,8 @@ angular.module('realEstateFrontEndApp')
     generateSimpleResource: (name) ->
       resource = "#{REALESTATEAPI}/#{name}"
 
-      all: () ->
-        $http.get resource
+      all: (params={}) ->
+        $http.get resource, params: params
 
       create: (record) ->
         $http.post resource, record

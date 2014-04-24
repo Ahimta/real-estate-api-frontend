@@ -25,11 +25,21 @@ window.MyApp.sharedSpecs.services.simpleCrudable = (model) ->
     describe '.all', () ->
       records = ({id:i,body:"body#{i}",trade_id:i+1} for i in [1..7])
 
-      beforeEach -> httpBackend.expectGET(resource).respond records
+      describe 'without page parameter', ->
+        beforeEach -> httpBackend.expectGET(resource).respond records
 
-      it '', ->
-        Model.all().then (response) ->
-          expect(response.data).toEqual records
+        it '', ->
+          Model.all().then (response) ->
+            expect(response.data).toEqual records
+
+      describe 'with page parameter', ->
+        page = _.random(1, 100)
+
+        beforeEach -> httpBackend.expectGET("#{resource}?page=#{page}").respond records
+
+        it '', ->
+          Model.all(page: page).then (response) ->
+            expect(response.data).toEqual records
 
 
     describe '.create', () ->

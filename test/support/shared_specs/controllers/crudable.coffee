@@ -55,7 +55,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
           response[mainResource] = mainCollection
 
         beforeEach ->
-          httpBackend.expectGET(mainUrl).respond response
+          httpBackend.expectGET("#{mainUrl}?page=#{scope.page}").respond response
 
         afterEach ->
           httpBackend.verifyNoOutstandingExpectation()
@@ -107,7 +107,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         mainCollection = _.shuffle [1..7]
         response[mainResource] = mainCollection
 
-      beforeEach -> httpBackend.expectGET(mainUrl).respond response
+      beforeEach -> httpBackend.expectGET("#{mainUrl}?page=#{scope.page}").respond response
 
       beforeEach -> expect(scope[mainResource]).toBe undefined
       beforeEach -> expect(scope[resource]).toBe undefined for resource in otherResources
@@ -126,7 +126,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         response[mainResource] = mainCollection
 
       afterEach ->
-        httpBackend.expectGET(mainUrl).respond response
+        httpBackend.expectGET("#{mainUrl}?page=#{scope.page}").respond response
         httpBackend.flush()
 
       afterEach -> expect(scope[resource]).toEqual [] for resource in otherResources
