@@ -32,10 +32,23 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         it '', -> expect(scope.page).toBe routeParams.page
 
       describe 'http requests', ->
+        mainCollection = undefined
+        response       = undefined
 
-        response = {'meta':{'parents': {trades: [], shops: []}}}
-        mainCollection = [1,2,3]
-        response[mainResource] = mainCollection
+        beforeEach ->
+          response =
+            meta:
+              parents:
+                trades: []
+                shops: []
+              pagination:
+                count: _.random(21, 100)
+                pages: Math.ceil(@count / 10)
+                page: _.random(1, @pages)
+
+        beforeEach ->
+          mainCollection = _.shuffle [1..7]
+          response[mainResource] = mainCollection
 
         beforeEach ->
           httpBackend.expectGET(mainUrl).respond response
@@ -49,17 +62,18 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
           afterEach ->
             httpBackend.flush()
 
-          it '', -> expect(scope[mainResource]).toBe undefined
-
           it '', -> expect(scope[resource]).toBe undefined for resource in otherResources
+          it '', -> expect(scope[mainResource]).toBe undefined
+          it '', -> expect(scope.pagination).toBe undefined
+
 
         describe 'after the data is fetched', ->
           beforeEach ->
             httpBackend.flush()
 
-          it '', -> expect(scope[mainResource]).toEqual mainCollection
-
           it '', -> expect(scope[resource]).toEqual [] for resource in otherResources
+          it '', -> expect(scope[mainResource]).toEqual mainCollection
+          it '', -> expect(scope.pagination).toEqual response.meta.pagination
 
 
     describe '.create, .update, .destroy', () ->

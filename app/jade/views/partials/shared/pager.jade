@@ -1,7 +1,7 @@
 mixin pager(name)
   ul.pager
-    li.previous(ng-class='{disabled: page <= 1}')
-      a(ng-href=('#/' + name + '?page={{page-1}}')) &larr; Previous
+    li.previous(ng-class='{disabled: (pagination.page - 1 + 1) <= 1}')
+      a(ng-href=('#/' + name + '?page={{pagination.page-1}}')) &larr; Previous
 
-    li.next(ng-class='{disabled: page >= pagination.pages}')
-      a(ng-href=('#/' + name + '?page={{page - 1 + 2}}')) Newer &rarr;
+    li.next(ng-class='{disabled: (pagination.page - 1 + 1) >= pagination.pages}')
+      a(ng-href=('#/' + name + '?page={{pagination.page - 1 + 2}}')) Newer &rarr;

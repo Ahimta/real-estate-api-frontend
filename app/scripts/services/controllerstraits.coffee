@@ -56,6 +56,7 @@ angular.module('realEstateFrontEndApp')
         model.all().then (response) ->
           data = response.data
           scope[mainResource] = data[mainResource]
+          scope.pagination = data.meta.pagination
 
           for resource in otherResources
             scope[resource] = data.meta.parents[resource]
