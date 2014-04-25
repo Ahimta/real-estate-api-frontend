@@ -2,6 +2,7 @@ include partials/shared/filterlist
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 include partials/workers/workerform
 include partials/workers/workers
 
@@ -19,7 +20,6 @@ hr
       hr
       +filter-list('shop', 'workers')
 
-    section.col-sm-9(infinite-scroll='nextPage()'
-      infinite-scroll-disabled='isLastPage()')
-
+    section.col-sm-9
       +workers
+      +pager

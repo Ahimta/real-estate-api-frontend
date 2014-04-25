@@ -2,6 +2,7 @@ include partials/shared/editable/formbtngroup
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/filterlist
+include partials/shared/pager
 include partials/ideas/ideaform
 include partials/ideas/ideas
 
@@ -12,11 +13,10 @@ div.row
 hr
 
 +my-pending('!ideas')
-  div.row(infinite-scroll='nextPage()'
-    infinite-scroll-disabled='isLastPage()')
-
+  div.row
     section.col-sm-3
       +filter-list('trade', 'ideas')
 
     section.col-sm-9
       +ideas
+      +pager

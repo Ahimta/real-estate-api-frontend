@@ -2,6 +2,7 @@ include partials/shared/mymodalform
 include partials/shared/filterlist
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 include partials/shops/shopform
 include partials/shops/shops
 
@@ -17,7 +18,6 @@ hr
     section.col-sm-3
       +filter-list('trade', 'shops')
 
-    section.col-sm-9(infinite-scroll='nextPage()'
-      infinite-scroll-disabled='isLastPage()')
-
+    section.col-sm-9
       +shops
+      +pager

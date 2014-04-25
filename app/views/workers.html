@@ -68,7 +68,7 @@
       <hr/>
       <div class="list-group"><a ng-repeat="shop in shops | orderBy:'name'" ng-click="selectShop(shop.id)" ng-class="{active: isShopSelected(shop.id)}" class="list-group-item">{{shop.name}}<span class="badge pull-right">{{shop.workers_count}}</span></a></div>
     </section>
-    <section infinite-scroll="nextPage()" infinite-scroll-disabled="isLastPage()" class="col-sm-9">
+    <section class="col-sm-9">
       <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
@@ -132,6 +132,14 @@
           </footer>
         </div>
       </article>
+      <div infinite-scroll="nextPage()" infinite-scroll-disabled="isLastPage()">
+        <p class="text-center">...</p>
+        <div ng-show="isGettingNextPage()" class="text-center progress progress-striped active">
+          <div role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 100%" class="progress-bar"><span class="sr-only">Pending</span></div>
+        </div>
+        <section ng-hide="isGettingNextPage()">
+        </section>
+      </div>
     </section>
   </div>
 </section>

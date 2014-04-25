@@ -1,6 +1,7 @@
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
+include partials/shared/pager
 include partials/trades/trades
 
 div.row
@@ -10,7 +11,7 @@ div.row
 hr
 
 +my-pending('!trades')
-  div.row(infinite-scroll='nextPage()'
-    infinite-scroll-disabled='isLastPage()')
-
+  div.row
     +trades
+    +pager
+

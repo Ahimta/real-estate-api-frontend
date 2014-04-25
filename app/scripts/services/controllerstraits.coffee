@@ -78,6 +78,7 @@ angular.module('realEstateFrontEndApp')
 
 
     makePaginatable = (scope, model, mainResource, otherResources) ->
+      _isGettingNextPage = false
 
       scope.isLastPage = ->
         unless scope.pagination is undefined
@@ -85,9 +86,15 @@ angular.module('realEstateFrontEndApp')
 
       scope.nextPage = ->
         unless scope.pagination is undefined
+          _isGettingNextPage = true
+
           model.all(page: scope.pagination.page + 1).then (response) ->
             scope.pagination = response.data.meta.pagination
             scope[mainResource].push response.data[mainResource]...
+            _isGettingNextPage = false
+
+      scope.isGettingNextPage = ->
+        _isGettingNextPage
 
 
 
