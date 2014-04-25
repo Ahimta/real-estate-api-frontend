@@ -6,7 +6,8 @@ include partials/shared/pager
 include partials/ideas/ideaform
 
 +my-pending('!ideas')
-  div.row
+  div.row(infinite-scroll='nextPage()'
+    infinite-scroll-disabled='isLastPage()')
     section.col-sm-3
       +filter-list('trade', 'ideas')
 
@@ -24,8 +25,6 @@ include partials/ideas/ideaform
         +form-btn-group('idea')
 
         hr
-
-      +pager('ideas')
 
       +my-modal-form('New idea', 'create(idea)')
         +idea-form

@@ -3,7 +3,7 @@
   <div role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 100%" class="progress-bar"><span class="sr-only">Pending</span></div>
 </div>
 <section ng-hide="!ideas">
-  <div class="row">
+  <div infinite-scroll="nextPage()" infinite-scroll-disabled="isLastPage()" class="row">
     <section class="col-sm-3">
       <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.ideas_count}}</span></a></div>
     </section>
@@ -36,10 +36,6 @@
         </div>
         <hr/>
       </article>
-      <ul class="pager">
-        <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/ideas?page={{pagination.page-1}}">&larr; Previous</a></li>
-        <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/ideas?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
-      </ul>
       <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New idea</button>
       <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
         <div class="modal-dialog">
