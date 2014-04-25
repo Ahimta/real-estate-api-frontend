@@ -11,7 +11,8 @@ include partials/shops/shopform
     section.col-sm-3
       +filter-list('trade', 'shops')
 
-    section.col-sm-9
+    section.col-sm-9(infinite-scroll='nextPage()'
+      infinite-scroll-disabled='isLastPage()')
       article.lead.col-sm-6(
         ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade | orderBy:"name"')
         div.panel.panel-primary
@@ -36,8 +37,6 @@ include partials/shops/shopform
               p Notes: {{shop.notes}}
 
           +panel-footer('shop')
-
-      +pager('shops')
 
       +my-modal-form('New shop', 'create(shop)')
         +shop-form('true')

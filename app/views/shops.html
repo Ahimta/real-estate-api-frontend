@@ -7,7 +7,7 @@
     <section class="col-sm-3">
       <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.shops_count}}</span></a></div>
     </section>
-    <section class="col-sm-9">
+    <section infinite-scroll="nextPage()" infinite-scroll-disabled="isLastPage()" class="col-sm-9">
       <article ng-repeat="shop in shops | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;name&quot;" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(shop.id)"><span>{{shop.name}}</span><span class="pull-right"><span class="badge">{{shop.workers_count}} Workers</span></span></span>
@@ -65,10 +65,6 @@
           </footer>
         </div>
       </article>
-      <ul class="pager">
-        <li ng-class="{disabled: (pagination.page - 1 + 1) &lt;= 1}" class="previous"><a ng-href="#/shops?page={{pagination.page-1}}">&larr; Previous</a></li>
-        <li ng-class="{disabled: (pagination.page - 1 + 1) &gt;= pagination.pages}" class="next"><a ng-href="#/shops?page={{pagination.page - 1 + 2}}">Newer &rarr;</a></li>
-      </ul>
       <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New shop</button>
       <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
         <div class="modal-dialog">

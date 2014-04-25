@@ -5,7 +5,8 @@ include partials/shared/namefield
 include partials/shared/pager
 
 +my-pending('!trades')
-  section.row
+  section.row(infinite-scroll='nextPage()'
+    infinite-scroll-disabled='isLastPage()')
     article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
       div.panel.panel-primary.lead
         header.panel-heading
@@ -21,8 +22,6 @@ include partials/shared/pager
           +name-field('trade', _isEditing)
 
         +panel-footer('trade')
-
-  +pager('trades')
 
 
 +my-modal-form('New trade', 'create(trade)')
