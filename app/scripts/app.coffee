@@ -4,7 +4,8 @@ angular.module('realEstateFrontEndApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'infinite-scroll'
 ])
   .config ($routeProvider) ->
     $routeProvider
