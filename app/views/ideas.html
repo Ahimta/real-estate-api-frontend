@@ -39,7 +39,7 @@
       <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.ideas_count}}</span></a></div>
     </section>
     <section class="col-sm-9">
-      <article ng-repeat="idea in ideas | filterBy:&quot;trade_id&quot;:selectedTrade | orderBy:&quot;body.length&quot;:true" class="text-center lead">
+      <article ng-repeat="idea in ideas | filterBy:&quot;trade_id&quot;:selectedTrade" class="text-center lead">
         <div ng-hide="isEditing(idea.id)">
           <p>{{idea.body}}</p>
         </div>

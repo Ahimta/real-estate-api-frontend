@@ -69,7 +69,7 @@
       <div class="list-group"><a ng-repeat="shop in shops | orderBy:'name'" ng-click="selectShop(shop.id)" ng-class="{active: isShopSelected(shop.id)}" class="list-group-item">{{shop.name}}<span class="badge pull-right">{{shop.workers_count}}</span></a></div>
     </section>
     <section infinite-scroll="nextPage()" infinite-scroll-disabled="isLastPage()" class="col-sm-9">
-      <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop | orderBy:&quot;name&quot;" class="lead col-sm-6">
+      <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop" class="lead col-sm-6">
         <div class="panel panel-primary">
           <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
             <div ng-show="isEditing(worker.id)">

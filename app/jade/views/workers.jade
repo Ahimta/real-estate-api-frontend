@@ -23,7 +23,7 @@ hr
     section.col-sm-9(infinite-scroll='nextPage()'
       infinite-scroll-disabled='isLastPage()')
       article.lead.col-sm-6(
-        ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop | orderBy:"name"')
+        ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop')
         div.panel.panel-primary
           - var _isEditing = 'isEditing(worker.id)'
 

@@ -13,7 +13,7 @@ hr
 +my-pending('!trades')
   div.row(infinite-scroll='nextPage()'
     infinite-scroll-disabled='isLastPage()')
-    article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
+    article.col-sm-4(ng-repeat='trade in trades')
       div.panel.panel-primary.lead
         header.panel-heading
           - var _isEditing = 'isEditing(trade.id)'

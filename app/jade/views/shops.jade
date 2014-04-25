@@ -21,7 +21,7 @@ hr
     section.col-sm-9(infinite-scroll='nextPage()'
       infinite-scroll-disabled='isLastPage()')
       article.lead.col-sm-6(
-        ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade | orderBy:"name"')
+        ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade')
         div.panel.panel-primary
           - var _isEditing = 'isEditing(shop.id)'
 

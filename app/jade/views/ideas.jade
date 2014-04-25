@@ -19,7 +19,7 @@ hr
 
     section.col-sm-9
       article.text-center.lead(
-        ng-repeat='idea in ideas | filterBy:"trade_id":selectedTrade | orderBy:"body.length":true')
+        ng-repeat='idea in ideas | filterBy:"trade_id":selectedTrade')
         - var _isEditing = 'isEditing(idea.id)'
 
         div(ng-hide=_isEditing)
