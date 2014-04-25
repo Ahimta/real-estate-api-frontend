@@ -4,8 +4,14 @@ include partials/shared/mypending
 include partials/shared/namefield
 include partials/shared/pager
 
+div.row
+  +my-modal-form('New trade', 'create(trade)')
+    +name-field('trade', 'true')
+
+hr
+
 +my-pending('!trades')
-  section.row(infinite-scroll='nextPage()'
+  div.row(infinite-scroll='nextPage()'
     infinite-scroll-disabled='isLastPage()')
     article.col-sm-4(ng-repeat='trade in trades | orderBy:"name"')
       div.panel.panel-primary.lead
@@ -22,7 +28,3 @@ include partials/shared/pager
           +name-field('trade', _isEditing)
 
         +panel-footer('trade')
-
-
-+my-modal-form('New trade', 'create(trade)')
-  +name-field('trade', 'true')

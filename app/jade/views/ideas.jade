@@ -5,6 +5,12 @@ include partials/shared/filterlist
 include partials/shared/pager
 include partials/ideas/ideaform
 
+div.row
+  +my-modal-form('New idea', 'create(idea)')
+    +idea-form
+
+hr
+
 +my-pending('!ideas')
   div.row(infinite-scroll='nextPage()'
     infinite-scroll-disabled='isLastPage()')
@@ -25,6 +31,3 @@ include partials/ideas/ideaform
         +form-btn-group('idea')
 
         hr
-
-      +my-modal-form('New idea', 'create(idea)')
-        +idea-form

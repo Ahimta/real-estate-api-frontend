@@ -6,6 +6,13 @@ include partials/shared/namefield
 include partials/shared/pager
 include partials/workers/workerform
 
+div.row
+  +my-modal-form('New contractor', 'create(worker)')
+    +worker-form('true')
+      +name-field('worker', 'true')
+
+hr
+
 +my-pending('!workers')
   div.row
     section.col-sm-3
@@ -35,7 +42,3 @@ include partials/workers/workerform
               p Notes: {{worker.notes}}
 
           +panel-footer('worker')
-
-      +my-modal-form('New contractor', 'create(worker)')
-        +worker-form('true')
-          +name-field('worker', 'true')
