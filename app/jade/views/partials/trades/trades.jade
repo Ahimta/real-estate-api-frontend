@@ -1,0 +1,19 @@
+include ../shared/editable/panelfooter
+include ../shared/namefield
+
+mixin trades
+  article.col-sm-4(ng-repeat='trade in trades')
+    div.panel.panel-primary.lead
+      header.panel-heading
+        - var _isEditing = 'isEditing(trade.id)'
+
+        div(ng-hide=_isEditing)
+          span {{trade.name}}
+          span.pull-right
+            span.badge {{trade.workers_count}} workers
+            span.badge {{trade.shops_count}} shops
+            span.badge {{trade.ideas_count}} ideas
+
+        +name-field('trade', _isEditing)
+
+      +panel-footer('trade')

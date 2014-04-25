@@ -1,10 +1,9 @@
-include partials/shared/editable/panelfooter
 include partials/shared/filterlist
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
-include partials/shared/pager
 include partials/workers/workerform
+include partials/workers/workers
 
 div.row
   +my-modal-form('New contractor', 'create(worker)')
@@ -22,23 +21,5 @@ hr
 
     section.col-sm-9(infinite-scroll='nextPage()'
       infinite-scroll-disabled='isLastPage()')
-      article.lead.col-sm-6(
-        ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop')
-        div.panel.panel-primary
-          - var _isEditing = 'isEditing(worker.id)'
 
-          header.panel-heading
-            span(ng-hide=_isEditing) {{worker.name}}
-            +name-field('worker', _isEditing)
-
-          div.panel-body.lead
-            +worker-form(_isEditing)
-
-            div(ng-hide=_isEditing)
-              p Phone: {{worker.phone}}
-
-              p Rating: {{worker.rating}}
-
-              p Notes: {{worker.notes}}
-
-          +panel-footer('worker')
+      +workers

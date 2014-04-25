@@ -1,10 +1,9 @@
-include partials/shared/editable/panelfooter
 include partials/shared/mymodalform
 include partials/shared/filterlist
 include partials/shared/mypending
 include partials/shared/namefield
-include partials/shared/pager
 include partials/shops/shopform
+include partials/shops/shops
 
 div.row
   +my-modal-form('New shop', 'create(shop)')
@@ -20,27 +19,5 @@ hr
 
     section.col-sm-9(infinite-scroll='nextPage()'
       infinite-scroll-disabled='isLastPage()')
-      article.lead.col-sm-6(
-        ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade')
-        div.panel.panel-primary
-          - var _isEditing = 'isEditing(shop.id)'
 
-          header.panel-heading
-            span(ng-hide=_isEditing)
-              span {{shop.name}}
-              span.pull-right
-                span.badge {{shop.workers_count}} Workers
-
-            +name-field('shop', _isEditing)
-
-          div.panel-body.lead
-            +shop-form(_isEditing)
-
-            div(ng-hide=_isEditing)
-              p Phone: {{shop.phone}}
-
-              p Rating: {{shop.rating}}
-
-              p Notes: {{shop.notes}}
-
-          +panel-footer('shop')
+      +shops

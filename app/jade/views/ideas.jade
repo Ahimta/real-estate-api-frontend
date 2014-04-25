@@ -2,8 +2,8 @@ include partials/shared/editable/formbtngroup
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/filterlist
-include partials/shared/pager
 include partials/ideas/ideaform
+include partials/ideas/ideas
 
 div.row
   +my-modal-form('New idea', 'create(idea)')
@@ -14,20 +14,9 @@ hr
 +my-pending('!ideas')
   div.row(infinite-scroll='nextPage()'
     infinite-scroll-disabled='isLastPage()')
+
     section.col-sm-3
       +filter-list('trade', 'ideas')
 
     section.col-sm-9
-      article.text-center.lead(
-        ng-repeat='idea in ideas | filterBy:"trade_id":selectedTrade')
-        - var _isEditing = 'isEditing(idea.id)'
-
-        div(ng-hide=_isEditing)
-          p {{idea.body}}
-
-        div(ng-show=_isEditing)
-          +idea-form
-
-        +form-btn-group('idea')
-
-        hr
+      +ideas
