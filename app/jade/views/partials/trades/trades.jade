@@ -10,9 +10,9 @@ mixin trades
         div(ng-hide=_isEditing)
           span {{trade.name}}
           span.pull-right
-            span.badge {{trade.workers_count}} workers
-            span.badge {{trade.shops_count}} shops
-            span.badge {{trade.ideas_count}} ideas
+            span.badge {{trade.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}
+            span.badge {{trade.shops_count}} {{ 'SHOPS.PLURAL' | translate | lowercase }}
+            span.badge {{trade.ideas_count}} {{ 'IDEAS.PLURAL' | translate | lowercase }}
 
         +name-field('trade', _isEditing)
 

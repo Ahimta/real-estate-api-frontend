@@ -12,7 +12,8 @@ mixin shops
         span(ng-hide=_isEditing)
           span {{shop.name}}
           span.pull-right
-            span.badge {{shop.workers_count}} Workers
+            span.badge
+              {{shop.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}
 
         +name-field('shop', _isEditing)
 
@@ -20,10 +21,10 @@ mixin shops
         +identifyable-form('shop', _isEditing)
 
         div(ng-hide=_isEditing)
-          p Phone: {{shop.phone}}
+          p {{ 'PHONE' | translate }}: {{shop.phone}}
 
-          p Rating: {{shop.rating}}
+          p {{ 'RATING' | translate }}: {{shop.rating}}
 
-          p Notes: {{shop.notes}}
+          p {{ 'NOTES' | translate }}: {{shop.notes}}
 
       +panel-footer('shop')

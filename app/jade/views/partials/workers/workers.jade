@@ -16,10 +16,10 @@ mixin workers
         +identifyable-form('worker', _isEditing)
 
         div(ng-hide=_isEditing)
-          p Phone: {{worker.phone}}
+          p {{ 'PHONE' | translate }}: {{worker.phone}}
 
-          p Rating: {{worker.rating}}
+          p {{ 'RATING' | translate }}: {{worker.rating}}
 
-          p Notes: {{worker.notes}}
+          p {{ 'NOTES' | translate }}: {{worker.notes}}
 
       +panel-footer('worker')

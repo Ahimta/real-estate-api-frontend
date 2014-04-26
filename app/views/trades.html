@@ -34,7 +34,7 @@
     <article ng-repeat="trade in trades" class="col-sm-4">
       <div class="panel panel-primary lead">
         <header class="panel-heading">
-          <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span class="pull-right"><span class="badge">{{trade.workers_count}} workers</span><span class="badge">{{trade.shops_count}} shops</span><span class="badge">{{trade.ideas_count}} ideas</span></span></div>
+          <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span class="pull-right"><span class="badge">{{trade.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.shops_count}} {{ 'SHOPS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.ideas_count}} {{ 'IDEAS.PLURAL' | translate | lowercase }}</span></span></div>
           <div ng-show="isEditing(trade.id)">
             <div ng-class="{'has-error': errors.name}" class="form-group">
               <input type="text" autofocus="autofocus" required="required" placeholder="{{ 'NAME' | translate }}" ng-model="trade.name" class="form-control"/>
