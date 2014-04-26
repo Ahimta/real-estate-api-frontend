@@ -5,7 +5,9 @@ angular.module('realEstateFrontEndApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'infinite-scroll'
+
+  'infinite-scroll',
+  'pascalprecht.translate'
 ])
   .config ($routeProvider) ->
     $routeProvider

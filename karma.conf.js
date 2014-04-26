@@ -22,6 +22,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
+      'app/bower_components/angular-translate/angular-translate.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
 
