@@ -1,15 +1,15 @@
 mixin panel-footer(record)
   footer.panel-footer
     - var _isEditing = 'isEditing('+record+'.id)'
-    
+
     div(ng-hide=_isEditing)
       button.btn.btn-primary(type='button'
-        ng-click='edit('+record+'.id)') Edit
+        ng-click='edit('+record+'.id)') {{ 'EDIT' | translate }}
       button.btn.btn-danger(type='button'
-        ng-click='destroy('+record+'.id)') Delete
+        ng-click='destroy('+record+'.id)') {{ 'DELETE' | translate }}
 
     div(ng-show=_isEditing)
       button.btn.btn-success(type='button'
-        ng-click='reset('+record+'.id)') Reset
+        ng-click='reset('+record+'.id)') {{ 'RESET' | translate }}
       button.btn.btn-primary(type='button'
-        ng-click='update('+record+')') Save
+        ng-click='update('+record+')') {{ 'SAVE' | translate }}

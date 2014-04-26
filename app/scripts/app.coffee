@@ -25,3 +25,12 @@ angular.module('realEstateFrontEndApp', [
         controller: 'WorkersCtrl'
       .otherwise
         redirectTo: '/trades'
+  .config ($translateProvider) ->
+    $translateProvider
+      .translations 'en',
+        DELETE: 'Delete'
+        RESET: 'Reset'
+        SAVE: 'Save'
+        EDIT: 'Edit'
+
+      .use 'en'

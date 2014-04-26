@@ -1,14 +1,14 @@
 mixin form-btn-group(resource)
   - var _isEditing = 'isEditing(' + resource + '.id)'
-  
+
   div.btn-group(ng-hide=_isEditing)
     button.btn.btn-primary(type='button'
-      ng-click='edit('+resource+'.id)') Edit
+      ng-click='edit('+resource+'.id)') {{ 'EDIT' | translate }}
     button.btn.btn-danger(type='button'
-      ng-click='destroy('+resource+'.id)') Delete
+      ng-click='destroy('+resource+'.id)') {{ 'DELETE' | translate }}
 
   div.btn-group(ng-show=_isEditing)
     button.btn.btn-success(type='button'
-      ng-click='reset('+resource+'.id)') Reset
+      ng-click='reset('+resource+'.id)') {{ 'RESET' | translate }}
     button.btn.btn-primary(type='button'
-      ng-click='update('+resource+')') Save
+      ng-click='update('+resource+')') {{ 'SAVE' | translate }}

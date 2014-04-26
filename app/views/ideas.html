@@ -58,12 +58,12 @@
           </div>
         </div>
         <div ng-hide="isEditing(idea.id)" class="btn-group">
-          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary">Edit</button>
-          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger">Delete</button>
+          <button type="button" ng-click="edit(idea.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
+          <button type="button" ng-click="destroy(idea.id)" class="btn btn-danger">{{ 'DELETE' | translate }}</button>
         </div>
         <div ng-show="isEditing(idea.id)" class="btn-group">
-          <button type="button" ng-click="reset(idea.id)" class="btn btn-success">Reset</button>
-          <button type="button" ng-click="update(idea)" class="btn btn-primary">Save</button>
+          <button type="button" ng-click="reset(idea.id)" class="btn btn-success">{{ 'RESET' | translate }}</button>
+          <button type="button" ng-click="update(idea)" class="btn btn-primary">{{ 'SAVE' | translate }}</button>
         </div>
         <hr/>
       </article>

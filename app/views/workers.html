@@ -122,12 +122,12 @@
           </div>
           <footer class="panel-footer">
             <div ng-hide="isEditing(worker.id)">
-              <button type="button" ng-click="edit(worker.id)" class="btn btn-primary">Edit</button>
-              <button type="button" ng-click="destroy(worker.id)" class="btn btn-danger">Delete</button>
+              <button type="button" ng-click="edit(worker.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
+              <button type="button" ng-click="destroy(worker.id)" class="btn btn-danger">{{ 'DELETE' | translate }}</button>
             </div>
             <div ng-show="isEditing(worker.id)">
-              <button type="button" ng-click="reset(worker.id)" class="btn btn-success">Reset</button>
-              <button type="button" ng-click="update(worker)" class="btn btn-primary">Save</button>
+              <button type="button" ng-click="reset(worker.id)" class="btn btn-success">{{ 'RESET' | translate }}</button>
+              <button type="button" ng-click="update(worker)" class="btn btn-primary">{{ 'SAVE' | translate }}</button>
             </div>
           </footer>
         </div>
