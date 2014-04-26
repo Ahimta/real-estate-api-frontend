@@ -51,4 +51,10 @@ angular.module('realEstateFrontEndApp', [
         SAVE: 'Save'
         EDIT: 'Edit'
 
+        NAME: 'Name'
+        PHONE: 'Phone'
+        RATING: 'Rating'
+        NOTES: 'Notes'
+        CONTENT: 'Content'
+
       .use 'en'
