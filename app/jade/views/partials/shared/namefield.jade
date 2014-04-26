@@ -4,4 +4,4 @@ mixin name-field(name, isShown)
   div(ng-show=isShown)
     +field-with-errors('name')
       input.form-control(type='text' autofocus required
-        placeholder='Name' ng-model=(name+'.name'))
+        placeholder="{{ 'NAME' | translate }}" ng-model=(name+'.name'))

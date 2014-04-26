@@ -1,6 +1,6 @@
+include ../shared/identifyableform
 include ../shared/editable/panelfooter
 include ../shared/namefield
-include ../shops/shopform
 
 mixin shops
   article.lead.col-sm-6(
@@ -17,7 +17,7 @@ mixin shops
         +name-field('shop', _isEditing)
 
       div.panel-body.lead
-        +shop-form(_isEditing)
+        +identifyable-form('shop', _isEditing)
 
         div(ng-hide=_isEditing)
           p Phone: {{shop.phone}}

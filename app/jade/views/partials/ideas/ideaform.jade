@@ -6,5 +6,5 @@ mixin idea-form
       ng-options='t.id as t.name for t in trades')
 
   +field-with-errors('body')
-    textarea.form-control(placeholder='Content' required
+    textarea.form-control(placeholder="{{ 'CONTENT' | translate }}" required
       ng-model='idea.body')

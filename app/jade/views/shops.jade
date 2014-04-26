@@ -1,14 +1,14 @@
 include partials/shared/mymodalform
+include partials/shared/identifyableform
 include partials/shared/filterlist
 include partials/shared/mypending
 include partials/shared/namefield
 include partials/shared/pager
-include partials/shops/shopform
 include partials/shops/shops
 
 div.row
   +my-modal-form("{{ 'SHOPS.NEW' | translate }}", 'create(shop)')
-    +shop-form('true')
+    +identifyable-form('shop', 'true')
       +name-field('shop', 'true')
 
 hr

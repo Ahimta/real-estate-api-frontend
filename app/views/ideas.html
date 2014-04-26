@@ -17,7 +17,7 @@
               </div>
             </div>
             <div ng-class="{'has-error': errors.body}" class="form-group">
-              <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
+              <textarea placeholder="{{ 'CONTENT' | translate }}" required="required" ng-model="idea.body" class="form-control"></textarea>
               <div ng-if="errors.body">
                 <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
               </div>
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div ng-class="{'has-error': errors.body}" class="form-group">
-            <textarea placeholder="Content" required="required" ng-model="idea.body" class="form-control"></textarea>
+            <textarea placeholder="{{ 'CONTENT' | translate }}" required="required" ng-model="idea.body" class="form-control"></textarea>
             <div ng-if="errors.body">
               <p ng-repeat="error in errors.body" class="help-block">{{error}}</p>
             </div>

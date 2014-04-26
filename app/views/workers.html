@@ -12,39 +12,39 @@
           <form role="form" ng-submit="create(worker)">
             <div ng-show="true">
               <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-                <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                <select required="required" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
                 <div ng-if="errors.trade_id">
                   <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.shop_id}" class="form-group">
-                <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
+                <select required="required" placeholer="{{ 'SHOPS.SINGLE' | translate }}" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
                 <div ng-if="errors.shop_id">
                   <p ng-repeat="error in errors.shop_id" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-show="true">
                 <div ng-class="{'has-error': errors.name}" class="form-group">
-                  <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
+                  <input type="text" autofocus="autofocus" required="required" placeholder="{{ 'NAME' | translate }}" ng-model="worker.name" class="form-control"/>
                   <div ng-if="errors.name">
                     <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
                   </div>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.phone}" class="form-group">
-                <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
+                <input type="tel" placeholder="{{ 'PHONE' | translate }}" ng-model="worker.phone" class="form-control"/>
                 <div ng-if="errors.phone">
                   <p ng-repeat="error in errors.phone" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.rating}" class="form-group">
-                <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
+                <input type="number" placeholder="{{ 'RATING' | translate }}" min="0" max="5" ng-model="worker.rating" class="form-control"/>
                 <div ng-if="errors.rating">
                   <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.notes}" class="form-group">
-                <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
+                <textarea placeholder="{{ 'NOTES' | translate }}" ng-model="worker.notes" class="form-control"></textarea>
                 <div ng-if="errors.notes">
                   <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
                 </div>
@@ -74,7 +74,7 @@
           <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
             <div ng-show="isEditing(worker.id)">
               <div ng-class="{'has-error': errors.name}" class="form-group">
-                <input type="text" autofocus="autofocus" required="required" placeholder="Name" ng-model="worker.name" class="form-control"/>
+                <input type="text" autofocus="autofocus" required="required" placeholder="{{ 'NAME' | translate }}" ng-model="worker.name" class="form-control"/>
                 <div ng-if="errors.name">
                   <p ng-repeat="error in errors.name" class="help-block">{{error}}</p>
                 </div>
@@ -84,31 +84,31 @@
           <div class="panel-body lead">
             <div ng-show="isEditing(worker.id)">
               <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-                <select required="required" placeholer="Trade" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                <select required="required" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-model="worker.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
                 <div ng-if="errors.trade_id">
                   <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.shop_id}" class="form-group">
-                <select required="required" placeholer="Shop" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
+                <select required="required" placeholer="{{ 'SHOPS.SINGLE' | translate }}" ng-model="worker.shop_id" ng-options="s.id as s.name for s in shops" class="form-control"></select>
                 <div ng-if="errors.shop_id">
                   <p ng-repeat="error in errors.shop_id" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.phone}" class="form-group">
-                <input type="tel" placeholder="Phone" ng-model="worker.phone" class="form-control"/>
+                <input type="tel" placeholder="{{ 'PHONE' | translate }}" ng-model="worker.phone" class="form-control"/>
                 <div ng-if="errors.phone">
                   <p ng-repeat="error in errors.phone" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.rating}" class="form-group">
-                <input type="number" placeholder="Rating" min="0" max="5" ng-model="worker.rating" class="form-control"/>
+                <input type="number" placeholder="{{ 'RATING' | translate }}" min="0" max="5" ng-model="worker.rating" class="form-control"/>
                 <div ng-if="errors.rating">
                   <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.notes}" class="form-group">
-                <textarea placeholder="Notes" min="0" ng-model="worker.notes" class="form-control"></textarea>
+                <textarea placeholder="{{ 'NOTES' | translate }}" ng-model="worker.notes" class="form-control"></textarea>
                 <div ng-if="errors.notes">
                   <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
                 </div>

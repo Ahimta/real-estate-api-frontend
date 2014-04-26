@@ -1,5 +1,5 @@
+include ../shared/identifyableform
 include ../shared/editable/panelfooter
-include ../workers/workerform
 include ../shared/namefield
 
 mixin workers
@@ -13,7 +13,7 @@ mixin workers
         +name-field('worker', _isEditing)
 
       div.panel-body.lead
-        +worker-form(_isEditing)
+        +identifyable-form('worker', _isEditing)
 
         div(ng-hide=_isEditing)
           p Phone: {{worker.phone}}

@@ -1,14 +1,14 @@
 include partials/shared/filterlist
+include partials/shared/identifyableform
 include partials/shared/mymodalform
 include partials/shared/mypending
 include partials/shared/namefield
 include partials/shared/pager
-include partials/workers/workerform
 include partials/workers/workers
 
 div.row
   +my-modal-form("{{ 'WORKERS.NEW' | translate }}", 'create(worker)')
-    +worker-form('true')
+    +identifyable-form('worker', 'true')
       +name-field('worker', 'true')
 
 hr
