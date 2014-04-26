@@ -1,12 +1,12 @@
 
 <div class="row">
-  <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">New shop</button>
+  <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-lg btn-block">{{ 'SHOPS.NEW' | translate }}</button>
   <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <header class="modal-header">
           <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-          <h4 id="myModalLabel" class="modal-title">New shop</h4>
+          <h4 id="myModalLabel" class="modal-title">{{ 'SHOPS.NEW' | translate }}</h4>
         </header>
         <div class="modal-body">
           <form role="form" ng-submit="create(shop)">
@@ -44,7 +44,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">New shop</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">{{ 'SHOPS.NEW' | translate }}</button>
           </form>
         </div>
       </div>

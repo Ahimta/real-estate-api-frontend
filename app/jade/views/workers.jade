@@ -7,7 +7,7 @@ include partials/workers/workerform
 include partials/workers/workers
 
 div.row
-  +my-modal-form('New contractor', 'create(worker)')
+  +my-modal-form("{{ 'WORKERS.NEW' | translate }}", 'create(worker)')
     +worker-form('true')
       +name-field('worker', 'true')
 

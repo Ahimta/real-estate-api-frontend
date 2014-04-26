@@ -7,7 +7,7 @@ include partials/shops/shopform
 include partials/shops/shops
 
 div.row
-  +my-modal-form('New shop', 'create(shop)')
+  +my-modal-form("{{ 'SHOPS.NEW' | translate }}", 'create(shop)')
     +shop-form('true')
       +name-field('shop', 'true')
 

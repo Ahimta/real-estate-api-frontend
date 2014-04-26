@@ -7,7 +7,7 @@ include partials/ideas/ideaform
 include partials/ideas/ideas
 
 div.row
-  +my-modal-form('New idea', 'create(idea)')
+  +my-modal-form("{{ 'IDEAS.NEW' | translate }}", 'create(idea)')
     +idea-form
 
 hr

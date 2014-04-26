@@ -5,7 +5,7 @@ include partials/shared/pager
 include partials/trades/trades
 
 div.row
-  +my-modal-form('New trade', 'create(trade)')
+  +my-modal-form("{{ 'TRADES.NEW' | translate }}", 'create(trade)')
     +name-field('trade', 'true')
 
 hr

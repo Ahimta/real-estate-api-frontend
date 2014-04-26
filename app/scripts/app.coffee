@@ -29,6 +29,23 @@ angular.module('realEstateFrontEndApp', [
   .config ($translateProvider) ->
     $translateProvider
       .translations 'en',
+        TRADES:
+          PLURAL: 'Trades'
+          SINGLE: 'Trade'
+          NEW: 'New trade'
+        SHOPS:
+          PLURAL: 'Shops'
+          SINGLE: 'Shop'
+          NEW: 'New shop'
+        IDEAS:
+          PLURAL: 'Ideas'
+          SINGLE: 'Idea'
+          NEW: 'New idea'
+        WORKERS:
+          PLURAL: 'Contractors'
+          SINGLE: 'Contractor'
+          NEW: 'New contractor'
+
         DELETE: 'Delete'
         RESET: 'Reset'
         SAVE: 'Save'
