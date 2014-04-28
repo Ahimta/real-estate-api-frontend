@@ -57,4 +57,33 @@ angular.module('realEstateFrontEndApp', [
         NOTES: 'Notes'
         CONTENT: 'Content'
 
+      .translations 'ar',
+        TRADES:
+          PLURAL: 'فئات'
+          SINGLE: 'فئة'
+          NEW: 'إضافة فئة'
+        SHOPS:
+          PLURAL: 'محلات'
+          SINGLE: 'محل'
+          NEW: 'إضافة محل'
+        IDEAS:
+          PLURAL: 'أفكار'
+          SINGLE: 'فكرة'
+          NEW: 'إضافة فكرة'
+        WORKERS:
+          PLURAL: 'عمال'
+          SINGLE: 'عامل'
+          NEW: 'إضافة عامل'
+
+        DELETE: 'حذف'
+        RESET: 'إلغاء'
+        SAVE: 'حفظ'
+        EDIT: 'تعديل'
+
+        NAME: 'الاسم'
+        PHONE: 'الهاتف'
+        RATING: 'التقييم'
+        NOTES: 'ملاحظات'
+        CONTENT: 'المحتوى'
+
       .use 'en'
