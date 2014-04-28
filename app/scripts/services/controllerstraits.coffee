@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .service 'ControllersTraits', ($log) ->
+  .service 'ControllersTraits', ($log, $locale, $translate) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
     makeEditible = (scope) ->
@@ -101,8 +101,14 @@ angular.module('realEstateFrontEndApp')
     Selectable: (scope, names...) ->
       makeSelectable(scope, name) for name in names
 
+    Translatable: (scope) ->
+      $translate.use switch $locale.id[0..1]
+        when 'ar' then 'ar'
+        else 'en'
+
 
     Crudable: (scope, mainModel, mainResource, otherResources, records, routeParams) ->
+      @Translatable scope
       scope.page = routeParams.page
       makePaginatable(scope, mainModel, mainResource, otherResources)
 

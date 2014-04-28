@@ -85,5 +85,3 @@ angular.module('realEstateFrontEndApp', [
         RATING: 'التقييم'
         NOTES: 'ملاحظات'
         CONTENT: 'المحتوى'
-
-      .use 'en'
