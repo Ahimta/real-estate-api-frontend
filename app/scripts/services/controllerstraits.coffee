@@ -44,6 +44,10 @@ angular.module('realEstateFrontEndApp')
         _.find scope.trades, (trade) ->
           trade.id == id
 
+      scope.getShop = (id) ->
+        _.find scope.shops, (shop) ->
+          shop.id == id
+
 
     Invalidatable = (scope, model, mainResource, otherResources, records) ->
       () ->
