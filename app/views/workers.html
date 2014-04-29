@@ -71,7 +71,7 @@
     <section class="col-sm-9">
       <article ng-repeat="worker in workers | filterBy:&quot;trade_id&quot;:selectedTrade | filterBy:&quot;shop_id&quot;:selectedShop" class="lead col-sm-6">
         <div class="panel panel-primary">
-          <header class="panel-heading"><span ng-hide="isEditing(worker.id)">{{worker.name}}</span>
+          <header class="panel-heading"><span ng-hide="isEditing(worker.id)"><span>{{worker.name }}</span></span>
             <div ng-show="isEditing(worker.id)">
               <div ng-class="{'has-error': errors.name}" class="form-group">
                 <input type="text" autofocus="autofocus" required="required" placeholder="{{ 'NAME' | translate }}" ng-model="worker.name" class="form-control"/>
@@ -115,9 +115,9 @@
               </div>
             </div>
             <div ng-hide="isEditing(worker.id)">
-              <p>{{ 'PHONE' | translate }}: {{worker.phone}}</p>
-              <p>{{ 'RATING' | translate }}: {{worker.rating}}</p>
-              <p>{{ 'NOTES' | translate }}: {{worker.notes}}</p>
+              <p>{{ 'PHONE' | translate }}: {{ worker.phone }}</p>
+              <p>{{ 'RATING' | translate }}: {{ worker.rating }}</p>
+              <p>{{ 'NOTES' | translate }}: {{ worker.notes }}</p>
             </div>
           </div>
           <footer class="panel-footer">

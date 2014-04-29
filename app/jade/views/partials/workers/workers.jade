@@ -1,25 +1,10 @@
 include ../shared/identifyableform
 include ../shared/editable/panelfooter
 include ../shared/namefield
+include ../shared/identifyable/identifyable
 
 mixin workers
   article.lead.col-sm-6(
     ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop')
-    div.panel.panel-primary
-      - var _isEditing = 'isEditing(worker.id)'
 
-      header.panel-heading
-        span(ng-hide=_isEditing) {{worker.name}}
-        +name-field('worker', _isEditing)
-
-      div.panel-body.lead
-        +identifyable-form('worker', _isEditing)
-
-        div(ng-hide=_isEditing)
-          p {{ 'PHONE' | translate }}: {{worker.phone}}
-
-          p {{ 'RATING' | translate }}: {{worker.rating}}
-
-          p {{ 'NOTES' | translate }}: {{worker.notes}}
-
-      +panel-footer('worker')
+    +identifyable('worker')

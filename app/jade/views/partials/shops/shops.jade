@@ -1,30 +1,10 @@
 include ../shared/identifyableform
 include ../shared/editable/panelfooter
 include ../shared/namefield
+include ../shared/identifyable/identifyable
 
 mixin shops
   article.lead.col-sm-6(
     ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade')
-    div.panel.panel-primary
-      - var _isEditing = 'isEditing(shop.id)'
 
-      header.panel-heading
-        span(ng-hide=_isEditing)
-          span {{shop.name}}
-          span.pull-right
-            span.badge
-              {{shop.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}
-
-        +name-field('shop', _isEditing)
-
-      div.panel-body.lead
-        +identifyable-form('shop', _isEditing)
-
-        div(ng-hide=_isEditing)
-          p {{ 'PHONE' | translate }}: {{shop.phone}}
-
-          p {{ 'RATING' | translate }}: {{shop.rating}}
-
-          p {{ 'NOTES' | translate }}: {{shop.notes}}
-
-      +panel-footer('shop')
+    +identifyable('shop')

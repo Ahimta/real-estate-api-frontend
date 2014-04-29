@@ -1,0 +1,32 @@
+include ../identifyableform
+include ../editable/panelfooter
+include ../namefield
+
+mixin identifyable(name)
+  div.panel.panel-primary
+
+    - var _isEditing = 'isEditing(' + name + '.id)'
+
+    header.panel-heading
+      span(ng-hide=_isEditing)
+        span= '{{' + name + '.name }}'
+
+        if name == 'shop'
+          span.pull-right
+            span.badge.
+              {{shop.workers_count}}
+               {{ 'WORKERS.PLURAL' | translate | lowercase }}
+
+      +name-field(name, _isEditing)
+
+    div.panel-body.lead
+      +identifyable-form(name, _isEditing)
+
+      div(ng-hide=_isEditing)
+        p= "{{ 'PHONE' | translate }}: {{ " + name + '.phone }}'
+
+        p= "{{ 'RATING' | translate }}: {{ " + name + '.rating }}'
+
+        p= "{{ 'NOTES' | translate }}: {{ " + name + '.notes }}'
+
+    +panel-footer(name)
