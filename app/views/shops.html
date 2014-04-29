@@ -105,7 +105,7 @@
             </div>
             <div ng-hide="isEditing(shop.id)">
               <p>{{ 'PHONE' | translate }}: {{ shop.phone }}</p>
-              <p>{{ 'RATING' | translate }}: {{ shop.rating }}</p>
+              <rating value="shop.rating" readonly="true" max="5"></rating>
               <p>{{ 'NOTES' | translate }}: {{ shop.notes }}</p>
             </div>
           </div>
