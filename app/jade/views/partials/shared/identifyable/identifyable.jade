@@ -23,10 +23,14 @@ mixin identifyable(name)
       +identifyable-form(name, _isEditing)
 
       div(ng-hide=_isEditing)
-        p= "{{ 'PHONE' | translate }}: {{ " + name + '.phone }}'
+        p
+          span.glyphicon.glyphicon-earphone
+          span= ' {{ ' + name + '.phone }}'
 
         rating(value=(name + '.rating') readonly='true' max='5')
 
-        p= "{{ 'NOTES' | translate }}: {{ " + name + '.notes }}'
+        hr
+
+        p= '{{ ' + name + '.notes }}'
 
     +panel-footer(name)

@@ -104,9 +104,10 @@
               </div>
             </div>
             <div ng-hide="isEditing(shop.id)">
-              <p>{{ 'PHONE' | translate }}: {{ shop.phone }}</p>
+              <p><span class="glyphicon glyphicon-earphone"></span><span> {{ shop.phone }}</span></p>
               <rating value="shop.rating" readonly="true" max="5"></rating>
-              <p>{{ 'NOTES' | translate }}: {{ shop.notes }}</p>
+              <hr/>
+              <p>{{ shop.notes }}</p>
             </div>
           </div>
           <footer class="panel-footer">

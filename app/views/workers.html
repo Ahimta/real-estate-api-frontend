@@ -115,9 +115,10 @@
               </div>
             </div>
             <div ng-hide="isEditing(worker.id)">
-              <p>{{ 'PHONE' | translate }}: {{ worker.phone }}</p>
+              <p><span class="glyphicon glyphicon-earphone"></span><span> {{ worker.phone }}</span></p>
               <rating value="worker.rating" readonly="true" max="5"></rating>
-              <p>{{ 'NOTES' | translate }}: {{ worker.notes }}</p>
+              <hr/>
+              <p>{{ worker.notes }}</p>
             </div>
           </div>
           <footer class="panel-footer">
