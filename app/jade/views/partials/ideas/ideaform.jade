@@ -2,7 +2,7 @@ include ../shared/fieldwitherrors
 
 mixin idea-form
   +field-with-errors('trade_id')
-    select.form-control(required autofocus ng-model='idea.trade_id',
+    select.form-control(autofocus ng-model='idea.trade_id'
       ng-options='t.id as t.name for t in trades')
 
   +field-with-errors('body')

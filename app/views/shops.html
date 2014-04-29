@@ -12,7 +12,7 @@
           <form role="form" ng-submit="create(shop)">
             <div ng-show="true">
               <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-                <select required="required" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                <select ng-model="shop.trade_id" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-options="t.id as t.name for t in trades" class="form-control"></select>
                 <div ng-if="errors.trade_id">
                   <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
                 </div>
@@ -32,13 +32,13 @@
                 </div>
               </div>
               <div ng-class="{'has-error': errors.rating}" class="form-group">
-                <input type="number" placeholder="{{ 'RATING' | translate }}" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+                <rating value="shop.rating" isreadonly="false" max="5"></rating>
                 <div ng-if="errors.rating">
                   <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.notes}" class="form-group">
-                <textarea placeholder="{{ 'NOTES' | translate }}" ng-model="shop.notes" class="form-control"></textarea>
+                <textarea ng-model="shop.notes" placeholder="{{ 'NOTES' | translate }}" class="form-control"></textarea>
                 <div ng-if="errors.notes">
                   <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
                 </div>
@@ -79,7 +79,7 @@
           <div class="panel-body lead">
             <div ng-show="isEditing(shop.id)">
               <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-                <select required="required" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-model="shop.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+                <select ng-model="shop.trade_id" placeholer="{{ 'TRADES.SINGLE' | translate }}" ng-options="t.id as t.name for t in trades" class="form-control"></select>
                 <div ng-if="errors.trade_id">
                   <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
                 </div>
@@ -91,13 +91,13 @@
                 </div>
               </div>
               <div ng-class="{'has-error': errors.rating}" class="form-group">
-                <input type="number" placeholder="{{ 'RATING' | translate }}" min="0" max="5" ng-model="shop.rating" class="form-control"/>
+                <rating value="shop.rating" isreadonly="false" max="5"></rating>
                 <div ng-if="errors.rating">
                   <p ng-repeat="error in errors.rating" class="help-block">{{error}}</p>
                 </div>
               </div>
               <div ng-class="{'has-error': errors.notes}" class="form-group">
-                <textarea placeholder="{{ 'NOTES' | translate }}" ng-model="shop.notes" class="form-control"></textarea>
+                <textarea ng-model="shop.notes" placeholder="{{ 'NOTES' | translate }}" class="form-control"></textarea>
                 <div ng-if="errors.notes">
                   <p ng-repeat="error in errors.notes" class="help-block">{{error}}</p>
                 </div>

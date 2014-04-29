@@ -11,7 +11,7 @@
         <div class="modal-body">
           <form role="form" ng-submit="create(idea)">
             <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-              <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+              <select autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
               <div ng-if="errors.trade_id">
                 <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
               </div>
@@ -45,7 +45,7 @@
         </div>
         <div ng-show="isEditing(idea.id)">
           <div ng-class="{'has-error': errors.trade_id}" class="form-group">
-            <select required="required" autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
+            <select autofocus="autofocus" ng-model="idea.trade_id" ng-options="t.id as t.name for t in trades" class="form-control"></select>
             <div ng-if="errors.trade_id">
               <p ng-repeat="error in errors.trade_id" class="help-block">{{error}}</p>
             </div>

@@ -3,16 +3,14 @@ include fieldwitherrors
 mixin identifyable-form(name, isShown)
   div(ng-show=isShown)
     +field-with-errors('trade_id')
-      select.form-control(required
+      select.form-control(ng-model=(name + '.trade_id')
         placeholer="{{ 'TRADES.SINGLE' | translate }}"
-        ng-model=(name + '.trade_id')
         ng-options='t.id as t.name for t in trades')
 
     if name == 'worker'
       +field-with-errors('shop_id')
-        select.form-control(required
+        select.form-control(ng-model='worker.shop_id'
           placeholer="{{ 'SHOPS.SINGLE' | translate }}"
-          ng-model='worker.shop_id'
           ng-options='s.id as s.name for s in shops')
 
     if block
@@ -24,11 +22,8 @@ mixin identifyable-form(name, isShown)
         ng-model=(name + '.phone'))
 
     +field-with-errors('rating')
-      input.form-control(type='number'
-        placeholder="{{ 'RATING' | translate }}"
-        min='0' max='5'
-        ng-model=(name + '.rating'))
+      rating(value=(name + '.rating') isreadonly='false' max='5')
 
     +field-with-errors('notes')
-      textarea.form-control(placeholder="{{ 'NOTES' | translate }}"
-        ng-model=(name + '.notes'))
+      textarea.form-control(ng-model=(name + '.notes')
+        placeholder="{{ 'NOTES' | translate }}")
