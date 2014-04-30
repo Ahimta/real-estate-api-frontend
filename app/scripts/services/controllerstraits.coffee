@@ -91,8 +91,10 @@ angular.module('realEstateFrontEndApp')
       scope.nextPage = ->
         unless scope.pagination is undefined
           _isGettingNextPage = true
+          nextPage = scope.pagination.page + 1
+          scope.pagination.page += 1
 
-          model.all(page: scope.pagination.page + 1).then (response) ->
+          model.all(page: nextPage).then (response) ->
             scope.pagination = response.data.meta.pagination
             scope[mainResource].push response.data[mainResource]...
             _isGettingNextPage = false
