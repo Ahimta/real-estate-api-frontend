@@ -85,17 +85,17 @@ angular.module('realEstateFrontEndApp')
       _isGettingNextPage = false
 
       scope.isLastPage = ->
-        unless scope.pagination is undefined
+        scope.pagination is undefined or
           scope.pagination.page >= scope.pagination.pages
 
       scope.nextPage = ->
-        unless scope.pagination is undefined
+        if _isGettingNextPage then return
+        else
           _isGettingNextPage = true
-          nextPage = scope.pagination.page + 1
-          scope.pagination.page += 1
 
-          model.all(page: nextPage).then (response) ->
+          model.all(page: scope.pagination.page + 1).then (response) ->
             scope.pagination = response.data.meta.pagination
+
             scope[mainResource].push response.data[mainResource]...
             _isGettingNextPage = false
 
