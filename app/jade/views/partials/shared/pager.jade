@@ -4,4 +4,4 @@ mixin pager
   div(infinite-scroll='nextPage()'
     infinite-scroll-disabled='isLastPage()')
     p.text-center ...
-    +my-pending('isGettingNextPage()')
+    +my-pending('!isLastPage()')
