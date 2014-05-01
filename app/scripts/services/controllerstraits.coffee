@@ -74,14 +74,8 @@ angular.module('realEstateFrontEndApp')
       scope.isGettingNextPage = ->
         _isGettingNextPage
 
-    Translatable: (scope) ->
-      $translate.use switch $locale.id[0..1]
-        when 'ar' then 'ar'
-        else 'en'
-
 
     Crudable: (scope, mainModel, mainResource, otherResources, records, routeParams) ->
-      @Translatable scope
       scope.page = routeParams.page
       makePaginatable(scope, mainModel, mainResource, otherResources)
 

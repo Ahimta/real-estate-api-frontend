@@ -1,9 +1,10 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'NavbarCtrl', ($scope, $location, $translate, ControllersTraits) ->
+  .controller 'NavbarCtrl', ($scope, $location, $translate,
+    ControllersTraits, TranslatableTrait) ->
 
-    ControllersTraits.Translatable $scope
+    TranslatableTrait $scope
 
     $scope.isActive = (path) ->
       "##{$location.path()}" == path

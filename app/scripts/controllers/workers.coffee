@@ -2,7 +2,10 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'WorkersCtrl', ($scope, $routeParams, SelectableTrait,
-    ControllersTraits, Trade, Shop, Worker, EditableTrait) ->
+    ControllersTraits, Trade, Shop, Worker, EditableTrait,
+    TranslatableTrait) ->
+
+    TranslatableTrait $scope
 
     EditableTrait $scope
 

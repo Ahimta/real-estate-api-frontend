@@ -2,7 +2,9 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'TradesCtrl', ($scope, $routeParams, Trade,
-    ControllersTraits, EditableTrait) ->
+    ControllersTraits, EditableTrait, TranslatableTrait) ->
+
+    TranslatableTrait $scope
 
     EditableTrait $scope
 
