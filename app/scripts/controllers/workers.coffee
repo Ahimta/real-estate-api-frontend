@@ -1,7 +1,10 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'WorkersCtrl', ($scope, $routeParams, ControllersTraits, Trade, Shop, Worker) ->
+  .controller 'WorkersCtrl', ($scope, $routeParams,
+    ControllersTraits, Trade, Shop, Worker, EditableTrait) ->
+
+    EditableTrait $scope
 
     ControllersTraits.Selectable $scope, 'Trade', 'Shop'
 

@@ -4,21 +4,7 @@ angular.module('realEstateFrontEndApp')
   .service 'ControllersTraits', ($log, $locale, $translate) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
 
-    makeEditible = (scope) ->
-      _isEditing = {}
-
-      scope.edit = (id) ->
-        _isEditing[id] = true
-
-      scope.isEditing = (id) ->
-        _isEditing[id] is true
-
-      scope.reset = (id) ->
-        _isEditing[id] = false
-
-
     makeCrudable = (scope, model, invalidator) ->
-      makeEditible scope
       f = (response) ->
         invalidator()
         response
