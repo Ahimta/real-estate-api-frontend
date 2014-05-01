@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'WorkersCtrl', ($scope, $routeParams,
+  .controller 'WorkersCtrl', ($scope, $routeParams, SelectableTrait,
     ControllersTraits, Trade, Shop, Worker, EditableTrait) ->
 
     EditableTrait $scope
 
-    ControllersTraits.Selectable $scope, 'Trade', 'Shop'
+    SelectableTrait $scope, 'Trade', 'Shop'
 
     invalidator = ControllersTraits.Crudable($scope, Worker, 'workers',
     	['trades', 'shops'], ['worker'], $routeParams)

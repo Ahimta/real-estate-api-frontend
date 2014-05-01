@@ -2,11 +2,11 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'ShopsCtrl', ($scope, $routeParams, ControllersTraits,
-    Trade, Shop, EditableTrait) ->
+    Trade, Shop, EditableTrait, SelectableTrait) ->
 
     EditableTrait $scope
 
-    ControllersTraits.Selectable $scope, 'Trade'
+    SelectableTrait $scope, 'Trade'
 
     invalidator = ControllersTraits.Crudable($scope, Shop, 'shops',
       ['trades'], ['shop'], $routeParams)

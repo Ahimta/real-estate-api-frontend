@@ -53,20 +53,6 @@ angular.module('realEstateFrontEndApp')
             scope[resource] = data.meta.parents[resource]
 
 
-    makeSelectable = (scope, name) ->
-      isSelectedName = "is#{name}Selected"
-      selectedName   = "selected#{name}"
-      selectName     = "select#{name}"
-      selectedId     = undefined
-
-      scope[selectName] = (id) ->
-        selectedId = if selectedId == id then undefined else id
-        scope[selectedName] = selectedId
-
-      scope[isSelectedName] = (id) ->
-        id == selectedId
-
-
     makePaginatable = (scope, model, mainResource, otherResources) ->
       _isGettingNextPage = false
 
@@ -87,11 +73,6 @@ angular.module('realEstateFrontEndApp')
 
       scope.isGettingNextPage = ->
         _isGettingNextPage
-
-
-
-    Selectable: (scope, names...) ->
-      makeSelectable(scope, name) for name in names
 
     Translatable: (scope) ->
       $translate.use switch $locale.id[0..1]
