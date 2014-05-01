@@ -2,7 +2,10 @@
 
 angular.module('realEstateFrontEndApp')
   .controller 'ShopsCtrl', ($scope, $routeParams, ControllersTraits,
-    Trade, Shop, EditableTrait, SelectableTrait, TranslatableTrait) ->
+    Trade, Shop, EditableTrait, SelectableTrait, TranslatableTrait,
+    PaginatableTrait) ->
+
+    PaginatableTrait $scope, Shop, 'shops', ['trades']
 
     TranslatableTrait $scope
 
