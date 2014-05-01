@@ -18,8 +18,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
       scope = $rootScope.$new()
       routeParams = {page: _.random(100)}
       $controller controller, {
-        $scope: scope,
-        $routeParams: routeParams
+        $scope: scope
       }
 
     beforeEach ->
@@ -27,9 +26,6 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
 
 
     describe 'initial state', ->
-
-      describe 'pagination', ->
-        it '', -> expect(scope.page).toBe routeParams.page
 
       describe 'http requests', ->
         mainCollection = undefined
@@ -55,7 +51,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
           response[mainResource] = mainCollection
 
         beforeEach ->
-          httpBackend.expectGET("#{mainUrl}?page=#{scope.page}").respond response
+          httpBackend.expectGET(mainUrl).respond response
 
         afterEach ->
           httpBackend.verifyNoOutstandingExpectation()
@@ -107,13 +103,12 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
         mainCollection = _.shuffle [1..7]
         response[mainResource] = mainCollection
 
-      beforeEach -> httpBackend.expectGET("#{mainUrl}?page=#{scope.page}").respond response
+      beforeEach -> httpBackend.expectGET(mainUrl).respond response
 
       beforeEach -> expect(scope[mainResource]).toBe undefined
       beforeEach -> expect(scope[resource]).toBe undefined for resource in otherResources
 
       beforeEach -> expect(scope.pagination).toBe undefined
-      beforeEach -> expect(scope.page).toEqual routeParams.page
 
       beforeEach -> httpBackend.flush()
 
@@ -133,7 +128,6 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
       afterEach -> expect(scope[mainResource]).toEqual mainCollection
 
       afterEach -> expect(scope.pagination).toEqual response.meta.pagination
-      afterEach -> expect(scope.page).toEqual response.meta.pagination.page
 
       afterEach -> httpBackend.verifyNoOutstandingExpectation()
       afterEach -> httpBackend.verifyNoOutstandingRequest()

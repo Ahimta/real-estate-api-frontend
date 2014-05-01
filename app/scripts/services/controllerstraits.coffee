@@ -3,8 +3,24 @@
 angular.module('realEstateFrontEndApp')
   .service 'ControllersTraits', ($log, $locale, $translate) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
+    Invalidatable = (scope, model, mainResource, otherResources, records) ->
+      () ->
+        for record in records
+          scope[record] = {}
 
-    makeCrudable = (scope, model, invalidator) ->
+        scope[resource] = undefined for resource in otherResources
+        scope[mainResource] = undefined
+
+        model.all(page: scope.page).then (response) ->
+          data = response.data
+          scope[mainResource] = data[mainResource]
+          scope.pagination = data.meta.pagination
+          scope.page = data.meta.pagination.page
+
+          for resource in otherResources
+            scope[resource] = data.meta.parents[resource]
+
+    makeCrudable: (scope, model, invalidator) ->
       f = (response) ->
         invalidator()
         response
@@ -35,29 +51,11 @@ angular.module('realEstateFrontEndApp')
           shop.id == id
 
 
-    Invalidatable = (scope, model, mainResource, otherResources, records) ->
-      () ->
-        for record in records
-          scope[record] = {}
-
-        scope[resource] = undefined for resource in otherResources
-        scope[mainResource] = undefined
-
-        model.all(page: scope.page).then (response) ->
-          data = response.data
-          scope[mainResource] = data[mainResource]
-          scope.pagination = data.meta.pagination
-          scope.page = data.meta.pagination.page
-
-          for resource in otherResources
-            scope[resource] = data.meta.parents[resource]
-
-
     Crudable: (scope, mainModel, mainResource, otherResources, records, routeParams) ->
       scope.page = routeParams.page
 
       invalidator = Invalidatable(scope, mainModel, mainResource,
         otherResources, records)
 
-      makeCrudable(scope, mainModel, invalidator)
+      @makeCrudable(scope, mainModel, invalidator)
       invalidator
