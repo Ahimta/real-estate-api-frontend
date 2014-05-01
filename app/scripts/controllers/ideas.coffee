@@ -3,7 +3,7 @@
 angular.module('realEstateFrontEndApp')
   .controller 'IdeasCtrl', ($scope, Idea, Trade, ControllersTraits,
     EditableTrait, SelectableTrait, TranslatableTrait, PaginatableTrait,
-    InvalidatableTrait) ->
+    InvalidatableTrait, CrudableTrait) ->
 
     TranslatableTrait $scope
 
@@ -13,11 +13,8 @@ angular.module('realEstateFrontEndApp')
 
     invalidator = InvalidatableTrait $scope, Idea, 'ideas', ['trades'], ['idea']
 
-    ControllersTraits.makeCrudable $scope, Idea, invalidator
+    CrudableTrait $scope, Idea, invalidator
 
     PaginatableTrait $scope, Idea, 'ideas', ['trades']
-
-    # invalidator2 = ControllersTraits.Crudable($scope, Idea, 'ideas',
-    #  ['trades'], ['idea'], $routeParams)
 
     invalidator()

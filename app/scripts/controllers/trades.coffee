@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'TradesCtrl', ($scope, $routeParams, Trade,
-    ControllersTraits, EditableTrait, TranslatableTrait,
+  .controller 'TradesCtrl', ($scope, CrudableTrait, Trade,
+    EditableTrait, TranslatableTrait, InvalidatableTrait,
     PaginatableTrait) ->
 
     PaginatableTrait $scope, Trade, 'trades'
@@ -11,7 +11,8 @@ angular.module('realEstateFrontEndApp')
 
     EditableTrait $scope
 
-    invalidator = ControllersTraits.Crudable($scope, Trade, 'trades',
-      [], ['trade'], $routeParams)
+    invalidator = InvalidatableTrait $scope, Trade, 'trades', [], ['trade']
+
+    CrudableTrait $scope, Trade, invalidator
 
     invalidator()

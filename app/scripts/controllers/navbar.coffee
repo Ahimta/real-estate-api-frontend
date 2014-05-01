@@ -1,8 +1,7 @@
 'use strict'
 
 angular.module('realEstateFrontEndApp')
-  .controller 'NavbarCtrl', ($scope, $location, $translate,
-    ControllersTraits, TranslatableTrait) ->
+  .controller 'NavbarCtrl', ($scope,$location,$translate,TranslatableTrait) ->
 
     TranslatableTrait $scope
 
