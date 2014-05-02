@@ -40,8 +40,8 @@ window.MyApp.sharedSpecs.controllers.selectable = (controller, names) ->
           scope[selectName](id2)
 
         it '', -> expect(scope[isNameSelected](id1)).toBe false
-        it '', -> expect(scope[isNameSelected](2)).toBe true
-        it '', -> expect(scope[selectedName]).toBe 2
+        it '', -> expect(scope[isNameSelected](id2)).toBe true
+        it '', -> expect(scope[selectedName]).toBe id2
 
 
       describe 'selecting an already selected item', ->
@@ -51,5 +51,5 @@ window.MyApp.sharedSpecs.controllers.selectable = (controller, names) ->
           scope[selectName](id)
           scope[selectName](id)
 
-        it '', -> expect(scope[isNameSelected](1)).toBe false
+        it '', -> expect(scope[isNameSelected](id)).toBe false
         it '', -> expect(scope[selectedName]).toBe undefined
