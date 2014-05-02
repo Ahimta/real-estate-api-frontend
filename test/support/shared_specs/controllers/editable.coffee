@@ -46,6 +46,10 @@ window.MyApp.sharedSpecs.controllers.editable = (controller) ->
         item1 = _.random 99999
         item2 = _.random 99999
 
+        beforeEach ->
+          scope.edit item1
+          scope.edit item2
+
         it 'should mark the first item as editing', ->
           expect(scope.isEditing(item1)).toBe true
 
@@ -53,7 +57,7 @@ window.MyApp.sharedSpecs.controllers.editable = (controller) ->
           expect(scope.isEditing(item2)).toBe true
 
         it 'should mark everything else as not editing', ->
-          for i in [1..31] when i != item
+          for i in [1..31] when i != item1 and i != item2
             expect(scope.isEditing(_.random i)).toBe false
 
 
