@@ -99,13 +99,15 @@ window.MyApp.sharedSpecs.controllers.editable = (controller) ->
           it 'should mark the first item as not editing', ->
             expect(scope.isEditing(item1)).toBe false
 
-          it 'should not mark the second item as not editing', ->
+          it 'should not mark the second item as editing', ->
             expect(scope.isEditing(item2)).toBe true
 
         describe 'resetting both items more than one time', ->
           beforeEach ->
             scope.reset item1
             scope.reset item2
+            scope.reset item2
+            scope.reset item1
 
           it 'should mark the first item as not editing', ->
             expect(scope.isEditing(item1)).toBe false
