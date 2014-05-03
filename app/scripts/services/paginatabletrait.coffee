@@ -11,7 +11,7 @@ angular.module('realEstateFrontEndApp')
           scope.pagination.page >= scope.pagination.pages
 
       scope.nextPage = ->
-        if _isGettingNextPage then return
+        if _isGettingNextPage or scope.pagination is undefined then false
         else
           _isGettingNextPage = true
 

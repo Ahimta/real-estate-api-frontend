@@ -2,6 +2,8 @@ window.MyApp = MyApp ? {}
 
 window.MyApp.itBehavesLike = (name, args...) ->
   switch name
+    when 'controllers/paginatable'
+      window.MyApp.sharedSpecs.controllers.paginatable args...
     when 'controllers/translatable'
       window.MyApp.sharedSpecs.controllers.translatable args...
     when 'controllers/editable'
