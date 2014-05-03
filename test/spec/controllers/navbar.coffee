@@ -14,3 +14,5 @@ describe 'Controller: NavbarCtrl', () ->
     NavbarCtrl = $controller 'NavbarCtrl', {
       $scope: scope
     }
+
+  window.MyApp.itBehavesLike 'controllers/translatable', 'NavbarCtrl'

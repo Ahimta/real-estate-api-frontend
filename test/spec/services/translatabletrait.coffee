@@ -9,6 +9,3 @@ describe 'Service: TranslatableTrait', ->
   TranslatableTrait = {}
   beforeEach inject (_TranslatableTrait_) ->
     TranslatableTrait = _TranslatableTrait_
-
-  it 'should do something', ->
-    expect(!!TranslatableTrait).toBe true
