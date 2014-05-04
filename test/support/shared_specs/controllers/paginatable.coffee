@@ -35,7 +35,7 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
     describe 'x', ->
       beforeEach ->
         count = 21
-        pages = Math.ceil(31 / 10.0)
+        pages = Math.ceil(count / 10.0)
 
         @firstResponse =
           meta:
@@ -57,9 +57,20 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
               pages: pages
               page: 2
 
+        @thirdResponse =
+          meta:
+            parents:
+              trades: []
+              shops: []
+            pagination:
+              count: count
+              pages: pages
+              page: 3
+
       beforeEach ->
-        @firstResponse[mainResource] = _.shuffle [1..31]
+        @firstResponse[mainResource]  = _.shuffle [1..31]
         @secondResponse[mainResource] = _.shuffle [1..31]
+        @thirdResponse[mainResource]  = _.shuffle [1..31]
 
       beforeEach ->
         $httpBackend.expectGET(mainUrl).respond @firstResponse
@@ -69,27 +80,52 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
         it '', -> expect(scope.isGettingNextPage()).toBe false
         it '', -> expect(scope.isLastPage()).toBe false
 
-      describe 'after the second request', ->
-        beforeEach -> scope.nextPage()
+        describe 'after the second request', ->
+          beforeEach -> scope.nextPage()
 
-        beforeEach -> expect(scope.isGettingNextPage()).toBe true
-        beforeEach -> expect(scope.nextPage()).toBe false
+          beforeEach -> expect(scope.isGettingNextPage()).toBe true
+          beforeEach -> expect(scope.nextPage()).toBe false
 
-        beforeEach ->
-          $httpBackend.expectGET("#{mainUrl}?page=2").respond @secondResponse
-          $httpBackend.flush()
+          beforeEach ->
+            $httpBackend.expectGET("#{mainUrl}?page=2").respond @secondResponse
+            $httpBackend.flush()
 
-        it '', -> expect(scope.isGettingNextPage()).toBe false
-        it '', -> expect(scope.isLastPage()).toBe false
+          it '', -> expect(scope.isGettingNextPage()).toBe false
+          it '', -> expect(scope.isLastPage()).toBe false
 
-        it '', ->
-          expect(model.all).toHaveBeenCalledWith
-            page: (@firstResponse.meta.pagination.page + 1)
+          it '', ->
+            expect(model.all).toHaveBeenCalledWith
+              page: (@firstResponse.meta.pagination.page + 1)
 
-        it '', ->
-          expect(scope.pagination).toEqual @secondResponse.meta.pagination
+          it '', ->
+            expect(scope.pagination).toEqual @secondResponse.meta.pagination
 
-        it '', ->
-          expect(scope[mainResource]).toEqual(
-            @firstResponse[mainResource].concat(@secondResponse[mainResource]))
+          it '', ->
+            expect(scope[mainResource]).toEqual(
+              @firstResponse[mainResource].concat(@secondResponse[mainResource]))
 
+          describe 'after the third request', ->
+            beforeEach -> scope.nextPage()
+
+            beforeEach -> expect(scope.isGettingNextPage()).toBe true
+            beforeEach -> expect(scope.nextPage()).toBe false
+
+            beforeEach ->
+              $httpBackend.expectGET("#{mainUrl}?page=3").respond @thirdResponse
+              $httpBackend.flush()
+
+            it '', -> expect(scope.isGettingNextPage()).toBe false
+            it '', -> expect(scope.isLastPage()).toBe true
+
+            it '', ->
+              expect(model.all).toHaveBeenCalledWith
+                page: (@secondResponse.meta.pagination.page + 1)
+
+            it '', ->
+              expect(scope.pagination).toEqual @thirdResponse.meta.pagination
+
+            it '', ->
+              expected = @firstResponse[mainResource]
+                .concat(@secondResponse[mainResource])
+                .concat(@thirdResponse[mainResource])
+              expect(scope[mainResource]).toEqual expected
