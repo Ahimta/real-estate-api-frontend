@@ -9,7 +9,7 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
 
     $httpBackend = null
     mainUrl = null
-    scope = null
+    $scope = null
     model = null
 
     beforeEach inject ($rootScope, $controller, $injector, _$httpBackend_,
@@ -17,20 +17,20 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
 
       $httpBackend = _$httpBackend_
       mainUrl     = "#{REALESTATEAPI}/#{mainResource}"
-      scope       = $rootScope.$new()
+      $scope       = $rootScope.$new()
       model       = $injector.get _model
 
       spyOn(model, 'all').and.callThrough()
 
       $controller controller,
-        $scope: scope
+        $scope: $scope
 
 
     describe 'initial state', ->
 
-      it '', -> expect(scope.isGettingNextPage()).toBe false
-      it '', -> expect(scope.isLastPage()).toBe true
-      it '', -> expect(scope.nextPage()).toBe false
+      it '', -> expect($scope.isGettingNextPage()).toBe false
+      it '', -> expect($scope.isLastPage()).toBe true
+      it '', -> expect($scope.nextPage()).toBe false
 
     describe 'x', ->
       beforeEach ->
@@ -77,55 +77,54 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, _model,
         $httpBackend.flush()
 
       describe 'after the first request', ->
-        it '', -> expect(scope.isGettingNextPage()).toBe false
-        it '', -> expect(scope.isLastPage()).toBe false
+        it '', -> expect($scope.isGettingNextPage()).toBe false
+        it '', -> expect($scope.isLastPage()).toBe false
 
         describe 'after the second request', ->
-          beforeEach -> scope.nextPage()
+          beforeEach -> $scope.nextPage()
 
-          beforeEach -> expect(scope.isGettingNextPage()).toBe true
-          beforeEach -> expect(scope.nextPage()).toBe false
+          beforeEach -> expect($scope.isGettingNextPage()).toBe true
+          beforeEach -> expect($scope.nextPage()).toBe false
 
           beforeEach ->
             $httpBackend.expectGET("#{mainUrl}?page=2").respond @secondResponse
             $httpBackend.flush()
 
-          it '', -> expect(scope.isGettingNextPage()).toBe false
-          it '', -> expect(scope.isLastPage()).toBe false
+          it '', -> expect($scope.isGettingNextPage()).toBe false
+          it '', -> expect($scope.isLastPage()).toBe false
 
           it '', ->
             expect(model.all).toHaveBeenCalledWith
               page: (@firstResponse.meta.pagination.page + 1)
 
           it '', ->
-            expect(scope.pagination).toEqual @secondResponse.meta.pagination
+            expect($scope.pagination).toEqual @secondResponse.meta.pagination
 
           it '', ->
-            expect(scope[mainResource]).toEqual(
+            expect($scope[mainResource]).toEqual(
               @firstResponse[mainResource].concat(@secondResponse[mainResource]))
 
           describe 'after the third request', ->
-            beforeEach -> scope.nextPage()
+            beforeEach -> $scope.nextPage()
 
-            beforeEach -> expect(scope.isGettingNextPage()).toBe true
-            beforeEach -> expect(scope.nextPage()).toBe false
+            beforeEach -> expect($scope.isGettingNextPage()).toBe true
+            beforeEach -> expect($scope.nextPage()).toBe false
 
             beforeEach ->
               $httpBackend.expectGET("#{mainUrl}?page=3").respond @thirdResponse
               $httpBackend.flush()
 
-            it '', -> expect(scope.isGettingNextPage()).toBe false
-            it '', -> expect(scope.isLastPage()).toBe true
+            it '', -> expect($scope.isGettingNextPage()).toBe false
+            it '', -> expect($scope.isLastPage()).toBe true
 
             it '', ->
               expect(model.all).toHaveBeenCalledWith
                 page: (@secondResponse.meta.pagination.page + 1)
 
             it '', ->
-              expect(scope.pagination).toEqual @thirdResponse.meta.pagination
+              expect($scope.pagination).toEqual @thirdResponse.meta.pagination
 
             it '', ->
-              expected = @firstResponse[mainResource]
-                .concat(@secondResponse[mainResource])
-                .concat(@thirdResponse[mainResource])
-              expect(scope[mainResource]).toEqual expected
+              expect($scope[mainResource]).toEqual @firstResponse[mainResource].
+                concat(@secondResponse[mainResource]).
+                concat(@thirdResponse[mainResource])
