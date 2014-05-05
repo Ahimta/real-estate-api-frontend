@@ -8,6 +8,9 @@ describe 'Controller: TradesCtrl', () ->
   window.MyApp.itBehavesLike('controllers/paginatable', 'TradesCtrl',
     'Trade', 'trades')
 
+  window.MyApp.itBehavesLike('controllers/invalidatable', 'TradesCtrl',
+    ['trade'], 'trades')
+
   window.MyApp.itBehavesLike 'controllers/translatable', 'TradesCtrl'
   window.MyApp.itBehavesLike 'controllers/editable', 'TradesCtrl'
   window.MyApp.itBehavesLike 'Crudable', 'TradesCtrl', 'trades'

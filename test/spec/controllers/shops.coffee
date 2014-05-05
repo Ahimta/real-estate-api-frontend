@@ -8,6 +8,9 @@ describe 'Controller: ShopsCtrl', () ->
   window.MyApp.itBehavesLike('controllers/paginatable', 'ShopsCtrl',
     'Shop', 'shops', ['trades'])
 
+  window.MyApp.itBehavesLike('controllers/invalidatable', 'ShopsCtrl',
+    ['shop'], 'shops', ['trades'])
+
   window.MyApp.itBehavesLike 'controllers/translatable', 'ShopsCtrl'
   window.MyApp.itBehavesLike 'controllers/editable', 'ShopsCtrl'
   window.MyApp.itBehavesLike 'Selectable', 'ShopsCtrl', ['Trade']
