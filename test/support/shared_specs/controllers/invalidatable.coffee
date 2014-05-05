@@ -16,14 +16,14 @@ window.MyApp.sharedSpecs.controllers.invalidatable = (controller, records,
         $scope: @scope
 
 
-    describe 'initial state', ->
+    describe 'before initial state', ->
       it '', ->
         expect(@scope[resource]).toBe undefined for resource in otherResources
       it '', -> expect(@scope[record]).toEqual {} for record in records
       it '', -> expect(@scope[mainResource]).toBe undefined
 
 
-    describe '', ->
+    describe 'initial state', ->
       beforeEach ->
         @response =
           meta:
