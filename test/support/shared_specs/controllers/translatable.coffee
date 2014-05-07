@@ -21,36 +21,60 @@ window.MyApp.sharedSpecs.controllers.translatable = (controller) ->
           $translate: translate
           $scope: scope
 
-    describe 'when the locale is en-*', ->
-      beforeEach myBeforeHook('en-SA')
+    arabicBehavior = ->
+      it '', -> expect(translate.use).toHaveBeenCalledWith 'ar'
+      it '', -> expect(scope.getLang()).toEqual 'ar'
+      it '', -> expect(scope.isArabic()).toBe true
+      it '', -> expect(scope.getDir()).toEqual 'rtl'
 
+    englishBehavior = ->
       it '', -> expect(translate.use).toHaveBeenCalledWith 'en'
+      it '', -> expect(scope.getLang()).toEqual 'en'
       it '', -> expect(scope.isArabic()).toBe false
+      it '', -> expect(scope.getDir()).toEqual 'ltr'
+
 
 
     describe 'when the locale is ar-*', ->
       beforeEach myBeforeHook('ar-SA')
 
-      it '', -> expect(translate.use).toHaveBeenCalledWith 'ar'
-      it '', -> expect(scope.isArabic()).toBe true
+      describe 'initial state', ->
+        arabicBehavior()
+
+      describe 'switching the language', ->
+        beforeEach -> scope.switchLang()
+        englishBehavior()
 
 
-    describe 'when the locale is not ar-* or en-*', ->
-      beforeEach myBeforeHook('de-GE')
+    describe 'en', ->
+      describe 'when the locale is en-*', ->
+        beforeEach myBeforeHook('en-SA')
+        englishBehavior()
 
-      it '', -> expect(translate.use).toHaveBeenCalledWith 'en'
-      it '', -> expect(scope.isArabic()).toBe false
+        describe 'switching the language', ->
+          beforeEach -> scope.switchLang()
+          arabicBehavior()
 
+      describe 'when the locale is not ar-* or en-*', ->
+        beforeEach myBeforeHook('de-GE')
+        englishBehavior()
 
-    describe 'when the locale is 1 character long', ->
-      beforeEach myBeforeHook('e')
+        describe 'switching the language', ->
+          beforeEach -> scope.switchLang()
+          arabicBehavior()
 
-      it '', -> expect(translate.use).toHaveBeenCalledWith 'en'
-      it '', -> expect(scope.isArabic()).toBe false
+      describe 'when the locale is 1 character long', ->
+        beforeEach myBeforeHook('e')
+        englishBehavior()
 
+        describe 'switching the language', ->
+          beforeEach -> scope.switchLang()
+          arabicBehavior()
 
-    describe 'when the locale is an empty string', ->
-      beforeEach myBeforeHook('')
+      describe 'when the locale is an empty string', ->
+        beforeEach myBeforeHook('')
+        englishBehavior()
 
-      it '', -> expect(translate.use).toHaveBeenCalledWith 'en'
-      it '', -> expect(scope.isArabic()).toBe false
+        describe 'switching the language', ->
+          beforeEach -> scope.switchLang()
+          arabicBehavior()
