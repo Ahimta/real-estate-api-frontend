@@ -11,11 +11,10 @@ angular.module('realEstateFrontEndApp')
         scope[resource] = undefined for resource in otherResources
         scope[mainResource] = undefined
 
-        model.all(page: scope.page).then (response) ->
+        model.all().then (response) ->
           data = response.data
           scope[mainResource] = data[mainResource]
           scope.pagination = data.meta.pagination
-          scope.page = data.meta.pagination.page
 
           for resource in otherResources
             scope[resource] = data.meta.parents[resource]

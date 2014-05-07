@@ -18,7 +18,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
     beforeEach ->
       count = _.random(21, 100)
       pages = Math.ceil(count / 10.0)
-      page  = _.random(1, pages)
+      page  = _.random pages
 
       @response =
         meta:
@@ -43,7 +43,7 @@ window.MyApp.sharedSpecs.controllers.crudable = (controller, mainResource, other
       @response[mainResource] = _.shuffle [1..7]
 
     afterEach ->
-      @httpBackend.expectGET("#{@mainUrl}?page=#{@scope.pagination.page}").respond @response
+      @httpBackend.expectGET(@mainUrl).respond @response
       @httpBackend.flush()
 
     afterEach ->
