@@ -27,28 +27,33 @@ html.no-js
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]
 
-    //- Add your site or application content here
-    header(style='margin-bottom: 7em')
-      nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role='navigation')
-        div.container
-          //- Brand and toggle get grouped for better mobile display
-          div.navbar-header
-          button.navbar-toggle(type='button' data-toggle='collapse'
-            data-target='#bs-example-navbar-collapse-1')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+    div
+      //- Add your site or application content here
+      header(style='margin-bottom: 7em')
+        nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role='navigation')
+          div.container
+            //- Brand and toggle get grouped for better mobile display
+            div.navbar-header
+            button.navbar-toggle(type='button' data-toggle='collapse'
+              data-target='#bs-example-navbar-collapse-1')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
 
-          //- Collect the nav links, forms, and other content for toggling
-          div#bs-example-navbar-collapse-1.collapse.navbar-collapse
-            ul.nav.navbar-nav(ng-controller='NavbarCtrl')
-              li(ng-repeat='item in items' ng-class='{active: isActive(item.path)}')
-                a(href='{{item.path}}' ng-bind='item.name')
+            button.navbar-right.navbar-btn.btn.btn-success(
+              type='button'
+              ng-click='switchLang()') {{ 'SWITCH_LANG' | translate }}
 
-    div.container(ng-view='')
+            //- Collect the nav links, forms, and other content for toggling
+            div#bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav(ng-controller='NavbarCtrl')
+                li(ng-repeat='item in items' ng-class='{active: isActive(item.path)}')
+                  a(href='{{item.path}}' ng-bind='item.name')
 
-    footer
+      div.container(ng-view='')
+
+      footer
 
     //
       [if lt IE 9]>

@@ -30,6 +30,7 @@ angular.module('realEstateFrontEndApp', [
   .config ($translateProvider) ->
     $translateProvider
       .translations 'en',
+        SWITCH_LANG: 'عربي'
         TRADES:
           PLURAL: 'Trades'
           SINGLE: 'Trade'
@@ -59,6 +60,7 @@ angular.module('realEstateFrontEndApp', [
         CONTENT: 'Content'
 
       .translations 'ar',
+        SWITCH_LANG: 'English'
         TRADES:
           PLURAL: 'فئات'
           SINGLE: 'فئة'
