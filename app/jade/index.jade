@@ -27,7 +27,7 @@ html.no-js
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]
 
-    div(ng-controller='MainCtrl')
+    div(ng-controller='MainCtrl' dir='{{getDir()}}' lang='{{getLang()}}')
       //- Add your site or application content here
       header(style='margin-bottom: 7em')
         nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role='navigation')
@@ -41,13 +41,15 @@ html.no-js
               span.icon-bar
               span.icon-bar
 
-            button.navbar-right.navbar-btn.btn.btn-success(
+            button.navbar-btn.btn.btn-success(
+              ng-class="{'navbar-left': isArabic(), 'navbar-right': !isArabic()}"
               type='button'
               ng-click='switchLang()') {{ 'SWITCH_LANG' | translate }}
 
             //- Collect the nav links, forms, and other content for toggling
             div#bs-example-navbar-collapse-1.collapse.navbar-collapse
-              ul.nav.navbar-nav(ng-controller='NavbarCtrl')
+              ul.nav.navbar-nav(ng-controller='NavbarCtrl'
+                ng-class="{'navbar-right': isArabic(), 'navbar-left': !isArabic()}")
                 li(ng-repeat='item in items' ng-class='{active: isActive(item.path)}')
                   a(href='{{item.path}}') {{ item.name | translate }}
 

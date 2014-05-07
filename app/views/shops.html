@@ -5,7 +5,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <header class="modal-header">
-          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+          <button type="button" ng-class="{'pull-right': !isArabic(), 'pull-left': isArabic()}" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
           <h4 id="myModalLabel" class="modal-title">{{ 'SHOPS.NEW' | translate }}</h4>
         </header>
         <div class="modal-body">
@@ -58,12 +58,12 @@
 <section ng-hide="!shops">
   <div class="row">
     <section class="col-sm-3">
-      <div class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.shops_count}}</span></a></div>
+      <div dir="ltr" class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.shops_count}}</span></a></div>
     </section>
     <section class="col-sm-9">
       <article ng-repeat="shop in shops | filterBy:&quot;trade_id&quot;:selectedTrade" class="lead">
         <div class="panel panel-primary">
-          <header class="panel-heading"><span ng-hide="isEditing(shop.id)"><span>{{shop.name }}</span><span class="pull-right"><span class="badge">
+          <header class="panel-heading"><span ng-hide="isEditing(shop.id)"><span>{{shop.name }}</span><span ng-class="{'pull-right': !isArabic(), 'pull-left': isArabic()}"><span class="badge">
                   {{shop.workers_count}}
                    {{ 'WORKERS.PLURAL' | translate | lowercase }}
                    </span></span></span>

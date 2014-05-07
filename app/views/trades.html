@@ -5,7 +5,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <header class="modal-header">
-          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+          <button type="button" ng-class="{'pull-right': !isArabic(), 'pull-left': isArabic()}" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
           <h4 id="myModalLabel" class="modal-title">{{ 'TRADES.NEW' | translate }}</h4>
         </header>
         <div class="modal-body">
@@ -34,7 +34,7 @@
     <article ng-repeat="trade in trades">
       <div class="panel panel-primary lead">
         <header class="panel-heading">
-          <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span class="pull-right"><span class="badge">{{trade.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.shops_count}} {{ 'SHOPS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.ideas_count}} {{ 'IDEAS.PLURAL' | translate | lowercase }}</span></span></div>
+          <div ng-hide="isEditing(trade.id)"><span>{{trade.name}}</span><span ng-class="{'pull-right': !isArabic(), 'pull-left': isArabic()}"><span class="badge">{{trade.workers_count}} {{ 'WORKERS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.shops_count}} {{ 'SHOPS.PLURAL' | translate | lowercase }}</span><span class="badge">{{trade.ideas_count}} {{ 'IDEAS.PLURAL' | translate | lowercase }}</span></span></div>
           <div ng-show="isEditing(trade.id)">
             <div ng-class="{'has-error': errors.name}" class="form-group">
               <input type="text" autofocus="autofocus" required="required" placeholder="{{ 'NAME' | translate }}" ng-model="trade.name" class="form-control"/>

@@ -12,7 +12,7 @@ mixin identifyable(name)
         span= '{{' + name + '.name }}'
 
         if name == 'shop'
-          span.pull-right
+          span(ng-class="{'pull-right': !isArabic(), 'pull-left': isArabic()}")
             span.badge.
               {{shop.workers_count}}
                {{ 'WORKERS.PLURAL' | translate | lowercase }}
