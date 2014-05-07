@@ -5,7 +5,7 @@ angular.module('realEstateFrontEndApp')
     EditableTrait, TranslatableTrait, InvalidatableTrait,
     PaginatableTrait) ->
 
-    PaginatableTrait $scope, Trade, 'trades'
+    PaginatableTrait $scope, Trade, 'trades', [], $routeParams
 
     TranslatableTrait $scope
 

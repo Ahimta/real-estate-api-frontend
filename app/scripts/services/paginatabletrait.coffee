@@ -3,7 +3,7 @@
 angular.module('realEstateFrontEndApp')
   .service 'PaginatableTrait', ->
     # AngularJS will instantiate a singleton by calling "new" on this function
-    (scope, model, mainResource, otherResources=[]) ->
+    (scope, model, mainResource, otherResources, routeParams) ->
       _isGettingNextPage = false
 
       scope.isLastPage = ->
@@ -15,11 +15,12 @@ angular.module('realEstateFrontEndApp')
         else
           _isGettingNextPage = true
 
-          model.all(page: scope.pagination.page + 1).then (response) ->
-            scope.pagination = response.data.meta.pagination
+          model.all(_.extend(routeParams, {page: scope.pagination.page + 1}))
+            .then (response) ->
+              scope.pagination = response.data.meta.pagination
 
-            scope[mainResource].push response.data[mainResource]...
-            _isGettingNextPage = false
+              scope[mainResource].push response.data[mainResource]...
+              _isGettingNextPage = false
 
       scope.isGettingNextPage = ->
         _isGettingNextPage

@@ -11,11 +11,21 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
       REALESTATEAPI) ->
 
       @httpBackend = $httpBackend
-      @mainUrl     = "#{REALESTATEAPI}/#{mainResource}"
+      @routeParams =
+        trade_id: _.random(100) + 1
+        shop_id: _.random(100) + 1
+
+      @mainUrl     = "#{REALESTATEAPI}/#{mainResource}?shop_id=\
+        #{@routeParams.shop_id}&trade_id=#{@routeParams.trade_id}"
       @scope       = $rootScope.$new()
       @model       = $injector.get model
 
+      @getUrl = (page) ->
+        "#{REALESTATEAPI}/#{mainResource}?page=#{page}&shop_id=\
+        #{@routeParams.shop_id}&trade_id=#{@routeParams.trade_id}"
+
       $controller controller,
+        $routeParams: @routeParams
         $scope: @scope
 
 
@@ -80,7 +90,7 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
           beforeEach -> expect(@scope.nextPage()).toBe false
 
           beforeEach ->
-            @httpBackend.expectGET("#{@mainUrl}?page=2").respond @secondResponse
+            @httpBackend.expectGET(@getUrl(2)).respond @secondResponse
             @httpBackend.flush()
 
           it '', -> expect(@scope.isGettingNextPage()).toBe false
@@ -100,7 +110,7 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
             beforeEach -> expect(@scope.nextPage()).toBe false
 
             beforeEach ->
-              @httpBackend.expectGET("#{@mainUrl}?page=3").respond @thirdResponse
+              @httpBackend.expectGET(@getUrl(3)).respond @thirdResponse
               @httpBackend.flush()
 
             it '', -> expect(@scope.isGettingNextPage()).toBe false

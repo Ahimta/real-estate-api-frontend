@@ -16,6 +16,6 @@ angular.module('realEstateFrontEndApp')
 
     CrudableTrait $scope, Idea, invalidator
 
-    PaginatableTrait $scope, Idea, 'ideas', ['trades']
+    PaginatableTrait $scope, Idea, 'ideas', ['trades'], $routeParams
 
     invalidator()
