@@ -160,7 +160,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     // Compiles CoffeeScript to JavaScript
     coffee: {
       options: {
@@ -187,7 +187,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -318,7 +318,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.dist %>/real-estate-api-frontend',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
