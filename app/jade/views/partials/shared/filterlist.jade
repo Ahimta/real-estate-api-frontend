@@ -5,6 +5,7 @@ mixin filter-list(name, resource)
   div.list-group(dir='ltr')
     a.list-group-item(ng-repeat=(name + ' in ' + name + "s | orderBy:'name'")
       ng-click=('select' + titlized + '(' + name + '.id)')
+      ng-href=('#/' + resource + '?' + name + '_id={{' + name + '.id}}')
       ng-class='{active: is' + titlized + 'Selected(' + name + '.id)}')
       ='{{'+name+'.name}}'
       span.badge.pull-right='{{'+name+'.'+resource+'_count}}'

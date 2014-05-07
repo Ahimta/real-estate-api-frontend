@@ -58,7 +58,7 @@
 <section ng-hide="!shops">
   <div class="row">
     <section class="col-sm-3">
-      <div dir="ltr" class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.shops_count}}</span></a></div>
+      <div dir="ltr" class="list-group"><a ng-repeat="trade in trades | orderBy:'name'" ng-click="selectTrade(trade.id)" ng-href="#/shops?trade_id={{trade.id}}" ng-class="{active: isTradeSelected(trade.id)}" class="list-group-item">{{trade.name}}<span class="badge pull-right">{{trade.shops_count}}</span></a></div>
     </section>
     <section class="col-sm-9">
       <article ng-repeat="shop in shops" class="lead">
