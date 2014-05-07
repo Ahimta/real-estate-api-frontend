@@ -4,7 +4,6 @@ include ../shared/namefield
 include ../shared/identifyable/identifyable
 
 mixin shops
-  article.lead(
-    ng-repeat='shop in shops | filterBy:"trade_id":selectedTrade')
+  article.lead(ng-repeat='shop in shops')
 
     +identifyable('shop')

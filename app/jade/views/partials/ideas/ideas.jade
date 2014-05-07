@@ -3,7 +3,7 @@ include ideaform
 
 mixin ideas
   article.text-center.lead(
-    ng-repeat='idea in ideas | filterBy:"trade_id":selectedTrade')
+    ng-repeat='idea in ideas')
     - var _isEditing = 'isEditing(idea.id)'
 
     div(ng-hide=_isEditing)

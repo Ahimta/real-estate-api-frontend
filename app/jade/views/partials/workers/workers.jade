@@ -4,7 +4,6 @@ include ../shared/namefield
 include ../shared/identifyable/identifyable
 
 mixin workers
-  article.lead(
-    ng-repeat='worker in workers | filterBy:"trade_id":selectedTrade | filterBy:"shop_id":selectedShop')
+  article.lead(ng-repeat='worker in workers')
 
     +identifyable('worker')
