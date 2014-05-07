@@ -11,8 +11,12 @@ window.MyApp.sharedSpecs.controllers.invalidatable = (controller, records,
       @mainUrl     = "#{REALESTATEAPI}/#{mainResource}"
       @httpBackend = $httpBackend
       @scope       = $rootScope.$new()
+      @routeParams =
+        trade_id: _.random(100) + 1
+        shop_id: _.random(100) + 1
 
       $controller controller,
+        $routeParams: @routeParams
         $scope: @scope
 
 
@@ -38,7 +42,10 @@ window.MyApp.sharedSpecs.controllers.invalidatable = (controller, records,
         @response[mainResource] = _.shuffle [1..7]
 
       beforeEach ->
-        @httpBackend.expectGET(@mainUrl).respond @response
+        @httpBackend
+          .expectGET("#{@mainUrl}?shop_id=#{@routeParams.shop_id}&trade_id=#{@routeParams.trade_id}")
+          .respond @response
+
         @httpBackend.flush()
 
       it '', -> expect(@scope[mainResource]).toEqual @response[mainResource]

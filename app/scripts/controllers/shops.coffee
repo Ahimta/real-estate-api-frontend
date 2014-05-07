@@ -13,7 +13,8 @@ angular.module('realEstateFrontEndApp')
 
     SelectableTrait $scope, 'Trade'
 
-    invalidator = InvalidatableTrait $scope, Shop, 'shops', ['trades'], ['shop']
+    invalidator = InvalidatableTrait($scope, Shop, 'shops', ['trades'],
+      ['shop'], $routeParams)
 
     CrudableTrait $scope, Shop, invalidator
 
