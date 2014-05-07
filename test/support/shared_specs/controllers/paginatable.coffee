@@ -15,8 +15,6 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
       @scope       = $rootScope.$new()
       @model       = $injector.get model
 
-      spyOn(@model, 'all').and.callThrough()
-
       $controller controller,
         $scope: @scope
 
@@ -89,10 +87,6 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
           it '', -> expect(@scope.isLastPage()).toBe false
 
           it '', ->
-            expect(@model.all).toHaveBeenCalledWith
-              page: (@firstResponse.meta.pagination.page + 1)
-
-          it '', ->
             expect(@scope.pagination).toEqual @secondResponse.meta.pagination
 
           it '', ->
@@ -111,10 +105,6 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
 
             it '', -> expect(@scope.isGettingNextPage()).toBe false
             it '', -> expect(@scope.isLastPage()).toBe true
-
-            it '', ->
-              expect(@model.all).toHaveBeenCalledWith
-                page: (@secondResponse.meta.pagination.page + 1)
 
             it '', ->
               expect(@scope.pagination).toEqual @thirdResponse.meta.pagination
