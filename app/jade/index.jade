@@ -27,7 +27,7 @@ html.no-js
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]
 
-    div
+    div(ng-controller='MainCtrl')
       //- Add your site or application content here
       header(style='margin-bottom: 7em')
         nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role='navigation')
@@ -49,7 +49,7 @@ html.no-js
             div#bs-example-navbar-collapse-1.collapse.navbar-collapse
               ul.nav.navbar-nav(ng-controller='NavbarCtrl')
                 li(ng-repeat='item in items' ng-class='{active: isActive(item.path)}')
-                  a(href='{{item.path}}' ng-bind='item.name')
+                  a(href='{{item.path}}') {{ item.name | translate }}
 
       div.container(ng-view='')
 
@@ -83,6 +83,7 @@ html.no-js
     script(src="scripts/app.js")
 
     //- controllers
+    script(src="scripts/controllers/maincontroller.js")
     script(src="scripts/controllers/navbar.js")
     script(src="scripts/controllers/ideas.js")
     script(src="scripts/controllers/trades.js")
