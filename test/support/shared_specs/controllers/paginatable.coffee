@@ -31,7 +31,6 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
 
     describe 'initial state', ->
 
-      it '', -> expect(@scope.isGettingNextPage()).toBe false
       it '', -> expect(@scope.isLastPage()).toBe true
       it '', -> expect(@scope.nextPage()).toBe false
 
@@ -80,20 +79,17 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
         @httpBackend.flush()
 
       describe 'after the first request', ->
-        it '', -> expect(@scope.isGettingNextPage()).toBe false
         it '', -> expect(@scope.isLastPage()).toBe false
 
         describe 'after the second request', ->
           beforeEach -> @scope.nextPage()
 
-          beforeEach -> expect(@scope.isGettingNextPage()).toBe true
           beforeEach -> expect(@scope.nextPage()).toBe false
 
           beforeEach ->
             @httpBackend.expectGET(@getUrl(2)).respond @secondResponse
             @httpBackend.flush()
 
-          it '', -> expect(@scope.isGettingNextPage()).toBe false
           it '', -> expect(@scope.isLastPage()).toBe false
 
           it '', ->
@@ -106,14 +102,12 @@ window.MyApp.sharedSpecs.controllers.paginatable = (controller, model,
           describe 'after the third request', ->
             beforeEach -> @scope.nextPage()
 
-            beforeEach -> expect(@scope.isGettingNextPage()).toBe true
             beforeEach -> expect(@scope.nextPage()).toBe false
 
             beforeEach ->
               @httpBackend.expectGET(@getUrl(3)).respond @thirdResponse
               @httpBackend.flush()
 
-            it '', -> expect(@scope.isGettingNextPage()).toBe false
             it '', -> expect(@scope.isLastPage()).toBe true
 
             it '', ->
